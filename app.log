@@ -1,0 +1,19 @@
+2025-02-27 20:59:38,558 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.68.105:7700
+2025-02-27 20:59:38,558 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 20:59:44,803 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 20:59:44] "GET / HTTP/1.1" 200 -
+2025-02-27 20:59:44,815 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 20:59:44] "GET / HTTP/1.1" 200 -
+2025-02-27 20:59:45,372 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 20:59:45] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-02-27 20:59:45,374 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 20:59:45] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-02-27 20:59:47,563 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 20:59:47,570 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 20:59:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 20:59:48,683 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 20:59:48,689 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 20:59:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 20:59:55,640 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 20:59:55] "GET /leads HTTP/1.1" 200 -
+2025-02-27 20:59:57,390 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 20:59:57,392 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 20:59:57] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:00:00,008 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:00:00] "GET / HTTP/1.1" 200 -
+2025-02-27 21:00:01,409 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:00:01,412 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:00:01] "POST /api/campaigns HTTP/1.1" 200 -

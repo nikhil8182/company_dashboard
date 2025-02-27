@@ -1,0 +1,71 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# IDE artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+
+# Docker and build files
+.dockerignore
+docker-compose*.yml
+docker-compose*.yaml
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Environment files
+.env
+.env.*
+
+# Documentation
+docs/
+README.md
+
+# Other
+.DS_Store
+node_modules/
+npm-debug.log
+yarn-error.log

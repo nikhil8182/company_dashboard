@@ -88,30 +88,28 @@
 <body class="dashboard-body">
     <!-- Header Bar -->
     <div class="header-bar">
-        <div class="header-title">
-            <i class="bi bi-speedometer2"></i> Onwords Performance Dashboard v0.2
-        </div>
-        <div class="header-meta">
-            <div class="d-flex align-items-center flex-wrap justify-content-between w-100">
-                <div class="me-2 mb-2 mb-sm-0">
+        <div class="d-flex flex-column flex-md-row justify-content-between w-100 align-items-md-center">
+            <div class="header-title mb-2 mb-md-0">
+                <i class="bi bi-speedometer2"></i> Onwords Performance Dashboard v0.2
+            </div>
+            <div class="header-meta">
+                <div class="d-flex flex-wrap gap-2 justify-content-start">
                     <a href="/leads" class="btn btn-sm btn-outline-light">
                         <i class="bi bi-person-rolodex"></i> <span class="d-none d-sm-inline">Leads</span>
                     </a>
-                </div>
-                <div class="days-left me-2 mb-2 mb-sm-0">
                     <span class="days-left-badge" id="daysLeftBadge">Feb 27, 2025 | 2 days left</span>
+                    <div class="refresh-info">
+                        <i class="bi bi-arrow-repeat me-1"></i>
+                        <small class="text-light">Updates in <span id="nextRefresh">30s</span></small>
+                    </div>
+                    <button id="themeToggle" class="btn btn-sm btn-outline-light theme-switch">
+                        <i class="bi bi-sun-fill" id="lightIcon"></i>
+                        <i class="bi bi-moon-fill d-none" id="darkIcon"></i>
+                    </button>
+                    <span id="connectionStatus" class="connection-status offline">
+                        <i class="bi bi-wifi-off"></i> <span class="d-none d-sm-inline">Offline</span>
+                    </span>
                 </div>
-                <div class="refresh-info me-2 mb-2 mb-sm-0">
-                    <i class="bi bi-arrow-repeat me-1"></i>
-                    <small class="text-light">Updates in <span id="nextRefresh">30s</span></small>
-                </div>
-                <button id="themeToggle" class="btn btn-sm btn-outline-light me-2 mb-2 mb-sm-0 theme-switch">
-                    <i class="bi bi-sun-fill" id="lightIcon"></i>
-                    <i class="bi bi-moon-fill d-none" id="darkIcon"></i>
-                </button>
-                <span id="connectionStatus" class="connection-status offline">
-                    <i class="bi bi-wifi-off"></i> <span class="d-none d-sm-inline">Offline</span>
-                </span>
             </div>
         </div>
     </div>

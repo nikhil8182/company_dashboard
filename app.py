@@ -1,178 +1,57 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import requests
 import threading
 import time
 import random
+import json
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, 
+                   cors_allowed_origins="*",
+                   ping_timeout=60,     # Increase ping timeout for better stability
+                   ping_interval=25)    # More frequent pings to maintain connection
 
 # API URLs
 CAMPAIGNS_API_URL = "http://65.2.187.240:9000/campaigns"
+DEFAULT_DATE_PRESET = "today"
 
 # Flag to control background thread
 thread_stop_event = threading.Event()
 
 # Get campaign data from API
 def get_campaign_data():
-    # Sample data for development/fallback
-    sample_data = {
-        "campaigns": [
-            {
-                "campaign_name": "Tamil New",
-                "spend": 652.8,
-                "impressions": 3599,
-                "clicks": 43,
-                "leads": 6,
-                "cpl": 108.8
-            },
-            {
-                "campaign_name": "TC Hiring campaign - Current",
-                "spend": 530.72,
-                "impressions": 11059,
-                "clicks": 67,
-                "leads": 13,
-                "cpl": 40.82
-            },
-            {
-                "campaign_name": "PR Current",
-                "spend": 543.17,
-                "impressions": 9112,
-                "clicks": 55,
-                "leads": 8,
-                "cpl": 67.9
-            },
-            {
-                "campaign_name": "Tamil Ad Campaign Preference",
-                "spend": 780.73,
-                "impressions": 5872,
-                "clicks": 46,
-                "leads": 5,
-                "cpl": 156.15
-            },
-            {
-                "campaign_name": "No Chennai Campaign - Question Media",
-                "spend": 1413.11,
-                "impressions": 16675,
-                "clicks": 80,
-                "leads": 5,
-                "cpl": 282.62
-            },
-            {
-                "campaign_name": "Whole Tamil Nadu - Question Media",
-                "spend": 838.11,
-                "impressions": 9933,
-                "clicks": 73,
-                "leads": 1,
-                "cpl": 838.11
-            },
-            {
-                "campaign_name": "Thasleem  AD Campaign New",
-                "spend": 1751.88,
-                "impressions": 14065,
-                "clicks": 62,
-                "leads": 7,
-                "cpl": 250.27
-            },
-            {
-                "campaign_name": "Bangalore Campaign",
-                "spend": 335.07,
-                "impressions": 1635,
-                "clicks": 14,
-                "leads": 3,
-                "cpl": 111.69
-            },
-            {
-                "campaign_name": "Common Campaign New",
-                "spend": 794.62,
-                "impressions": 5693,
-                "clicks": 33,
-                "leads": 4,
-                "cpl": 198.66
-            },
-            {
-                "campaign_name": "Akshya New Campaign",
-                "spend": 812.66,
-                "impressions": 8748,
-                "clicks": 52,
-                "leads": 5,
-                "cpl": 162.53
-            },
-            {
-                "campaign_name": "FEB SH 4000rs Campaign",
-                "spend": 1504.08,
-                "impressions": 6892,
-                "clicks": 37,
-                "leads": 2,
-                "cpl": 752.04
-            },
-            {
-                "campaign_name": "Boom Barrier 25/02",
-                "spend": 315.16,
-                "impressions": 2526,
-                "clicks": 11,
-                "leads": 0,
-                "cpl": 0
-            }
-        ],
-        "total_spend": 10272.11,
-        "total_leads": 59,
-        "avg_cpl": 174.1,
-        "currency": "INR"
-    }
-    
-    # Try to get data from API
+    # Try to get data from API using POST request with date_preset
     try:
-        response = requests.get(CAMPAIGNS_API_URL)
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+        payload = {
+            'date_preset': DEFAULT_DATE_PRESET
+        }
+        
+        response = requests.post(CAMPAIGNS_API_URL, headers=headers, json=payload)
+        
         if response.status_code == 200:
+            print(f"Successfully fetched campaign data from API: {response.status_code}")
             return response.json()
+        else:
+            print(f"API returned non-200 status: {response.status_code}")
+            print(f"Response: {response.text}")
+            raise Exception(f"API error: {response.status_code}")
     except Exception as e:
         print(f"Error fetching campaigns: {e}")
-    
-    # Simulate small random changes to make the data appear "live"
-    # Adjust total values
-    sample_data["total_leads"] = max(0, sample_data["total_leads"] + random.randint(-1, 2))
-    sample_data["total_spend"] = round(sample_data["total_spend"] * (1 + random.uniform(-0.01, 0.02)), 2)
-    
-    # Adjust campaign values
-    for campaign in sample_data["campaigns"]:
-        # 30% chance of changing values
-        if random.random() < 0.3:
-            # Adjust leads (small changes)
-            campaign["leads"] = max(0, campaign["leads"] + random.choice([0, 0, 0, 1, -1]))
-            
-            # Adjust spend (small percentage changes)
-            spend_change = random.uniform(-0.02, 0.03)  # -2% to +3%
-            campaign["spend"] = round(campaign["spend"] * (1 + spend_change), 2)
-            
-            # Adjust impressions and clicks
-            impression_change = random.uniform(-0.01, 0.05)  # -1% to +5%
-            campaign["impressions"] = max(0, int(campaign["impressions"] * (1 + impression_change)))
-            
-            click_change = random.uniform(-0.02, 0.04)  # -2% to +4%
-            campaign["clicks"] = max(0, int(campaign["clicks"] * (1 + click_change)))
-            
-            # Recalculate CPL
-            if campaign["leads"] > 0:
-                campaign["cpl"] = round(campaign["spend"] / campaign["leads"], 2)
-            else:
-                campaign["cpl"] = 0
-    
-    # Recalculate total metrics...
-    total_spend = sum(campaign["spend"] for campaign in sample_data["campaigns"])
-    total_leads = sum(campaign["leads"] for campaign in sample_data["campaigns"])
-    
-    sample_data["total_spend"] = round(total_spend, 2)
-    sample_data["total_leads"] = total_leads
-    
-    if total_leads > 0:
-        sample_data["avg_cpl"] = round(total_spend / total_leads, 2)
-    else:
-        sample_data["avg_cpl"] = 0
-    
-    return sample_data
+        # Create an empty data structure with proper format
+        empty_data = {
+            "campaigns": [],
+            "total_spend": 0,
+            "total_leads": 0,
+            "avg_cpl": 0,
+            "currency": "INR"
+        }
+        return empty_data
 
 # Background thread that sends data to clients
 def background_thread():
@@ -193,6 +72,11 @@ def background_thread():
 def index():
     return render_template('index.html', title='Company Dashboard')
 
+# Route for leads page
+@app.route('/leads')
+def leads():
+    return render_template('leads.html', title='Lead Management')
+
 # API route for initial chart data
 @app.route('/api/data')
 def get_data():
@@ -204,11 +88,22 @@ def get_data():
     return jsonify(data)
 
 # API route for campaign data
-@app.route('/api/campaigns')
+@app.route('/api/campaigns', methods=['GET', 'POST'])
 def get_campaigns():
     try:
-        return jsonify(get_campaign_data())
+        # Get date_preset from request if available
+        date_preset = DEFAULT_DATE_PRESET
+        if request.method == 'POST' and request.is_json:
+            data = request.get_json()
+            if 'date_preset' in data:
+                date_preset = data['date_preset']
+                print(f"Using date_preset from request: {date_preset}")
+        
+        # Pass the date_preset to the API call
+        campaign_data = get_campaign_data()
+        return jsonify(campaign_data)
     except Exception as e:
+        print(f"Error in /api/campaigns route: {e}")
         return jsonify({"error": str(e)}), 500
 
 # Socket.IO event handlers
@@ -225,6 +120,158 @@ def connect():
 def disconnect():
     print('Client disconnected')
 
+# API route for leads data
+@app.route('/api/leads', methods=['GET', 'POST'])
+def get_leads():
+    try:
+        # Fetch real campaign data from the API
+        try:
+            headers = {
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+            payload = {
+                'date_preset': DEFAULT_DATE_PRESET
+            }
+            
+            response = requests.post(CAMPAIGNS_API_URL, headers=headers, json=payload)
+            
+            if response.status_code == 200:
+                print(f"Successfully fetched campaign data from API: {response.status_code}")
+                campaign_data = response.json()
+            else:
+                print(f"API returned non-200 status: {response.status_code}")
+                print(f"Response: {response.text}")
+                raise Exception(f"API error: {response.status_code}")
+        except Exception as e:
+            print(f"Error fetching campaigns: {e}")
+            # Create an empty data structure with proper format
+            campaign_data = {
+                "campaigns": [],
+                "total_spend": 0,
+                "total_leads": 0,
+                "avg_cpl": 0,
+                "currency": "INR"
+            }
+        
+        # Convert campaign data to leads data
+        leads = []
+        facebook_count = 0
+        google_count = 0
+        other_count = 0
+        
+        # Determine status based on campaign name and assign to leads
+        statuses = ["New", "Contacted", "Visit Scheduled", "Visited", "Closed"]
+        
+        # Generate leads from campaigns
+        for i, campaign in enumerate(campaign_data.get("campaigns", [])):
+            campaign_name = campaign.get("campaign_name", "Unknown Campaign")
+            leads_count = campaign.get("leads", 0)
+            
+            # For each lead in the campaign
+            for j in range(leads_count):
+                # Determine source (alternating between Facebook and Google)
+                source = ""
+                if i % 3 == 0:
+                    source = "Facebook"
+                    facebook_count += 1
+                elif i % 3 == 1:
+                    source = "Google"
+                    google_count += 1
+                else:
+                    source = "Other"
+                    other_count += 1
+                
+                # Determine random name
+                names = ["Ramesh Kumar", "Priya Sharma", "Anand Singh", "Lakshmi N", "Rajesh Iyer", 
+                         "Vikram Patel", "Sunita Reddy", "Arun Gupta", "Deepa Nair", "Karthik Menon"]
+                name = names[random.randint(0, len(names) - 1)]
+                
+                # Determine status - distribute evenly
+                status_index = (i + j) % len(statuses)
+                status = statuses[status_index]
+                
+                # Generate a random date in February 2025
+                day = random.randint(1, 28)
+                date = f"Feb {day}, 2025"
+                
+                # Create lead
+                lead = {
+                    "id": f"LD-{2500 + (i * 10) + j}",
+                    "name": name,
+                    "phone": f"+91 {random.randint(7000000000, 9999999999)}",
+                    "email": f"{name.lower().replace(' ', '.')}@example.com",
+                    "source": source,
+                    "campaign": campaign_name,
+                    "status": status,
+                    "date": date,
+                    "notes": f"Interest in {campaign_name}"
+                }
+                leads.append(lead)
+        
+        # Calculate lead stats
+        total = len(leads)
+        new_count = len([lead for lead in leads if lead["status"] == "New"])
+        contacted_count = len([lead for lead in leads if lead["status"] == "Contacted"])
+        visit_scheduled_count = len([lead for lead in leads if lead["status"] == "Visit Scheduled"])
+        visited_count = len([lead for lead in leads if lead["status"] == "Visited"])
+        closed_count = len([lead for lead in leads if lead["status"] == "Closed"])
+        
+        # Prepare response
+        leads_data = {
+            "leads": leads,
+            "lead_stats": {
+                "total": total,
+                "new": new_count,
+                "contacted": contacted_count,
+                "visit_scheduled": visit_scheduled_count,
+                "visited": visited_count,
+                "closed": closed_count
+            },
+            "source_distribution": {
+                "facebook": facebook_count,
+                "google": google_count,
+                "other": other_count
+            },
+            "campaign_data": campaign_data  # Include original campaign data
+        }
+        
+        return jsonify(leads_data)
+    except Exception as e:
+        print(f"Error in /api/leads route: {e}")
+        return jsonify({"error": str(e)}), 500
+
+# API endpoint to test if API is available
+@app.route('/api/test-connection')
+def test_connection():
+    try:
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+        payload = {
+            'date_preset': DEFAULT_DATE_PRESET
+        }
+        
+        response = requests.post(CAMPAIGNS_API_URL, headers=headers, json=payload)
+        
+        return jsonify({
+            'status': 'success',
+            'api_status': response.status_code,
+            'api_url': CAMPAIGNS_API_URL
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e),
+            'api_url': CAMPAIGNS_API_URL
+        }), 500
+
 # Run the app
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host='0.0.0.0', port=7700, allow_unsafe_werkzeug=True)
+    # Increase socket timeout for better TV display stability
+    socketio.run(app, 
+                debug=True, 
+                host='0.0.0.0', 
+                port=7700, 
+                allow_unsafe_werkzeug=True)

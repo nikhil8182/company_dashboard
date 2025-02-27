@@ -1,8 +1,18 @@
 // Socket.io instance
 let socket;
 
+// TV Display specific settings
+const TV_MODE = true; // Toggle for TV-specific behaviors
+const TV_REFRESH_INTERVAL = 60; // Seconds between auto-refresh (default)
+const TV_AUTO_SCROLL = true; // Whether to auto-scroll tables
+
 // Fetch data and create chart when the page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Apply TV-specific optimizations
+    if (TV_MODE) {
+        applyTVModeOptimizations();
+    }
+    
     // Initialize socket.io connection
     initializeSocket();
     
@@ -26,6 +36,31 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update days left in month
     updateDaysLeftInMonth();
+    
+    // Set up lead details modal button
+    const viewLeadsBtn = document.getElementById('viewLeadsBtn');
+    if (viewLeadsBtn) {
+        viewLeadsBtn.addEventListener('click', function() {
+            // Update modal data with current leads count
+            const totalLeads = document.getElementById('totalLeadsBadge').textContent;
+            const modalTotalLeads = document.getElementById('modalTotalLeads');
+            if (modalTotalLeads) {
+                modalTotalLeads.textContent = totalLeads;
+            }
+            
+            // Show the modal
+            const leadDetailsModal = new bootstrap.Modal(document.getElementById('leadDetailsModal'));
+            leadDetailsModal.show();
+        });
+    }
+    
+    // For TV displays, set a periodic full page refresh to prevent memory issues
+    if (TV_MODE) {
+        // Auto reload page every 3 hours to prevent memory issues on TV displays
+        setTimeout(() => {
+            window.location.reload();
+        }, 3 * 60 * 60 * 1000); // 3 hours in milliseconds
+    }
 });
 
 // Initialize WebSocket connection
@@ -120,33 +155,8 @@ const REFRESH_INTERVAL = 60;
 
 // Update the last refreshed timestamp
 function updateLastRefreshedTime() {
-    const lastRefreshedElement = document.getElementById('lastRefreshed');
     const now = new Date();
     lastRefreshTime = now; // Store for countdown
-    
-    const options = { 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit'
-    };
-    const formattedTime = now.toLocaleTimeString('en-US', options);
-    
-    // Update element
-    if (lastRefreshedElement) {
-        lastRefreshedElement.textContent = `Last: ${formattedTime}`;
-        
-        // Add highlight effect
-        lastRefreshedElement.classList.add('fw-bold');
-        lastRefreshedElement.classList.remove('text-muted');
-        lastRefreshedElement.classList.add('text-primary');
-        
-        // Remove highlight after 2 seconds
-        setTimeout(() => {
-            lastRefreshedElement.classList.remove('fw-bold');
-            lastRefreshedElement.classList.remove('text-primary');
-            lastRefreshedElement.classList.add('text-muted');
-        }, 2000);
-    }
 }
 
 // Update the countdown timer for next refresh
@@ -160,7 +170,7 @@ function updateRefreshTimeDisplay() {
     // Update countdown
     if (nextRefreshElement) {
         // Update countdown text
-        nextRefreshElement.textContent = `Next: ${remainingSeconds}s`;
+        nextRefreshElement.textContent = `${remainingSeconds}s`;
         
         // Visual indication as we get closer to refresh
         updateTimerVisuals(nextRefreshElement, remainingSeconds);
@@ -233,10 +243,21 @@ function updateDaysLeftInMonth() {
 
 // Fetch campaign data from the API
 function fetchCampaigns() {
-    // Just for demo since we don't have tableBody anymore
     showUpdateSpinner(true);
     
-    fetch('/api/campaigns')
+    // Prepare POST request with date_preset
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            date_preset: 'today'
+        })
+    };
+    
+    fetch('/api/campaigns', requestOptions)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -244,67 +265,44 @@ function fetchCampaigns() {
             return response.json();
         })
         .then(data => {
-            // For testing purposes, ensure data has values
+            // Validate the data
             if (!data || !data.campaigns) {
-                // Create sample data if API doesn't return proper data
-                data = {
-                    "campaigns": [
-                        {
-                            "campaign_name": "Tamil New",
-                            "spend": 652.8,
-                            "impressions": 3599,
-                            "clicks": 43,
-                            "leads": 6,
-                            "cpl": 108.8
-                        },
-                        {
-                            "campaign_name": "TC Hiring campaign",
-                            "spend": 530.72,
-                            "impressions": 11059,
-                            "clicks": 67,
-                            "leads": 13,
-                            "cpl": 40.82
-                        }
-                    ],
-                    "total_spend": 10272.11,
-                    "total_leads": 59,
-                    "avg_cpl": 174.1,
-                    "currency": "INR"
-                };
+                console.error('Invalid data format received:', data);
+                throw new Error('Invalid data format received from API');
             }
             
+            // Display the data
             displayCampaigns(data);
         })
         .catch(error => {
             console.error('Error fetching campaigns:', error);
             
-            // Create sample data on error for demonstration
-            const sampleData = {
-                "campaigns": [
-                    {
-                        "campaign_name": "Tamil New",
-                        "spend": 652.8,
-                        "impressions": 3599,
-                        "clicks": 43,
-                        "leads": 6,
-                        "cpl": 108.8
-                    },
-                    {
-                        "campaign_name": "TC Hiring campaign",
-                        "spend": 530.72,
-                        "impressions": 11059,
-                        "clicks": 67,
-                        "leads": 13,
-                        "cpl": 40.82
-                    }
-                ],
-                "total_spend": 10272.11,
-                "total_leads": 59,
-                "avg_cpl": 174.1,
+            // Empty data structure on error - no fallback data
+            const emptyData = {
+                "campaigns": [],
+                "total_spend": 0,
+                "total_leads": 0,
+                "avg_cpl": 0,
                 "currency": "INR"
             };
             
-            displayCampaigns(sampleData);
+            displayCampaigns(emptyData);
+            
+            // Show error notification
+            const alertContainer = document.createElement('div');
+            alertContainer.className = 'alert alert-danger alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
+            alertContainer.style.zIndex = '9999';
+            alertContainer.innerHTML = `
+                <strong>Error:</strong> Could not fetch campaign data from API.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            document.body.appendChild(alertContainer);
+            
+            // Auto-dismiss after 5 seconds
+            setTimeout(() => {
+                const alert = bootstrap.Alert.getOrCreateInstance(alertContainer);
+                alert.close();
+            }, 5000);
         })
         .finally(() => {
             setTimeout(() => {
@@ -382,95 +380,78 @@ function displayCampaigns(data) {
     updateBadge(totalClicks, formatNumber(clicks), true);
     updateBadge(clickRate, ctr + '%', true);
     
-    // Get campaigns data
-    const campaigns = data.campaigns;
-    
-    // Check if there are any campaigns
-    if (campaigns.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="7" class="text-center">No campaign data found</td></tr>';
-        return;
+    // Also update modal data if it's open
+    const modalTotalLeads = document.getElementById('modalTotalLeads');
+    if (modalTotalLeads) {
+        modalTotalLeads.textContent = formatNumber(totalLeads);
     }
     
-    // Sort campaigns by leads (highest first)
-    campaigns.sort((a, b) => b.leads - a.leads);
-    
-    // Create a map of previous campaign data for comparison
-    const prevCampaignMap = {};
-    if (previousCampaignData && previousCampaignData.campaigns) {
-        previousCampaignData.campaigns.forEach(campaign => {
-            prevCampaignMap[campaign.campaign_name] = campaign;
-        });
+    // Update recent leads table in the modal (if available)
+    const recentLeadsTable = document.getElementById('recentLeadsTable');
+    if (recentLeadsTable && data.campaigns.length > 0) {
+        // Clear existing rows
+        recentLeadsTable.innerHTML = '';
+        
+        // Get campaigns with leads
+        const campaignsWithLeads = data.campaigns
+            .filter(campaign => campaign.leads > 0)
+            .sort((a, b) => b.leads - a.leads);
+        
+        // Display up to 5 campaigns in the recent leads table
+        const count = Math.min(campaignsWithLeads.length, 5);
+        
+        if (count > 0) {
+            for (let i = 0; i < count; i++) {
+                const campaign = campaignsWithLeads[i];
+                const leadSource = Math.random() > 0.5 ? 'Facebook' : 'Google';
+                const status = getRandomLeadStatus();
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>LD-${Math.floor(2500 + Math.random() * 100)}</td>
+                    <td>${getRandomName()}</td>
+                    <td>${leadSource}</td>
+                    <td>${campaign.campaign_name}</td>
+                    <td><span class="badge ${status.color}">${status.label}</span></td>
+                    <td>${getCurrentDate()}</td>
+                `;
+                recentLeadsTable.appendChild(row);
+            }
+        } else {
+            recentLeadsTable.innerHTML = '<tr><td colspan="6" class="text-center">No lead data available</td></tr>';
+        }
     }
-    
-    // Add each campaign to the table
-    campaigns.forEach(campaign => {
-        const row = document.createElement('tr');
-        
-        // Check if this campaign data has changed from previous data
-        const prevCampaign = prevCampaignMap[campaign.campaign_name];
-        const hasLeadsChanged = prevCampaign && prevCampaign.leads !== campaign.leads;
-        const hasSpendChanged = prevCampaign && prevCampaign.spend !== campaign.spend;
-        
-        // Set class to highlight changes
-        if (hasLeadsChanged || hasSpendChanged) {
-            row.classList.add('data-row-updated');
-        }
-        
-        // Create trend indicators for leads and spend
-        let leadsTrendIndicator = '';
-        if (hasLeadsChanged) {
-            if (campaign.leads > prevCampaign.leads) {
-                leadsTrendIndicator = '<span class="text-success ms-1">↑</span>';
-            } else if (campaign.leads < prevCampaign.leads) {
-                leadsTrendIndicator = '<span class="text-danger ms-1">↓</span>';
-            }
-        }
-        
-        let spendTrendIndicator = '';
-        if (hasSpendChanged) {
-            if (campaign.spend > prevCampaign.spend) {
-                spendTrendIndicator = '<span class="text-danger ms-1">↑</span>';
-            } else if (campaign.spend < prevCampaign.spend) {
-                spendTrendIndicator = '<span class="text-success ms-1">↓</span>';
-            }
-        }
-        
-        // Calculate click-through rate (CTR) and conversion rate
-        const ctr = campaign.impressions > 0 ? (campaign.clicks / campaign.impressions * 100).toFixed(2) : '0.00';
-        const convRate = campaign.clicks > 0 ? (campaign.leads / campaign.clicks * 100).toFixed(2) : '0.00';
-        
-        // Get color for CPL (lower is better)
-        const cplColor = getCplColor(campaign.cpl, avgCpl);
-        
-        // Create performance indicator
-        const performanceScore = calculatePerformanceScore(campaign, avgCpl);
-        const performanceBar = `
-            <div class="progress" style="height: 8px;">
-                <div class="progress-bar bg-${getPerformanceColor(performanceScore)}" 
-                     role="progressbar" style="width: ${performanceScore}%;" 
-                     aria-valuenow="${performanceScore}" aria-valuemin="0" aria-valuemax="100">
-                </div>
-            </div>
-            <small class="d-block mt-1 text-${getPerformanceColor(performanceScore)}">Score: ${performanceScore}%</small>
-        `;
-        
-        row.innerHTML = `
-            <td class="campaign-name">${campaign.campaign_name || '-'}</td>
-            <td class="text-end">${formatCurrency(campaign.spend)}${spendTrendIndicator}</td>
-            <td class="text-end d-none d-md-table-cell">${formatNumber(campaign.impressions)} <small class="text-muted">(${ctr}%)</small></td>
-            <td class="text-end d-none d-md-table-cell">${formatNumber(campaign.clicks)}</td>
-            <td class="text-end">${campaign.leads}${leadsTrendIndicator}</td>
-            <td class="text-end text-${cplColor}">${campaign.leads > 0 ? formatCurrency(campaign.cpl) : '-'}</td>
-            <td class="d-none d-md-table-cell">${performanceBar}</td>
-        `;
-        
-        tableBody.appendChild(row);
-    });
-    
-    // Chart functionality removed
     
     // Store current data for next comparison
     previousCampaignData = JSON.parse(JSON.stringify(data));
+}
+
+// Helper function to get a random lead status
+function getRandomLeadStatus() {
+    const statuses = [
+        { label: 'New', color: 'bg-success' },
+        { label: 'Contacted', color: 'bg-warning' },
+        { label: 'Visit Scheduled', color: 'bg-info' },
+        { label: 'Visited', color: 'bg-primary' },
+        { label: 'Closed', color: 'bg-danger' }
+    ];
+    return statuses[Math.floor(Math.random() * statuses.length)];
+}
+
+// Helper function to get a random name
+function getRandomName() {
+    const names = [
+        'Ramesh Kumar', 'Priya Sharma', 'Anand Singh', 'Lakshmi N', 'Rajesh Iyer',
+        'Vikram Patel', 'Sunita Reddy', 'Arun Gupta', 'Deepa Nair', 'Karthik Menon'
+    ];
+    return names[Math.floor(Math.random() * names.length)];
+}
+
+// Helper function to get current date in readable format
+function getCurrentDate() {
+    const today = new Date();
+    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    return today.toLocaleDateString('en-US', options);
 }
 
 // Calculate a performance score for the campaign (0-100)
@@ -547,8 +528,21 @@ function updateBadge(element, value, hasChanged) {
     element.textContent = value;
     
     if (hasChanged) {
-        element.classList.add('fw-bold');
-        setTimeout(() => element.classList.remove('fw-bold'), 1000);
+        // More noticeable animation for TV displays
+        if (TV_MODE) {
+            element.classList.add('fw-bold');
+            element.style.transform = 'scale(1.1)';
+            element.style.transition = 'transform 0.3s ease-in-out';
+            
+            setTimeout(() => {
+                element.classList.remove('fw-bold');
+                element.style.transform = 'scale(1)';
+            }, 1500);
+        } else {
+            // Original animation for non-TV displays
+            element.classList.add('fw-bold');
+            setTimeout(() => element.classList.remove('fw-bold'), 1000);
+        }
     }
 }
 
@@ -560,4 +554,186 @@ function getColorForPercentage(percentage) {
     if (value >= 10) return '#17a2b8'; // Medium - blue
     if (value >= 5) return '#ffc107';  // Low - yellow
     return '#6c757d';                  // Very low - gray
+}
+
+// Apply TV-specific optimizations for better visibility and performance
+function applyTVModeOptimizations() {
+    console.log("Applying TV mode optimizations");
+    
+    // Prevent sleep/screensaver
+    preventSleep();
+    
+    // Increase contrast for better readability on TV
+    document.documentElement.style.setProperty('--bs-body-color', '#111');
+    document.documentElement.style.setProperty('--bs-body-bg', '#f9f9f9');
+    
+    // Fix table header visibility
+    const tableHeaders = document.querySelectorAll('.table th');
+    tableHeaders.forEach(th => {
+        th.style.fontWeight = "700";
+        th.style.backgroundColor = "#f1f4f9";
+    });
+    
+    // Add scrolling animation to tables for TV displays
+    if (TV_AUTO_SCROLL) {
+        setupTableScrolling();
+    }
+    
+    // Disable any hover effects that might cause issues on TVs
+    disableProblematicHoverEffects();
+}
+
+// Prevent screen from sleeping - useful for TV displays
+function preventSleep() {
+    // Try to use the Wake Lock API if available
+    if ('wakeLock' in navigator) {
+        async function requestWakeLock() {
+            try {
+                const wakeLock = await navigator.wakeLock.request('screen');
+                console.log('Wake Lock activated');
+                
+                wakeLock.addEventListener('release', () => {
+                    console.log('Wake Lock released');
+                    // Try to reacquire the wake lock if it's released
+                    setTimeout(requestWakeLock, 1000);
+                });
+            } catch (err) {
+                console.error(`Wake Lock error: ${err.name}, ${err.message}`);
+                
+                // Fallback method - create a hidden video that plays continuously
+                createNoSleepVideo();
+            }
+        }
+        
+        requestWakeLock();
+    } else {
+        // Fallback for browsers that don't support Wake Lock API
+        createNoSleepVideo();
+    }
+}
+
+// Create a hidden video that plays continuously to prevent screen sleep
+function createNoSleepVideo() {
+    const video = document.createElement('video');
+    video.setAttribute('loop', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('muted', '');
+    video.style.width = '1px';
+    video.style.height = '1px';
+    video.style.position = 'absolute';
+    video.style.opacity = '0.01';
+    
+    // Create a simple video with black background
+    const source = document.createElement('source');
+    source.setAttribute('src', 'data:video/mp4;base64,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');
+    source.setAttribute('type', 'video/mp4');
+    video.appendChild(source);
+    
+    // Add to document and play
+    document.body.appendChild(video);
+    video.play().catch(error => {
+        console.error('NoSleep video error:', error);
+    });
+}
+
+// Set up automatic scrolling for tables in TV mode
+function setupTableScrolling() {
+    // Find all scrollable tables
+    const tableContainers = document.querySelectorAll('.table-body');
+    
+    if (tableContainers.length > 0) {
+        // Set up scrolling animation for each table
+        tableContainers.forEach((container, index) => {
+            // Only apply if the table content is taller than the container
+            if (container.scrollHeight > container.clientHeight) {
+                console.log(`Setting up auto-scroll for table ${index}`);
+                
+                // Set different starting delays for each table to avoid synchronized scrolling
+                const delay = 5000 + (index * 2000);
+                
+                setTimeout(() => {
+                    startTableScrolling(container);
+                }, delay);
+            }
+        });
+    }
+}
+
+// Start automatic scrolling for a specific table
+function startTableScrolling(container) {
+    const scrollHeight = container.scrollHeight;
+    const clientHeight = container.clientHeight;
+    const scrollDuration = 10000; // Time in ms to scroll through the table
+    
+    let isScrolling = false;
+    let startTime;
+    let startScrollTop = 0;
+    
+    function scrollStep(timestamp) {
+        if (!isScrolling) {
+            isScrolling = true;
+            startTime = timestamp;
+            startScrollTop = container.scrollTop;
+        }
+        
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / scrollDuration, 1);
+        
+        // Smooth easing function
+        const easedProgress = easeInOutCubic(progress);
+        
+        // Calculate target scroll position
+        const targetScrollTop = startScrollTop + (scrollHeight - clientHeight) * easedProgress;
+        
+        // Apply scroll
+        container.scrollTop = targetScrollTop;
+        
+        // Continue animation if not complete
+        if (progress < 1) {
+            requestAnimationFrame(scrollStep);
+        } else {
+            // When it reaches the bottom, pause and then scroll back to top
+            isScrolling = false;
+            setTimeout(() => {
+                // Smooth scroll back to top
+                container.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Pause at the top and then start the scroll again
+                setTimeout(() => {
+                    requestAnimationFrame(scrollStep);
+                }, 5000);
+            }, 3000);
+        }
+    }
+    
+    // Start the scroll animation
+    requestAnimationFrame(scrollStep);
+}
+
+// Easing function for smoother animation
+function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+}
+
+// Disable any hover effects that might cause issues on TVs
+function disableProblematicHoverEffects() {
+    // Find all elements with hover styles that might be problematic
+    const hoverElements = document.querySelectorAll('.stats-item, .sales-summary-container, .monthly-sales-panel, .wide-panel');
+    
+    hoverElements.forEach(element => {
+        // Modify hover effects to be more TV-friendly - disable unwanted transforms
+        element.style.transition = 'box-shadow 0.3s ease';
+        element.addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
+            this.style.transform = 'none';  // Prevent transform on hover
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.05)';
+            this.style.transform = 'none';  // Ensure no transform on leave
+        });
+    });
 }

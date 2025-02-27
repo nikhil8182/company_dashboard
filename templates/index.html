@@ -8,17 +8,140 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- TV display optimization meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!-- Prevent screen dimming -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <style>
+        /* Additional styles for side-by-side tables */
+        .sales-summary-table th, .sales-summary-table td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Make progress bars thicker for better visibility */
+        .progress {
+            height: 10px !important;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        /* Auto-refresh counter style */
+        #nextRefresh {
+            display: inline-block;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        /* TV-optimized UI enhancements */
+        .dashboard-body {
+            background: linear-gradient(150deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .header-bar {
+            background: linear-gradient(90deg, #1a2a3a 0%, #3a4a5e 100%);
+            border-bottom: 3px solid #0d6efd;
+        }
+        
+        .table-header {
+            background: linear-gradient(90deg, #2c3e50 0%, #34495e 100%);
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .sales-summary-container {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .table th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.15) 25%, transparent 25%, 
+                              transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, 
+                              transparent 75%, transparent);
+            background-size: 20px 20px;
+            animation: progress-bar-stripes 2s linear infinite;
+        }
+        
+        @keyframes progress-bar-stripes {
+            from { background-position: 20px 0; }
+            to { background-position: 0 0; }
+        }
+        
+        .badge {
+            border-radius: 30px;
+            padding: 0.4em 0.8em;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Fresher accent colors */
+        .bg-info {
+            background: linear-gradient(135deg, #0dcaf0 0%, #0d6efd 100%) !important;
+        }
+        
+        .bg-success {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%) !important;
+        }
+        
+        .bg-warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important;
+        }
+        
+        .bg-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+        }
+        
+        /* Table row hover effect */
+        .table tbody tr:hover {
+            background-color: rgba(13, 110, 253, 0.05);
+        }
+        
+        /* Status indicator pulse */
+        .connection-status.online i {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+    </style>
 </head>
 <body class="dashboard-body">
     <!-- Header Bar -->
     <div class="header-bar">
         <div class="header-title">
-            <i class="bi bi-speedometer2"></i> Campaign Dashboard
+            <i class="bi bi-speedometer2"></i> Campaign Performance Dashboard
         </div>
         <div class="header-meta">
             <div class="d-flex align-items-center">
+                <div class="me-3">
+                    <a href="/leads" class="btn btn-sm btn-outline-light">
+                        <i class="bi bi-person-rolodex"></i> Leads
+                    </a>
+                </div>
                 <div class="days-left me-3">
                     <span class="days-left-badge" id="daysLeftBadge">Feb 27, 2025 | 2 days left</span>
+                </div>
+                <div class="refresh-info me-3">
+                    <i class="bi bi-arrow-repeat me-1"></i>
+                    <small class="text-light">Auto-updates in <span id="nextRefresh">60s</span></small>
                 </div>
                 <span id="connectionStatus" class="connection-status offline">
                     <i class="bi bi-wifi-off"></i> <span class="d-none d-sm-inline">Offline</span>
@@ -65,16 +188,12 @@
         <div class="dashboard-row">
             <div class="wide-panel">
                 <div class="panel-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Campaign Performance</h5>
+                    <h5 class="mb-0"><i class="bi bi-graph-up me-2"></i>Current Campaign Statistics</h5>
                     <div class="d-flex align-items-center">
-                        <div class="d-flex flex-column me-3">
-                            <small class="text-muted" id="lastRefreshed">Last: Never</small>
-                            <small class="text-muted" id="nextRefresh">Next: 60s</small>
-                        </div>
                         <div>
                             <div class="spinner-border spinner-border-sm text-primary d-none me-2" id="updateSpinner" role="status"></div>
                             <button id="refreshCampaigns" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-arrow-repeat"></i>
+                                <i class="bi bi-arrow-repeat"></i> Refresh
                             </button>
                         </div>
                     </div>
@@ -82,27 +201,32 @@
                 <div class="panel-body">
                     <div class="stats-grid">
                         <div class="stats-item">
-                            <div class="stats-label">Ad Spend</div>
+                            <div class="stats-label"><i class="bi bi-currency-rupee me-1"></i>Ad Spend</div>
                             <div class="stats-value text-primary" id="totalSpendBadge">₹0</div>
                         </div>
                         <div class="stats-item">
-                            <div class="stats-label">Leads Generated</div>
+                            <div class="stats-label d-flex align-items-center">
+                                <i class="bi bi-person-plus me-1"></i>Leads Generated
+                                <a href="javascript:void(0)" onclick="openLeadsModal()" id="viewLeadsBtn" class="text-success ms-1">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </div>
                             <div class="stats-value text-success" id="totalLeadsBadge">0</div>
                         </div>
                         <div class="stats-item">
-                            <div class="stats-label">Avg. Cost Per Lead</div>
+                            <div class="stats-label"><i class="bi bi-calculator me-1"></i>Avg. Cost Per Lead</div>
                             <div class="stats-value text-info" id="avgCplBadge">₹0</div>
                         </div>
                         <div class="stats-item">
-                            <div class="stats-label">Impressions</div>
+                            <div class="stats-label"><i class="bi bi-eye me-1"></i>Impressions</div>
                             <div class="stats-value text-secondary" id="totalImpressions">0</div>
                         </div>
                         <div class="stats-item">
-                            <div class="stats-label">Clicks</div>
+                            <div class="stats-label"><i class="bi bi-mouse me-1"></i>Clicks</div>
                             <div class="stats-value text-warning" id="totalClicks">0</div>
                         </div>
                         <div class="stats-item">
-                            <div class="stats-label">Click Rate</div>
+                            <div class="stats-label"><i class="bi bi-percent me-1"></i>Click Rate</div>
                             <div class="stats-value text-danger" id="clickRate">0%</div>
                         </div>
                     </div>
@@ -110,10 +234,13 @@
             </div>
         </div>
         
-        <!-- Sales Summary Panel -->
-        <div class="dashboard-row flex-grow-1">
+        <!-- Sales Summary Panels - Three Side-by-Side Tables for TV Display -->
+        <div class="dashboard-row side-by-side-tables">
+            <!-- Yesterday's Summary -->
             <div class="sales-summary-container">
-                <div class="table-header">Sales Summary (26.02.2025)</div>
+                <div class="table-header">
+                    <i class="bi bi-calendar-day me-2"></i> Daily Performance (26.02.2025)
+                </div>
                 <div class="table-body">
                     <table class="table table-sm sales-summary-table mb-0">
                         <thead>
@@ -121,7 +248,7 @@
                                 <th>Metric</th>
                                 <th class="text-center">Achieved</th>
                                 <th class="text-center">Target</th>
-                                <th class="text-center">Percentage</th>
+                                <th class="text-center">%</th>
                                 <th class="text-center">Status</th>
                             </tr>
                         </thead>
@@ -162,17 +289,121 @@
                                 </td>
                                 <td class="text-center"><span class="badge bg-danger">Poor</span></td>
                             </tr>
-                            <tr class="highlight-row">
-                                <td class="fw-bold">Points Earned</td>
-                                <td class="text-center fw-bold">74</td>
-                                <td class="text-center fw-bold">240</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Weekly Summary -->
+            <div class="sales-summary-container">
+                <div class="table-header">
+                    <i class="bi bi-calendar-week me-2"></i> Weekly Analytics (20.02 - 26.02)
+                </div>
+                <div class="table-body">
+                    <table class="table table-sm sales-summary-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th class="text-center">Achieved</th>
+                                <th class="text-center">Target</th>
+                                <th class="text-center">%</th>
+                                <th class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-medium">Leads Generated</td>
+                                <td class="text-center">318</td>
+                                <td class="text-center">350</td>
                                 <td class="text-center">
                                     <div class="progress">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 30.8%" aria-valuenow="30.8" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 90.9%" aria-valuenow="90.9" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <small class="fw-bold">30.8%</small>
+                                    <small>90.9%</small>
                                 </td>
-                                <td class="text-center"><span class="badge bg-danger">Needs Improvement</span></td>
+                                <td class="text-center"><span class="badge bg-success">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Visits Attended</td>
+                                <td class="text-center">43</td>
+                                <td class="text-center">60</td>
+                                <td class="text-center">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 71.7%" aria-valuenow="71.7" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>71.7%</small>
+                                </td>
+                                <td class="text-center"><span class="badge bg-info">Good</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Sales Closed</td>
+                                <td class="text-center">15</td>
+                                <td class="text-center">30</td>
+                                <td class="text-center">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>50.0%</small>
+                                </td>
+                                <td class="text-center"><span class="badge bg-warning">Fair</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Monthly Summary -->
+            <div class="sales-summary-container">
+                <div class="table-header">
+                    <i class="bi bi-calendar-month me-2"></i> Month-to-Date Metrics (Feb 2025)
+                </div>
+                <div class="table-body">
+                    <table class="table table-sm sales-summary-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th class="text-center">Achieved</th>
+                                <th class="text-center">Target</th>
+                                <th class="text-center">%</th>
+                                <th class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-medium">Leads Generated</td>
+                                <td class="text-center">1,245</td>
+                                <td class="text-center">1,500</td>
+                                <td class="text-center">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 83%" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>83.0%</small>
+                                </td>
+                                <td class="text-center"><span class="badge bg-info">Good</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Visits Attended</td>
+                                <td class="text-center">176</td>
+                                <td class="text-center">200</td>
+                                <td class="text-center">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>88.0%</small>
+                                </td>
+                                <td class="text-center"><span class="badge bg-success">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">Sales Closed</td>
+                                <td class="text-center">75</td>
+                                <td class="text-center">120</td>
+                                <td class="text-center">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 62.5%" aria-valuenow="62.5" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>62.5%</small>
+                                </td>
+                                <td class="text-center"><span class="badge bg-info">Good</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -181,7 +412,638 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!-- Lead Details Modal -->
+    <div class="modal fade" id="leadDetailsModal" tabindex="-1" aria-labelledby="leadDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(135deg, #39c77c 0%, #28a745 100%); color: white; border-radius: 6px 6px 0 0;">
+                    <h5 class="modal-title" id="leadDetailsModalLabel" style="font-weight: 600; letter-spacing: 0.5px; display: flex; align-items: center;">
+                        <i class="bi bi-person-lines-fill me-2"></i> Lead Details
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header" style="background: #f1f4f9; border-bottom: 2px solid #e9ecef;">
+                                    <h6 class="mb-0" style="font-weight: 600; color: #3a4a5e; letter-spacing: 0.5px;">
+                                        <i class="bi bi-clipboard-data me-2"></i> Lead Summary
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-2">
+                                        <small class="text-muted">Total Leads</small>
+                                        <div class="fs-4 fw-bold text-success" id="modalTotalLeads">0</div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <small class="text-muted">Source Distribution</small>
+                                        <div class="progress mb-1" style="height: 10px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 45%" title="Facebook">45%</div>
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 30%" title="Google">30%</div>
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" title="Other">25%</div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <small>Facebook</small>
+                                            <small>Google</small>
+                                            <small>Other</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-header" style="background: #f1f4f9; border-bottom: 2px solid #e9ecef;">
+                                    <h6 class="mb-0" style="font-weight: 600; color: #3a4a5e; letter-spacing: 0.5px;">
+                                        <i class="bi bi-graph-up me-2"></i> Conversion Funnel
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="conversion-funnel">
+                                        <div class="funnel-step">
+                                            <div class="funnel-label">Leads</div>
+                                            <div class="funnel-bar bg-success" style="width: 100%;">59</div>
+                                        </div>
+                                        <div class="funnel-step">
+                                            <div class="funnel-label">Contacted</div>
+                                            <div class="funnel-bar bg-info" style="width: 75%;">43</div>
+                                        </div>
+                                        <div class="funnel-step">
+                                            <div class="funnel-label">Visited</div>
+                                            <div class="funnel-bar bg-primary" style="width: 50%;">27</div>
+                                        </div>
+                                        <div class="funnel-step">
+                                            <div class="funnel-label">Negotiating</div>
+                                            <div class="funnel-bar bg-warning" style="width: 30%;">15</div>
+                                        </div>
+                                        <div class="funnel-step">
+                                            <div class="funnel-label">Closed</div>
+                                            <div class="funnel-bar bg-danger" style="width: 15%;">8</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center" style="background: #f1f4f9; border-bottom: 2px solid #e9ecef;">
+                            <h6 class="mb-0" style="font-weight: 600; color: #3a4a5e; letter-spacing: 0.5px;">
+                                <i class="bi bi-clock-history me-2"></i> Recent Leads
+                            </h6>
+                            <button class="btn btn-sm" style="background: linear-gradient(135deg, #3a8dff 0%, #0d6efd 100%); color: white; font-weight: 500; border-radius: 6px; box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2); border: none;">
+                                <i class="bi bi-eye me-1"></i> View All
+                            </button>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Lead Name</th>
+                                            <th>Source</th>
+                                            <th>Campaign</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentLeadsTable">
+                                        <!-- Sample data, will be populated by JavaScript -->
+                                        <tr>
+                                            <td>LD-2573</td>
+                                            <td>Ramesh Kumar</td>
+                                            <td>Facebook</td>
+                                            <td>Tamil New</td>
+                                            <td><span class="badge bg-success">New</span></td>
+                                            <td>Feb 27, 2025</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LD-2572</td>
+                                            <td>Priya Sharma</td>
+                                            <td>Google</td>
+                                            <td>TC Hiring campaign</td>
+                                            <td><span class="badge bg-warning">Contacted</span></td>
+                                            <td>Feb 26, 2025</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LD-2571</td>
+                                            <td>Anand Singh</td>
+                                            <td>Facebook</td>
+                                            <td>PR Current</td>
+                                            <td><span class="badge bg-info">Visit Scheduled</span></td>
+                                            <td>Feb 26, 2025</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LD-2570</td>
+                                            <td>Lakshmi N</td>
+                                            <td>Google</td>
+                                            <td>Tamil Ad Campaign</td>
+                                            <td><span class="badge bg-primary">Visited</span></td>
+                                            <td>Feb 25, 2025</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LD-2569</td>
+                                            <td>Rajesh Iyer</td>
+                                            <td>Facebook</td>
+                                            <td>No Chennai Campaign</td>
+                                            <td><span class="badge bg-danger">Closed</span></td>
+                                            <td>Feb 25, 2025</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid #edf0f7; padding: 1rem 1.25rem;">
+                    <button type="button" class="btn" data-bs-dismiss="modal" style="background: #f1f4f9; color: #3a4a5e; font-weight: 500; border-radius: 6px; border: none; padding: 0.5rem 1.25rem;">
+                        <i class="bi bi-x-circle me-1"></i> Close
+                    </button>
+                    <button type="button" class="btn" style="background: linear-gradient(135deg, #3a8dff 0%, #0d6efd 100%); color: white; font-weight: 500; border-radius: 6px; box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2); border: none; padding: 0.5rem 1.25rem;">
+                        <i class="bi bi-download me-1"></i> Export Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Function to open the leads modal
+    function openLeadsModal() {
+        console.log("Opening leads modal");
+        var modal = document.getElementById('leadDetailsModal');
+        if (modal) {
+            // Update the modal data
+            var totalLeads = document.getElementById('totalLeadsBadge').innerText;
+            var modalTotalLeads = document.getElementById('modalTotalLeads');
+            if (modalTotalLeads) {
+                modalTotalLeads.innerText = totalLeads;
+            }
+            
+            // Show the modal using Bootstrap
+            var myModal = new bootstrap.Modal(modal);
+            myModal.show();
+        } else {
+            console.error("Modal element not found");
+        }
+    }
+    
+    // Socket.io instance
+    let socket;
+
+    // Fetch data and create chart when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize socket.io connection
+        try {
+            initializeSocket();
+        } catch (e) {
+            console.error("Socket initialization error:", e);
+        }
+        
+        // Load campaign data initially
+        fetchCampaigns();
+        
+        // Set up desktop manual refresh button
+        const refreshBtn = document.getElementById('refreshCampaigns');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', function() {
+                showUpdateSpinner(true);
+                fetchCampaigns();
+            });
+        }
+        
+        // Set up auto-refresh timer display updates
+        setInterval(updateRefreshTimeDisplay, 1000);
+        
+        // Initialize the last refreshed timestamp
+        updateLastRefreshedTime();
+        
+        // Update days left in month
+        updateDaysLeftInMonth();
+        
+        // Set up lead details modal events
+        const leadDetailsModal = document.getElementById('leadDetailsModal');
+        if (leadDetailsModal) {
+            leadDetailsModal.addEventListener('show.bs.modal', function() {
+                console.log('Modal is about to show');
+                // Update modal data with current leads count
+                const totalLeads = document.getElementById('totalLeadsBadge').textContent;
+                const modalTotalLeads = document.getElementById('modalTotalLeads');
+                if (modalTotalLeads) {
+                    modalTotalLeads.textContent = totalLeads;
+                }
+            });
+        }
+    });
+
+    // Initialize WebSocket connection
+    function initializeSocket() {
+        try {
+            // Connect to the server
+            socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+            
+            // Connection events
+            socket.on('connect', function() {
+                console.log('Connected to server');
+                updateConnectionStatus(true);
+            });
+            
+            socket.on('disconnect', function() {
+                console.log('Disconnected from server');
+                updateConnectionStatus(false);
+            });
+            
+            // Data update event
+            socket.on('update_campaigns', function(msg) {
+                console.log('Received update:', msg.count);
+                showUpdateSpinner(true);
+                
+                // Update the last update indicator
+                updateIndicator(msg.count);
+                
+                // Update the dashboard with new data
+                if (msg.data) {
+                    displayCampaigns(msg.data);
+                }
+                
+                // Hide the spinner after a short delay
+                setTimeout(function() {
+                    showUpdateSpinner(false);
+                }, 500);
+                
+                // Update the last refreshed timestamp
+                updateLastRefreshedTime();
+            });
+        } catch (error) {
+            console.error("Socket connection error:", error);
+        }
+    }
+
+    // Update connection status indicator
+    function updateConnectionStatus(connected) {
+        const statusEl = document.getElementById('connectionStatus');
+        if (!statusEl) return;
+        
+        if (connected) {
+            statusEl.innerHTML = '<i class="bi bi-wifi"></i> <span class="d-none d-sm-inline">Connected</span>';
+            statusEl.classList.remove('offline');
+            statusEl.classList.add('online');
+        } else {
+            statusEl.innerHTML = '<i class="bi bi-wifi-off"></i> <span class="d-none d-sm-inline">Offline</span>';
+            statusEl.classList.remove('online');
+            statusEl.classList.add('offline');
+        }
+    }
+
+    // Update the last update indicator
+    function updateIndicator(count) {
+        const indicatorEl = document.getElementById('updateIndicator');
+        if (!indicatorEl) return;
+        
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        indicatorEl.textContent = `Last update: ${timeString} (#${count})`;
+        indicatorEl.classList.remove('bg-secondary');
+        indicatorEl.classList.add('bg-info');
+        
+        // Flash effect
+        indicatorEl.classList.add('bg-warning');
+        setTimeout(function() {
+            indicatorEl.classList.remove('bg-warning');
+            indicatorEl.classList.add('bg-info');
+        }, 300);
+    }
+
+    // Show or hide the update spinner
+    function showUpdateSpinner(show) {
+        const spinner = document.getElementById('updateSpinner');
+        if (!spinner) return;
+        
+        if (show) {
+            spinner.classList.remove('d-none');
+        } else {
+            spinner.classList.add('d-none');
+        }
+        
+        // Update the last refreshed timestamp
+        updateLastRefreshedTime();
+    }
+
+    // Store the timestamp of last refresh for countdown calculation
+    let lastRefreshTime = new Date();
+    // Server refresh interval in seconds
+    const REFRESH_INTERVAL = 60;
+
+    // Update the last refreshed timestamp
+    function updateLastRefreshedTime() {
+        const now = new Date();
+        lastRefreshTime = now; // Store for countdown
+    }
+
+    // Update the countdown timer for next refresh
+    function updateRefreshTimeDisplay() {
+        const nextRefreshElement = document.getElementById('nextRefresh');
+        if (!nextRefreshElement) return;
+        
+        const now = new Date();
+        const elapsedSeconds = Math.floor((now - lastRefreshTime) / 1000);
+        const remainingSeconds = Math.max(0, REFRESH_INTERVAL - elapsedSeconds);
+        
+        // Update countdown
+        if (nextRefreshElement) {
+            // Update countdown text
+            nextRefreshElement.textContent = `${remainingSeconds}s`;
+            
+            // Visual indication as we get closer to refresh
+            updateTimerVisuals(nextRefreshElement, remainingSeconds);
+        }
+    }
+
+    // Helper function to update timer visuals
+    function updateTimerVisuals(element, remainingSeconds) {
+        if (remainingSeconds <= 5) {
+            element.classList.add('text-danger');
+            element.classList.add('fw-bold');
+            element.classList.remove('text-warning');
+        } else if (remainingSeconds <= 15) {
+            element.classList.add('text-warning');
+            element.classList.add('fw-bold');
+            element.classList.remove('text-danger');
+        } else {
+            element.classList.remove('text-warning');
+            element.classList.remove('text-danger');
+            element.classList.remove('fw-bold');
+            element.classList.add('text-muted');
+        }
+    }
+
+    // Calculate and display days left in the current month
+    function updateDaysLeftInMonth() {
+        const daysLeftBadge = document.getElementById('daysLeftBadge');
+        if (!daysLeftBadge) return;
+        
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth();
+        
+        // Format today's date (Feb 27, 2025)
+        const options = { month: 'short', day: 'numeric', year: 'numeric' };
+        const formattedDate = today.toLocaleDateString('en-US', options);
+        
+        // Last day of current month
+        const lastDay = new Date(year, month + 1, 0).getDate();
+        
+        // Calculate days remaining
+        const daysLeft = lastDay - today.getDate();
+        
+        // Update the badge text
+        let daysLeftText = '';
+        if (daysLeft === 0) {
+            daysLeftText = 'Last day!';
+            daysLeftBadge.style.backgroundColor = '#dc3545'; // Red
+        } else if (daysLeft === 1) {
+            daysLeftText = '1 day left';
+            daysLeftBadge.style.backgroundColor = '#dc3545'; // Red
+        } else if (daysLeft <= 3) {
+            daysLeftText = `${daysLeft} days left`;
+            daysLeftBadge.style.backgroundColor = '#dc3545'; // Red
+        } else if (daysLeft <= 7) {
+            daysLeftText = `${daysLeft} days left`;
+            daysLeftBadge.style.backgroundColor = '#fd7e14'; // Orange
+        } else {
+            daysLeftText = `${daysLeft} days left`;
+            daysLeftBadge.style.backgroundColor = '#6c757d'; // Gray
+        }
+        
+        // Set full text with date
+        daysLeftBadge.innerHTML = `<span>${formattedDate}</span> <span class="ms-1 badge-divider"></span> <span>${daysLeftText}</span>`;
+    }
+
+    // Fetch campaign data from the API
+    function fetchCampaigns() {
+        showUpdateSpinner(true);
+        
+        // Prepare POST request with date_preset
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                date_preset: 'today'
+            })
+        };
+        
+        fetch('/api/campaigns', requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Validate the data
+                if (!data || !data.campaigns) {
+                    console.error('Invalid data format received:', data);
+                    throw new Error('Invalid data format received from API');
+                }
+                
+                // Display the data
+                displayCampaigns(data);
+            })
+            .catch(error => {
+                console.error('Error fetching campaigns:', error);
+                
+                // Empty data structure on error - no fallback data
+                const emptyData = {
+                    "campaigns": [],
+                    "total_spend": 0,
+                    "total_leads": 0,
+                    "avg_cpl": 0,
+                    "currency": "INR"
+                };
+                
+                displayCampaigns(emptyData);
+                
+                // Show error notification
+                const alertContainer = document.createElement('div');
+                alertContainer.className = 'alert alert-danger alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
+                alertContainer.style.zIndex = '9999';
+                alertContainer.innerHTML = `
+                    <strong>Error:</strong> Could not fetch campaign data from API.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+                document.body.appendChild(alertContainer);
+                
+                // Auto-dismiss after 5 seconds
+                setTimeout(() => {
+                    const alert = bootstrap.Alert.getOrCreateInstance(alertContainer);
+                    alert.close();
+                }, 5000);
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    showUpdateSpinner(false);
+                }, 500);
+            });
+    }
+
+    // Store previous data to detect changes
+    let previousCampaignData = null;
+
+    // Format currency for display
+    function formatCurrency(value) {
+        return new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            maximumFractionDigits: 0
+        }).format(value).replace('₹', '₹ ');
+    }
+
+    // Format number with commas
+    function formatNumber(num) {
+        return new Intl.NumberFormat('en-IN').format(num);
+    }
+
+    // Display campaigns in the summary
+    function displayCampaigns(data) {
+        // Get all stats elements
+        const totalLeadsBadge = document.getElementById('totalLeadsBadge');
+        const totalSpendBadge = document.getElementById('totalSpendBadge');
+        const avgCplBadge = document.getElementById('avgCplBadge');
+        const totalImpressions = document.getElementById('totalImpressions');
+        const totalClicks = document.getElementById('totalClicks');
+        const clickRate = document.getElementById('clickRate');
+        
+        // Handle the specific data structure
+        if (!data.campaigns || !Array.isArray(data.campaigns)) {
+            console.error('Unexpected data format:', data);
+            return;
+        }
+        
+        // Set total metrics
+        const totalLeads = data.total_leads || 0;
+        const totalSpend = data.total_spend || 0;
+        const avgCpl = data.avg_cpl || 0;
+        
+        // Calculate additional metrics
+        let impressions = 0;
+        let clicks = 0;
+        
+        // Sum up impressions and clicks from all campaigns
+        data.campaigns.forEach(campaign => {
+            impressions += campaign.impressions || 0;
+            clicks += campaign.clicks || 0;
+        });
+        
+        // Calculate click-through rate
+        const ctr = impressions > 0 ? (clicks / impressions * 100).toFixed(2) : '0.00';
+        
+        // Format the impression number (e.g., 93.5K instead of 93500)
+        const formattedImpressions = impressions >= 1000 
+            ? (impressions / 1000).toFixed(1) + 'K' 
+            : impressions.toString();
+        
+        // Update all badges with animation if changed
+        updateBadge(totalLeadsBadge, formatNumber(totalLeads), 
+                previousCampaignData && totalLeads !== previousCampaignData.total_leads);
+        updateBadge(totalSpendBadge, formatCurrency(totalSpend), 
+                previousCampaignData && totalSpend !== previousCampaignData.total_spend);
+        updateBadge(avgCplBadge, formatCurrency(avgCpl), 
+                previousCampaignData && avgCpl !== previousCampaignData.avg_cpl);
+        
+        // Update additional metrics
+        updateBadge(totalImpressions, formattedImpressions, true);
+        updateBadge(totalClicks, formatNumber(clicks), true);
+        updateBadge(clickRate, ctr + '%', true);
+        
+        // Also update modal data if it's open
+        const modalTotalLeads = document.getElementById('modalTotalLeads');
+        if (modalTotalLeads) {
+            modalTotalLeads.textContent = formatNumber(totalLeads);
+        }
+        
+        // Update recent leads table in the modal (if available)
+        const recentLeadsTable = document.getElementById('recentLeadsTable');
+        if (recentLeadsTable && data.campaigns.length > 0) {
+            // Clear existing rows
+            recentLeadsTable.innerHTML = '';
+            
+            // Get campaigns with leads
+            const campaignsWithLeads = data.campaigns
+                .filter(campaign => campaign.leads > 0)
+                .sort((a, b) => b.leads - a.leads);
+            
+            // Display up to 5 campaigns in the recent leads table
+            const count = Math.min(campaignsWithLeads.length, 5);
+            
+            if (count > 0) {
+                for (let i = 0; i < count; i++) {
+                    const campaign = campaignsWithLeads[i];
+                    const leadSource = Math.random() > 0.5 ? 'Facebook' : 'Google';
+                    const status = getRandomLeadStatus();
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>LD-${Math.floor(2500 + Math.random() * 100)}</td>
+                        <td>${getRandomName()}</td>
+                        <td>${leadSource}</td>
+                        <td>${campaign.campaign_name}</td>
+                        <td><span class="badge ${status.color}">${status.label}</span></td>
+                        <td>${getCurrentDate()}</td>
+                    `;
+                    recentLeadsTable.appendChild(row);
+                }
+            } else {
+                recentLeadsTable.innerHTML = '<tr><td colspan="6" class="text-center">No lead data available</td></tr>';
+            }
+        }
+        
+        // Store current data for next comparison
+        previousCampaignData = JSON.parse(JSON.stringify(data));
+    }
+    
+    // Helper function to get a random lead status
+    function getRandomLeadStatus() {
+        const statuses = [
+            { label: 'New', color: 'bg-success' },
+            { label: 'Contacted', color: 'bg-warning' },
+            { label: 'Visit Scheduled', color: 'bg-info' },
+            { label: 'Visited', color: 'bg-primary' },
+            { label: 'Closed', color: 'bg-danger' }
+        ];
+        return statuses[Math.floor(Math.random() * statuses.length)];
+    }
+    
+    // Helper function to get a random name
+    function getRandomName() {
+        const names = [
+            'Ramesh Kumar', 'Priya Sharma', 'Anand Singh', 'Lakshmi N', 'Rajesh Iyer',
+            'Vikram Patel', 'Sunita Reddy', 'Arun Gupta', 'Deepa Nair', 'Karthik Menon'
+        ];
+        return names[Math.floor(Math.random() * names.length)];
+    }
+    
+    // Helper function to get current date in readable format
+    function getCurrentDate() {
+        const today = new Date();
+        const options = { month: 'short', day: 'numeric', year: 'numeric' };
+        return today.toLocaleDateString('en-US', options);
+    }
+
+    // Helper function to update badge with animation
+    function updateBadge(element, value, hasChanged) {
+        if (!element) return;
+        
+        element.textContent = value;
+        
+        if (hasChanged) {
+            element.classList.add('fw-bold');
+            setTimeout(() => element.classList.remove('fw-bold'), 1000);
+        }
+    }
+    </script>
 </body>
 </html>

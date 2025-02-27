@@ -1,10 +1,32 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, make_response
 import requests
 import random
 import json
+import os
+import logging
+import time
+from datetime import datetime, timedelta
 
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("app.log"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Initialize Flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-CHANGE-IN-PRODUCTION')
+
+# Set secure cookie settings for production
+app.config['SESSION_COOKIE_SECURE'] = True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
 
 # API URLs
 CAMPAIGNS_API_URL = "http://65.2.187.240:9000/campaigns"
@@ -22,17 +44,37 @@ def get_campaign_data():
             'date_preset': DEFAULT_DATE_PRESET
         }
         
-        response = requests.post(CAMPAIGNS_API_URL, headers=headers, json=payload)
+        # Add timeout and retries for resilience
+        max_retries = 3
+        retry_count = 0
         
-        if response.status_code == 200:
-            print(f"Successfully fetched campaign data from API: {response.status_code}")
-            return response.json()
-        else:
-            print(f"API returned non-200 status: {response.status_code}")
-            print(f"Response: {response.text}")
-            raise Exception(f"API error: {response.status_code}")
+        while retry_count < max_retries:
+            try:
+                response = requests.post(
+                    CAMPAIGNS_API_URL, 
+                    headers=headers, 
+                    json=payload, 
+                    timeout=5  # 5 second timeout
+                )
+                
+                if response.status_code == 200:
+                    logger.info(f"Successfully fetched campaign data from API: {response.status_code}")
+                    return response.json()
+                else:
+                    logger.warning(f"API returned non-200 status: {response.status_code}")
+                    logger.warning(f"Response: {response.text}")
+                    raise Exception(f"API error: {response.status_code}")
+            
+            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+                retry_count += 1
+                if retry_count >= max_retries:
+                    logger.error(f"Max retries reached when connecting to API: {str(e)}")
+                    raise
+                logger.warning(f"Retry {retry_count}/{max_retries} after connection error: {str(e)}")
+                time.sleep(1)  # Wait 1 second before retrying
+    
     except Exception as e:
-        print(f"Error fetching campaigns: {e}")
+        logger.error(f"Error fetching campaigns: {e}")
         # Create an empty data structure with proper format
         empty_data = {
             "campaigns": [],
@@ -43,10 +85,42 @@ def get_campaign_data():
         }
         return empty_data
 
+# Custom error handlers
+@app.errorhandler(404)
+def page_not_found(e):
+    logger.warning(f"404 error: {request.path}")
+    return render_template('error.html', error_code=404, error_message="Page not found"), 404
+
+@app.errorhandler(500)
+def server_error(e):
+    logger.error(f"500 error: {str(e)}")
+    return render_template('error.html', error_code=500, error_message="Internal server error"), 500
+
+# Add security headers to all responses
+@app.after_request
+def add_security_headers(response):
+    response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    
+    # Add cache control for static resources
+    if request.path.startswith('/static/'):
+        response.headers['Cache-Control'] = 'public, max-age=86400'
+    
+    return response
+
 # Route for main page
 @app.route('/')
 def index():
-    return render_template('index.html', title='Company Dashboard')
+    try:
+        response = make_response(render_template('index.html', title='Company Dashboard'))
+        # Set cache header for the main page
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        return response
+    except Exception as e:
+        logger.error(f"Error rendering index page: {str(e)}")
+        return render_template('error.html', error_code=500, error_message="Error loading dashboard"), 500
 
 # Route for leads page
 @app.route('/leads')
@@ -240,6 +314,10 @@ def test_connection():
 from flask_compress import Compress
 compress = Compress(app)
 
+# Set environment configuration
+ENV = os.environ.get('FLASK_ENV', 'production')
+
 # Run the app
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=7700)
+    debug_mode = ENV != 'production'
+    app.run(debug=debug_mode, host='0.0.0.0', port=7700)

@@ -51,7 +51,7 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Solid background */
 }
 
 /* Stats Cards */
@@ -135,7 +135,7 @@ html, body {
     background: linear-gradient(135deg, #3a4a5e 0%, #1e2a3a 100%);
     color: white;
     height: 60px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     position: relative;
     z-index: 10;
 }

@@ -1,20 +1,32 @@
-// TV Display specific settings
-const TV_MODE = true; // Toggle for TV-specific behaviors
-const TV_REFRESH_INTERVAL = 30; // Seconds between auto-refresh (reduced for better performance)
-const TV_AUTO_SCROLL = true; // Whether to auto-scroll tables
+// Application settings
+const APP_SETTINGS = {
+    // Refresh intervals
+    REFRESH_INTERVAL: 30, // Seconds between auto-refresh (default: 30)
+    
+    // Error handling
+    MAX_RETRY_ATTEMPTS: 3, // Maximum API retry attempts
+    RETRY_DELAY: 2000, // Delay between retries in milliseconds
+    
+    // Performance settings
+    DEBOUNCE_DELAY: 300, // Milliseconds to wait before handling rapid events
+    
+    // Feature flags
+    ENABLE_ANIMATIONS: true, // Enable UI animations
+    ENABLE_PERSISTENCE: true  // Enable localStorage persistence
+};
 
 // Fetch data and create chart when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Apply TV-specific optimizations
-    if (TV_MODE) {
-        applyTVModeOptimizations();
+    // Apply optimizations
+    if (APP_SETTINGS.ENABLE_ANIMATIONS) {
+        applyUIOptimizations();
     }
     
     // Load campaign data initially
     fetchCampaigns();
     
-    // Set up auto-refresh data every 30 seconds (TV_REFRESH_INTERVAL)
-    setInterval(fetchCampaigns, TV_REFRESH_INTERVAL * 1000);
+    // Set up auto-refresh data based on settings
+    setInterval(fetchCampaigns, APP_SETTINGS.REFRESH_INTERVAL * 1000);
     
     // Set up desktop manual refresh button
     const refreshBtn = document.getElementById('refreshCampaigns');
@@ -57,13 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // For TV displays, set a periodic full page refresh to prevent memory issues
-    if (TV_MODE) {
-        // Auto reload page every 2 hours to prevent memory issues on TV displays
-        setTimeout(() => {
-            window.location.reload();
-        }, 2 * 60 * 60 * 1000); // 2 hours in milliseconds
-    }
+    // Periodic full page refresh to prevent memory issues
+    // Auto reload page every 4 hours
+    setTimeout(() => {
+        window.location.reload();
+    }, 4 * 60 * 60 * 1000); // 4 hours in milliseconds
 });
 
 // Initialize theme toggle function
@@ -162,8 +172,8 @@ function showUpdateSpinner(show) {
 
 // Store the timestamp of last refresh for countdown calculation
 let lastRefreshTime = new Date();
-// Server refresh interval in seconds (sync with TV_REFRESH_INTERVAL)
-const REFRESH_INTERVAL = TV_REFRESH_INTERVAL;
+// Server refresh interval in seconds (sync with application settings)
+const REFRESH_INTERVAL = APP_SETTINGS.REFRESH_INTERVAL;
 
 // Update the last refreshed timestamp
 function updateLastRefreshedTime() {
@@ -253,7 +263,7 @@ function updateDaysLeftInMonth() {
 
 // Chart function removed
 
-// Fetch campaign data from the API
+// Fetch campaign data from the API with retry mechanism
 function fetchCampaigns() {
     showUpdateSpinner(true);
     
@@ -262,65 +272,132 @@ function fetchCampaigns() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Cache-Control': 'no-cache' // Prevent caching of API responses
         },
         body: JSON.stringify({
             date_preset: 'today'
         })
     };
     
-    fetch('/api/campaigns', requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Validate the data
-            if (!data || !data.campaigns) {
-                console.error('Invalid data format received:', data);
-                throw new Error('Invalid data format received from API');
-            }
-            
-            // Display the data
-            displayCampaigns(data);
-        })
-        .catch(error => {
-            console.error('Error fetching campaigns:', error);
-            
-            // Empty data structure on error - no fallback data
-            const emptyData = {
-                "campaigns": [],
-                "total_spend": 0,
-                "total_leads": 0,
-                "avg_cpl": 0,
-                "currency": "INR"
-            };
-            
-            displayCampaigns(emptyData);
-            
-            // Show error notification
-            const alertContainer = document.createElement('div');
-            alertContainer.className = 'alert alert-danger alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
-            alertContainer.style.zIndex = '9999';
-            alertContainer.innerHTML = `
-                <strong>Error:</strong> Could not fetch campaign data from API.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            `;
-            document.body.appendChild(alertContainer);
-            
-            // Auto-dismiss after 5 seconds
-            setTimeout(() => {
-                const alert = bootstrap.Alert.getOrCreateInstance(alertContainer);
-                alert.close();
-            }, 5000);
-        })
-        .finally(() => {
-            setTimeout(() => {
-                showUpdateSpinner(false);
-            }, 500);
-        });
+    // Set up retry mechanism
+    let retryCount = 0;
+    const maxRetries = APP_SETTINGS.MAX_RETRY_ATTEMPTS;
+    
+    function tryFetch() {
+        fetch('/api/campaigns', requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Validate the data
+                if (!data || !data.campaigns) {
+                    console.error('Invalid data format received:', data);
+                    throw new Error('Invalid data format received from API');
+                }
+                
+                // Display the data
+                displayCampaigns(data);
+                
+                // Reset error state if previously failed
+                const errorBanner = document.getElementById('error-banner');
+                if (errorBanner) {
+                    errorBanner.remove();
+                }
+            })
+            .catch(error => {
+                console.error(`Error fetching campaigns (attempt ${retryCount + 1}/${maxRetries}):`, error);
+                
+                // Try again if under max retries
+                if (retryCount < maxRetries - 1) {
+                    retryCount++;
+                    console.log(`Retrying in ${APP_SETTINGS.RETRY_DELAY/1000} seconds...`);
+                    
+                    // Show retry notification
+                    showRetryNotification(retryCount, maxRetries);
+                    
+                    setTimeout(tryFetch, APP_SETTINGS.RETRY_DELAY);
+                } else {
+                    // Show error after all retries failed
+                    handleFetchError(error);
+                }
+            })
+            .finally(() => {
+                // Only hide spinner after last attempt
+                if (retryCount === 0 || retryCount >= maxRetries - 1) {
+                    setTimeout(() => {
+                        showUpdateSpinner(false);
+                    }, 500);
+                }
+            });
+    }
+    
+    // Start the fetch process
+    tryFetch();
+}
+
+// Helper function to show retry notification
+function showRetryNotification(attempt, maxAttempts) {
+    // Create or update retry notification
+    let retryNotification = document.getElementById('retry-notification');
+    
+    if (!retryNotification) {
+        retryNotification = document.createElement('div');
+        retryNotification.id = 'retry-notification';
+        retryNotification.className = 'alert alert-warning position-fixed bottom-0 start-50 translate-middle-x mb-3';
+        retryNotification.style.zIndex = '9999';
+        document.body.appendChild(retryNotification);
+    }
+    
+    retryNotification.innerHTML = `
+        <i class="bi bi-arrow-repeat me-2"></i>
+        <strong>Retrying connection:</strong> Attempt ${attempt + 1} of ${maxAttempts}...
+    `;
+    
+    // Remove after the retry delay
+    setTimeout(() => {
+        if (retryNotification && retryNotification.parentNode) {
+            retryNotification.parentNode.removeChild(retryNotification);
+        }
+    }, APP_SETTINGS.RETRY_DELAY - 100);
+}
+
+// Helper function to handle fetch errors
+function handleFetchError(error) {
+    // Empty data structure on error
+    const emptyData = {
+        "campaigns": [],
+        "total_spend": 0,
+        "total_leads": 0,
+        "avg_cpl": 0,
+        "currency": "INR"
+    };
+    
+    displayCampaigns(emptyData);
+    
+    // Show error notification
+    const alertContainer = document.createElement('div');
+    alertContainer.id = 'error-banner';
+    alertContainer.className = 'alert alert-danger alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
+    alertContainer.style.zIndex = '9999';
+    alertContainer.innerHTML = `
+        <strong>Error:</strong> Could not fetch campaign data from API. ${error.message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    document.body.appendChild(alertContainer);
+    
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+        const alert = bootstrap.Alert.getOrCreateInstance(alertContainer);
+        if (alert) {
+            alert.close();
+        } else if (alertContainer.parentNode) {
+            alertContainer.parentNode.removeChild(alertContainer);
+        }
+    }, 8000);
 }
 
 // Store previous data to detect changes
@@ -392,46 +469,58 @@ function displayCampaigns(data) {
     updateBadge(totalClicks, formatNumber(clicks), true);
     updateBadge(clickRate, ctr + '%', true);
     
-    // Also update modal data if it's open
-    const modalTotalLeads = document.getElementById('modalTotalLeads');
-    if (modalTotalLeads) {
-        modalTotalLeads.textContent = formatNumber(totalLeads);
-    }
-    
-    // Update recent leads table in the modal (if available)
-    const recentLeadsTable = document.getElementById('recentLeadsTable');
-    if (recentLeadsTable && data.campaigns.length > 0) {
-        // Clear existing rows
-        recentLeadsTable.innerHTML = '';
-        
-        // Get campaigns with leads
-        const campaignsWithLeads = data.campaigns
-            .filter(campaign => campaign.leads > 0)
-            .sort((a, b) => b.leads - a.leads);
-        
-        // Display up to 5 campaigns in the recent leads table
-        const count = Math.min(campaignsWithLeads.length, 5);
-        
-        if (count > 0) {
-            for (let i = 0; i < count; i++) {
-                const campaign = campaignsWithLeads[i];
-                const leadSource = Math.random() > 0.5 ? 'Facebook' : 'Google';
-                const status = getRandomLeadStatus();
-                
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>LD-${Math.floor(2500 + Math.random() * 100)}</td>
-                    <td>${getRandomName()}</td>
-                    <td>${leadSource}</td>
-                    <td>${campaign.campaign_name}</td>
-                    <td><span class="badge ${status.color}">${status.label}</span></td>
-                    <td>${getCurrentDate()}</td>
-                `;
-                recentLeadsTable.appendChild(row);
-            }
-        } else {
-            recentLeadsTable.innerHTML = '<tr><td colspan="6" class="text-center">No lead data available</td></tr>';
+    try {
+        // Also update modal data if it's open
+        const modalTotalLeads = document.getElementById('modalTotalLeads');
+        if (modalTotalLeads) {
+            modalTotalLeads.textContent = formatNumber(totalLeads);
         }
+        
+        // Update recent leads table in the modal (if available)
+        const recentLeadsTable = document.getElementById('recentLeadsTable');
+        if (recentLeadsTable && data.campaigns && data.campaigns.length > 0) {
+            // Using a document fragment for better performance
+            const fragment = document.createDocumentFragment();
+            
+            // Get campaigns with leads
+            const campaignsWithLeads = data.campaigns
+                .filter(campaign => campaign.leads > 0)
+                .sort((a, b) => b.leads - a.leads);
+            
+            // Display up to 5 campaigns in the recent leads table
+            const count = Math.min(campaignsWithLeads.length, 5);
+            
+            if (count > 0) {
+                // Clear existing rows (more efficient than innerHTML = '')
+                while (recentLeadsTable.firstChild) {
+                    recentLeadsTable.removeChild(recentLeadsTable.firstChild);
+                }
+                
+                for (let i = 0; i < count; i++) {
+                    const campaign = campaignsWithLeads[i];
+                    const leadSource = Math.random() > 0.5 ? 'Facebook' : 'Google';
+                    const status = getRandomLeadStatus();
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>LD-${Math.floor(2500 + Math.random() * 100)}</td>
+                        <td>${getRandomName()}</td>
+                        <td>${leadSource}</td>
+                        <td>${campaign.campaign_name}</td>
+                        <td><span class="badge ${status.color}">${status.label}</span></td>
+                        <td>${getCurrentDate()}</td>
+                    `;
+                    fragment.appendChild(row);
+                }
+                
+                // Add all rows at once for better performance
+                recentLeadsTable.appendChild(fragment);
+            } else {
+                recentLeadsTable.innerHTML = '<tr><td colspan="6" class="text-center">No lead data available</td></tr>';
+            }
+        }
+    } catch (error) {
+        console.error('Error updating UI with campaign data:', error);
     }
     
     // Store current data for next comparison
@@ -568,14 +657,16 @@ function getColorForPercentage(percentage) {
     return '#6c757d';                  // Very low - gray
 }
 
-// Apply TV-specific optimizations for better visibility and performance
-function applyTVModeOptimizations() {
-    console.log("Applying TV mode optimizations");
+// Apply optimizations for better visibility and performance
+function applyUIOptimizations() {
+    console.log("Applying UI optimizations");
     
     // Prevent sleep/screensaver
     preventSleep();
     
-    // Increase contrast for better readability on TV
+    // Performance optimizations for tables and UI elements
+    
+    // Set proper contrast for better readability 
     document.documentElement.style.setProperty('--bs-body-color', '#111');
     document.documentElement.style.setProperty('--bs-body-bg', '#f9f9f9');
     
@@ -586,13 +677,16 @@ function applyTVModeOptimizations() {
         th.style.backgroundColor = "#f1f4f9";
     });
     
-    // Add scrolling animation to tables for TV displays
-    if (TV_AUTO_SCROLL) {
-        setupTableScrolling();
+    // Add requestIdleCallback for non-critical operations
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+            // Apply optimizations that can be deferred
+            optimizeImagesAndFonts();
+        });
     }
     
-    // Disable any hover effects that might cause issues on TVs
-    disableProblematicHoverEffects();
+    // Disable any problematic hover effects
+    optimizeHoverEffects();
 }
 
 // Prevent screen from sleeping - useful for TV displays
@@ -730,22 +824,57 @@ function easeInOutCubic(t) {
     return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 }
 
-// Disable any hover effects that might cause issues on TVs
-function disableProblematicHoverEffects() {
-    // Find all elements with hover styles that might be problematic
-    const hoverElements = document.querySelectorAll('.stats-item, .sales-summary-container, .monthly-sales-panel, .wide-panel');
+// Optimize hover effects for better performance
+function optimizeHoverEffects() {
+    // Find all elements with hover styles
+    const hoverElements = document.querySelectorAll('.stats-item, .sales-summary-container, .monthly-sales-panel, .wide-panel, .card');
+    
+    // Use passive event listeners for better performance
+    const listenerOptions = { passive: true };
     
     hoverElements.forEach(element => {
-        // Modify hover effects to be more TV-friendly - disable unwanted transforms
+        // Optimize transitions by using hardware acceleration
         element.style.transition = 'box-shadow 0.3s ease';
+        element.style.backfaceVisibility = 'hidden';
+        element.style.willChange = 'box-shadow';
+        
         element.addEventListener('mouseenter', function() {
             this.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)';
-            this.style.transform = 'none';  // Prevent transform on hover
-        });
+        }, listenerOptions);
         
         element.addEventListener('mouseleave', function() {
             this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.05)';
-            this.style.transform = 'none';  // Ensure no transform on leave
-        });
+        }, listenerOptions);
     });
+}
+
+// Optimize images and fonts for better performance
+function optimizeImagesAndFonts() {
+    // Apply font-display: swap to all custom fonts
+    const style = document.createElement('style');
+    style.textContent = `
+        @font-face {
+            font-display: swap !important;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add loading="lazy" to images that are below the fold
+    const images = document.querySelectorAll('img:not([loading])');
+    images.forEach(img => {
+        if (!isElementInViewport(img)) {
+            img.setAttribute('loading', 'lazy');
+        }
+    });
+}
+
+// Helper function to check if element is in viewport
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
 }

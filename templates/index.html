@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -16,7 +16,6 @@
     <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style">
     <link rel="preload" href="{{ url_for('static', filename='js/main.js') }}" as="script">
     <!-- Production optimization meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="Cache-Control" content="public, max-age=86400">
     <!-- Enable caching for production -->
     <meta http-equiv="Expires" content="86400">
@@ -93,20 +92,20 @@
             <i class="bi bi-speedometer2"></i> Onwords Performance Dashboard v0.2
         </div>
         <div class="header-meta">
-            <div class="d-flex align-items-center">
-                <div class="me-3">
+            <div class="d-flex align-items-center flex-wrap justify-content-between w-100">
+                <div class="me-2 mb-2 mb-sm-0">
                     <a href="/leads" class="btn btn-sm btn-outline-light">
-                        <i class="bi bi-person-rolodex"></i> Leads
+                        <i class="bi bi-person-rolodex"></i> <span class="d-none d-sm-inline">Leads</span>
                     </a>
                 </div>
-                <div class="days-left me-3">
+                <div class="days-left me-2 mb-2 mb-sm-0">
                     <span class="days-left-badge" id="daysLeftBadge">Feb 27, 2025 | 2 days left</span>
                 </div>
-                <div class="refresh-info me-3">
+                <div class="refresh-info me-2 mb-2 mb-sm-0">
                     <i class="bi bi-arrow-repeat me-1"></i>
-                    <small class="text-light">Auto-updates in <span id="nextRefresh">30s</span></small>
+                    <small class="text-light">Updates in <span id="nextRefresh">30s</span></small>
                 </div>
-                <button id="themeToggle" class="btn btn-sm btn-outline-light me-3 theme-switch">
+                <button id="themeToggle" class="btn btn-sm btn-outline-light me-2 mb-2 mb-sm-0 theme-switch">
                     <i class="bi bi-sun-fill" id="lightIcon"></i>
                     <i class="bi bi-moon-fill d-none" id="darkIcon"></i>
                 </button>
@@ -165,7 +164,7 @@
                             <!-- KPI Stats -->
                             <div class="col-12">
                                 <div class="row g-0">
-                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-primary-subtle mb-2 rounded-circle mx-auto">
                                                 <i class="bi bi-currency-rupee"></i>
@@ -174,7 +173,7 @@
                                             <div class="stat-label text-muted">Ad Spend</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-success-subtle mb-2 rounded-circle mx-auto">
                                                 <i class="bi bi-person-plus"></i>
@@ -185,7 +184,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-info-subtle mb-2 rounded-circle mx-auto">
                                                 <i class="bi bi-calculator"></i>
@@ -194,7 +193,7 @@
                                             <div class="stat-label text-muted">Avg. Cost Per Lead</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom border-md-bottom-0">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-secondary-subtle mb-2 rounded-circle mx-auto">
                                                 <i class="bi bi-eye"></i>
@@ -203,7 +202,7 @@
                                             <div class="stat-label text-muted">Impressions</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom border-md-bottom-0">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-warning-subtle mb-2 rounded-circle mx-auto">
                                                 <i class="bi bi-mouse"></i>
@@ -212,7 +211,7 @@
                                             <div class="stat-label text-muted">Clicks</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-lg-2 p-4">
+                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-bottom border-md-bottom-0">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-danger-subtle mb-2 rounded-circle mx-auto">
                                                 <i class="bi bi-percent"></i>

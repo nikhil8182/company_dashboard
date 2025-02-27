@@ -170,15 +170,39 @@
         
         <!-- Mobile Quick Stats - Only visible on mobile -->
         <div class="d-md-none mb-3">
-            <div class="alert alert-info py-2 mb-0 d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="badge bg-light text-dark me-1"><span id="totalLeadsMobile">0</span> leads</span>
-                    <span class="badge bg-light text-dark"><span id="avgCplMobile">₹0</span> CPL</span>
-                </div>
-                <div>
-                    <button id="refreshMobile" class="btn btn-sm btn-primary px-2 py-1">
-                        <i class="bi bi-arrow-repeat"></i>
-                    </button>
+            <div class="card">
+                <div class="card-body p-2">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <div class="border rounded p-2 text-center">
+                                <small class="text-muted d-block">Total Spend</small>
+                                <strong class="text-primary" id="totalSpendMobile">₹0</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2 text-center">
+                                <small class="text-muted d-block">Total Leads</small>
+                                <strong class="text-success" id="totalLeadsMobile">0</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2 text-center">
+                                <small class="text-muted d-block">Avg CPL</small>
+                                <strong class="text-danger" id="avgCplMobile">₹0</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2 text-center">
+                                <small class="text-muted d-block">CTR</small>
+                                <strong class="text-info" id="ctrMobile">0%</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 text-end">
+                        <button id="refreshMobile" class="btn btn-sm btn-primary px-3">
+                            <i class="bi bi-arrow-repeat me-1"></i> Refresh
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -365,9 +389,19 @@
                         avgCplMobile.textContent = formatCurrency(filteredAvgCpl || 0);
                     }
                     
+                    const totalSpendMobile = document.getElementById('totalSpendMobile');
+                    if (totalSpendMobile) {
+                        totalSpendMobile.textContent = '₹ ' + formatCurrency(filteredSpend || 0);
+                    }
+                    
                     // Calculate filtered CTR
                     const filteredCTR = calculateCTR(filteredClicks, filteredImpressions);
                     elements.ctr.textContent = filteredCTR.toFixed(2) + '%';
+                    
+                    const ctrMobile = document.getElementById('ctrMobile');
+                    if (ctrMobile) {
+                        ctrMobile.textContent = filteredCTR.toFixed(2) + '%';
+                    }
                     
                     // Display all campaigns but mark excluded ones
                     data.campaigns.forEach(campaign => {

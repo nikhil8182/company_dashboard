@@ -722,6 +722,16 @@ html, body {
 }
 
 @media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    .dashboard-body {
+        overflow-y: auto;
+        height: auto;
+    }
+    
     .dashboard-grid {
         margin: 0;
         padding: 0.25rem;
@@ -752,6 +762,48 @@ html, body {
     .table-sm th, .table-sm td {
         padding: 0.2rem 0.3rem;
         font-size: 0.7rem;
+    }
+    
+    .header-bar {
+        flex-direction: column;
+        height: auto;
+        padding: 0.5rem;
+    }
+    
+    .header-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .header-meta {
+        width: 100%;
+    }
+    
+    /* Make tables responsive */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Adjust card layouts */
+    .col-lg-2, .col-md-4 {
+        width: 50%;
+        float: left;
+    }
+    
+    .stat-value {
+        font-size: 1.4rem;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .stat-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
     }
 }
 

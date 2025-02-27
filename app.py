@@ -160,7 +160,7 @@ def get_campaign_data():
             else:
                 campaign["cpl"] = 0
     
-    # Recalculate total metrics.
+    # Recalculate total metrics..
     total_spend = sum(campaign["spend"] for campaign in sample_data["campaigns"])
     total_leads = sum(campaign["leads"] for campaign in sample_data["campaigns"])
     

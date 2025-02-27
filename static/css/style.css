@@ -13,6 +13,75 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Stats Cards */
+.stat-card {
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Card gradients */
+.bg-gradient-primary {
+    background: linear-gradient(45deg, #0d6efd, #0a58ca);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(45deg, #198754, #157347);
+}
+
+.bg-gradient-info {
+    background: linear-gradient(45deg, #0dcaf0, #0a97b6);
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(45deg, #ffc107, #d6a206);
+}
+
+.bg-gradient-danger {
+    background: linear-gradient(45deg, #dc3545, #b02a37);
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(45deg, #212529, #1a1e21);
+}
+
+/* Avatar styling */
+.avatar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.avatar-sm {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
 }
 
 /* Header styling */

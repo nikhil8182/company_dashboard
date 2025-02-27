@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,108 +18,33 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <style>
-        /* Additional styles for side-by-side tables */
-        .sales-summary-table th, .sales-summary-table td {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        /* Dark mode overrides */
+        [data-bs-theme="dark"] .header-bar {
+            background: linear-gradient(90deg, #0f1620 0%, #1c2631 100%);
         }
-        
-        /* Make progress bars thicker for better visibility */
-        .progress {
-            height: 10px !important;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        [data-bs-theme="dark"] .card {
+            background-color: #1e2a3a;
+            border-color: #2c3e50;
         }
-        
-        /* Auto-refresh counter style */
-        #nextRefresh {
-            display: inline-block;
-            min-width: 30px;
-            text-align: center;
+        [data-bs-theme="dark"] .card:hover {
+            box-shadow: 0 4px 8px rgba(255,255,255,.05);
         }
-        
-        /* TV-optimized UI enhancements */
-        .dashboard-body {
-            background: linear-gradient(150deg, #f8f9fa 0%, #e9ecef 100%);
+        [data-bs-theme="dark"] .table-header {
+            background: linear-gradient(90deg, #0a1521 0%, #1a242f 100%);
         }
-        
-        .header-bar {
-            background: linear-gradient(90deg, #1a2a3a 0%, #3a4a5e 100%);
-            border-bottom: 3px solid #0d6efd;
+        [data-bs-theme="dark"] .dashboard-body {
+            background: linear-gradient(150deg, #121212 0%, #1a1a1a 100%);
         }
-        
-        .table-header {
-            background: linear-gradient(90deg, #2c3e50 0%, #34495e 100%);
-            border-bottom: 2px solid rgba(255,255,255,0.1);
-            text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+        [data-bs-theme="dark"] .stat-card {
+            background-color: #1e2a3a;
+            border-color: #2c3e50;
         }
-        
-        .sales-summary-container {
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border: none;
-            transition: all 0.3s ease;
+        [data-bs-theme="dark"] .stats-grid .stats-item {
+            background-color: #1e2a3a;
+            border-color: #2c3e50;
         }
-        
-        .table th {
-            background-color: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
-            color: #2c3e50;
-            font-weight: 600;
-        }
-        
-        .progress-bar {
-            background-image: linear-gradient(135deg, rgba(255,255,255,0.15) 25%, transparent 25%, 
-                              transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, 
-                              transparent 75%, transparent);
-            background-size: 20px 20px;
-            animation: progress-bar-stripes 2s linear infinite;
-        }
-        
-        @keyframes progress-bar-stripes {
-            from { background-position: 20px 0; }
-            to { background-position: 0 0; }
-        }
-        
-        .badge {
-            border-radius: 30px;
-            padding: 0.4em 0.8em;
-            font-weight: 500;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Fresher accent colors */
-        .bg-info {
-            background: linear-gradient(135deg, #0dcaf0 0%, #0d6efd 100%) !important;
-        }
-        
-        .bg-success {
-            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%) !important;
-        }
-        
-        .bg-warning {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important;
-        }
-        
-        .bg-danger {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
-        }
-        
-        /* Table row hover effect */
-        .table tbody tr:hover {
-            background-color: rgba(13, 110, 253, 0.05);
-        }
-        
-        /* Status indicator pulse */
-        .connection-status.online i {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { opacity: 0.7; }
+        .theme-switch {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -143,6 +68,10 @@
                     <i class="bi bi-arrow-repeat me-1"></i>
                     <small class="text-light">Auto-updates in <span id="nextRefresh">60s</span></small>
                 </div>
+                <button id="themeToggle" class="btn btn-sm btn-outline-light me-3 theme-switch">
+                    <i class="bi bi-sun-fill" id="lightIcon"></i>
+                    <i class="bi bi-moon-fill d-none" id="darkIcon"></i>
+                </button>
                 <span id="connectionStatus" class="connection-status offline">
                     <i class="bi bi-wifi-off"></i> <span class="d-none d-sm-inline">Offline</span>
                 </span>
@@ -150,450 +79,380 @@
         </div>
     </div>
     
-    <!-- Dashboard Grid -->
-    <div class="dashboard-grid">
-        <!-- Monthly Sales Panel -->
-        <div class="dashboard-row">
-            <div class="monthly-sales-panel">
-                <div class="panel-header">
-                    <h5 class="mb-0">Monthly Sales (Feb)</h5>
-                </div>
-                <div class="panel-body">
-                    <div class="d-flex align-items-center">
-                        <div class="sales-stats me-3">
-                            <div class="sales-counter">
-                                <span class="sales-achieved">75</span>
-                                <span class="text-muted">/</span>
-                                <span class="sales-target">130</span>
-                            </div>
-                            <div class="small text-muted">Need 55 more</div>
-                        </div>
-                        <div class="progress-container flex-grow-1">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 57.7%;" 
-                                     aria-valuenow="57.7" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <small class="text-muted">0</small>
-                                <small class="fw-medium text-success">57.7%</small>
-                                <small class="text-muted">130</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Campaign Stats Panel -->
-        <div class="dashboard-row">
-            <div class="wide-panel">
-                <div class="panel-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0"><i class="bi bi-graph-up me-2"></i>Current Campaign Statistics</h5>
-                    <div class="d-flex align-items-center">
+    <!-- Dashboard Container -->
+    <div class="container-fluid p-3 p-md-4 dashboard-container">
+        <div class="row g-3">
+            <!-- KPI Summary Cards -->
+            <div class="col-12">
+                <div class="card shadow-sm rounded-4 border-0 mb-4">
+                    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
+                        <h5 class="m-0 fw-bold text-primary">
+                            <i class="bi bi-graph-up-arrow me-2"></i>Campaign Performance
+                        </h5>
                         <div>
                             <div class="spinner-border spinner-border-sm text-primary d-none me-2" id="updateSpinner" role="status"></div>
-                            <button id="refreshCampaigns" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-arrow-repeat"></i> Refresh
+                            <button id="refreshCampaigns" class="btn btn-sm btn-primary rounded-pill px-3">
+                                <i class="bi bi-arrow-repeat me-1"></i> Refresh
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="panel-body">
-                    <div class="stats-grid">
-                        <div class="stats-item">
-                            <div class="stats-label"><i class="bi bi-currency-rupee me-1"></i>Ad Spend</div>
-                            <div class="stats-value text-primary" id="totalSpendBadge">₹0</div>
-                        </div>
-                        <div class="stats-item">
-                            <div class="stats-label d-flex align-items-center">
-                                <i class="bi bi-person-plus me-1"></i>Leads Generated
-                                <a href="javascript:void(0)" onclick="openLeadsModal()" id="viewLeadsBtn" class="text-success ms-1">
-                                    <i class="bi bi-box-arrow-up-right"></i>
-                                </a>
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <!-- Monthly Sales Progress -->
+                            <div class="col-lg-12 py-3 px-4 border-bottom">
+                                <div class="d-flex align-items-center">
+                                    <div class="sales-stats me-4">
+                                        <div class="sales-counter">
+                                            <span class="sales-achieved">75</span>
+                                            <span class="text-muted">/</span>
+                                            <span class="sales-target">130</span>
+                                        </div>
+                                        <div class="small text-muted">Monthly Sales (Feb)</div>
+                                    </div>
+                                    <div class="progress-container flex-grow-1">
+                                        <div class="progress" style="height: 12px;">
+                                            <div class="progress-bar bg-gradient-primary" role="progressbar" 
+                                                 style="width: 57.7%;" aria-valuenow="57.7" 
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-1">
+                                            <small class="text-muted">0</small>
+                                            <small class="text-primary fw-bold">57.7%</small>
+                                            <small class="text-muted">100%</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="stats-value text-success" id="totalLeadsBadge">0</div>
-                        </div>
-                        <div class="stats-item">
-                            <div class="stats-label"><i class="bi bi-calculator me-1"></i>Avg. Cost Per Lead</div>
-                            <div class="stats-value text-info" id="avgCplBadge">₹0</div>
-                        </div>
-                        <div class="stats-item">
-                            <div class="stats-label"><i class="bi bi-eye me-1"></i>Impressions</div>
-                            <div class="stats-value text-secondary" id="totalImpressions">0</div>
-                        </div>
-                        <div class="stats-item">
-                            <div class="stats-label"><i class="bi bi-mouse me-1"></i>Clicks</div>
-                            <div class="stats-value text-warning" id="totalClicks">0</div>
-                        </div>
-                        <div class="stats-item">
-                            <div class="stats-label"><i class="bi bi-percent me-1"></i>Click Rate</div>
-                            <div class="stats-value text-danger" id="clickRate">0%</div>
+                            
+                            <!-- KPI Stats -->
+                            <div class="col-12">
+                                <div class="row g-0">
+                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-primary-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-currency-rupee"></i>
+                                            </div>
+                                            <h2 class="stat-value text-primary mb-0" id="totalSpendBadge">₹0</h2>
+                                            <div class="stat-label text-muted">Ad Spend</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-success-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-person-plus"></i>
+                                            </div>
+                                            <h2 class="stat-value text-success mb-0" id="totalLeadsBadge">0</h2>
+                                            <div class="stat-label text-muted d-flex justify-content-center align-items-center">
+                                                Leads Generated
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-info-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-calculator"></i>
+                                            </div>
+                                            <h2 class="stat-value text-info mb-0" id="avgCplBadge">₹0</h2>
+                                            <div class="stat-label text-muted">Avg. Cost Per Lead</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-secondary-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-eye"></i>
+                                            </div>
+                                            <h2 class="stat-value text-secondary mb-0" id="totalImpressions">0</h2>
+                                            <div class="stat-label text-muted">Impressions</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 p-4 border-end">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-warning-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-mouse"></i>
+                                            </div>
+                                            <h2 class="stat-value text-warning mb-0" id="totalClicks">0</h2>
+                                            <div class="stat-label text-muted">Clicks</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 p-4">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-danger-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-percent"></i>
+                                            </div>
+                                            <h2 class="stat-value text-danger mb-0" id="clickRate">0%</h2>
+                                            <div class="stat-label text-muted">Click Rate</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Sales Summary Panels - Three Side-by-Side Tables for TV Display -->
-        <div class="dashboard-row side-by-side-tables">
-            <!-- Yesterday's Summary -->
-            <div class="sales-summary-container">
-                <div class="table-header">
-                    <i class="bi bi-calendar-day me-2"></i> Daily Performance (26.02.2025)
-                </div>
-                <div class="table-body">
-                    <table class="table table-sm sales-summary-table mb-0">
-                        <thead>
-                            <tr>
-                                <th>Metric</th>
-                                <th class="text-center">Achieved</th>
-                                <th class="text-center">Target</th>
-                                <th class="text-center">%</th>
-                                <th class="text-center">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="fw-medium">Leads Generated</td>
-                                <td class="text-center">92</td>
-                                <td class="text-center">110</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 83.6%" aria-valuenow="83.6" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>83.6%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-info">Good</span></td>
-                            </tr>
-                            <tr>
-                                <td class="fw-medium">Visits Attended</td>
-                                <td class="text-center">8</td>
-                                <td class="text-center">12</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 66.7%" aria-valuenow="66.7" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>66.7%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-warning">Fair</span></td>
-                            </tr>
-                            <tr>
-                                <td class="fw-medium">Sales Closed</td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">8</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 37.5%" aria-valuenow="37.5" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>37.5%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-danger">Poor</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            
+            <!-- Performance Reports -->
+            <div class="col-md-4">
+                <div class="card shadow-sm rounded-4 border-0 h-100">
+                    <div class="card-header border-0 bg-gradient-dark text-white py-3">
+                        <h6 class="mb-0 d-flex align-items-center">
+                            <i class="bi bi-calendar-day me-2"></i> Today's Performance
+                        </h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th class="text-center">Achieved</th>
+                                        <th class="text-center">Target</th>
+                                        <th class="text-center">Progress</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-medium">Leads</td>
+                                        <td class="text-center">92</td>
+                                        <td class="text-center">110</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-info" role="progressbar" 
+                                                         style="width: 83.6%" aria-valuenow="83.6" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-info">84%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Visits</td>
+                                        <td class="text-center">8</td>
+                                        <td class="text-center">12</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-warning" role="progressbar" 
+                                                         style="width: 66.7%" aria-valuenow="66.7" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-warning">67%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Sales</td>
+                                        <td class="text-center">3</td>
+                                        <td class="text-center">8</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-danger" role="progressbar" 
+                                                         style="width: 37.5%" aria-valuenow="37.5" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-danger">38%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <!-- Weekly Summary -->
-            <div class="sales-summary-container">
-                <div class="table-header">
-                    <i class="bi bi-calendar-week me-2"></i> Weekly Analytics (20.02 - 26.02)
-                </div>
-                <div class="table-body">
-                    <table class="table table-sm sales-summary-table mb-0">
-                        <thead>
-                            <tr>
-                                <th>Metric</th>
-                                <th class="text-center">Achieved</th>
-                                <th class="text-center">Target</th>
-                                <th class="text-center">%</th>
-                                <th class="text-center">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="fw-medium">Leads Generated</td>
-                                <td class="text-center">318</td>
-                                <td class="text-center">350</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 90.9%" aria-valuenow="90.9" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>90.9%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-success">Excellent</span></td>
-                            </tr>
-                            <tr>
-                                <td class="fw-medium">Visits Attended</td>
-                                <td class="text-center">43</td>
-                                <td class="text-center">60</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 71.7%" aria-valuenow="71.7" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>71.7%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-info">Good</span></td>
-                            </tr>
-                            <tr>
-                                <td class="fw-medium">Sales Closed</td>
-                                <td class="text-center">15</td>
-                                <td class="text-center">30</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>50.0%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-warning">Fair</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-md-4">
+                <div class="card shadow-sm rounded-4 border-0 h-100">
+                    <div class="card-header border-0 bg-gradient-dark text-white py-3">
+                        <h6 class="mb-0 d-flex align-items-center">
+                            <i class="bi bi-calendar-week me-2"></i> This Week's Performance
+                        </h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th class="text-center">Achieved</th>
+                                        <th class="text-center">Target</th>
+                                        <th class="text-center">Progress</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-medium">Leads</td>
+                                        <td class="text-center">318</td>
+                                        <td class="text-center">350</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-success" role="progressbar" 
+                                                         style="width: 90.9%" aria-valuenow="90.9" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-success">91%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Visits</td>
+                                        <td class="text-center">43</td>
+                                        <td class="text-center">60</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-info" role="progressbar" 
+                                                         style="width: 71.7%" aria-valuenow="71.7" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-info">72%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Sales</td>
+                                        <td class="text-center">15</td>
+                                        <td class="text-center">30</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-warning" role="progressbar" 
+                                                         style="width: 50%" aria-valuenow="50" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-warning">50%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <!-- Monthly Summary -->
-            <div class="sales-summary-container">
-                <div class="table-header">
-                    <i class="bi bi-calendar-month me-2"></i> Month-to-Date Metrics (Feb 2025)
-                </div>
-                <div class="table-body">
-                    <table class="table table-sm sales-summary-table mb-0">
-                        <thead>
-                            <tr>
-                                <th>Metric</th>
-                                <th class="text-center">Achieved</th>
-                                <th class="text-center">Target</th>
-                                <th class="text-center">%</th>
-                                <th class="text-center">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="fw-medium">Leads Generated</td>
-                                <td class="text-center">1,245</td>
-                                <td class="text-center">1,500</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 83%" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>83.0%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-info">Good</span></td>
-                            </tr>
-                            <tr>
-                                <td class="fw-medium">Visits Attended</td>
-                                <td class="text-center">176</td>
-                                <td class="text-center">200</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>88.0%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-success">Excellent</span></td>
-                            </tr>
-                            <tr>
-                                <td class="fw-medium">Sales Closed</td>
-                                <td class="text-center">75</td>
-                                <td class="text-center">120</td>
-                                <td class="text-center">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 62.5%" aria-valuenow="62.5" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>62.5%</small>
-                                </td>
-                                <td class="text-center"><span class="badge bg-info">Good</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-md-4">
+                <div class="card shadow-sm rounded-4 border-0 h-100">
+                    <div class="card-header border-0 bg-gradient-dark text-white py-3">
+                        <h6 class="mb-0 d-flex align-items-center">
+                            <i class="bi bi-calendar-month me-2"></i> Month-to-Date Performance
+                        </h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-hover align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th class="text-center">Achieved</th>
+                                        <th class="text-center">Target</th>
+                                        <th class="text-center">Progress</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-medium">Leads</td>
+                                        <td class="text-center">1,245</td>
+                                        <td class="text-center">1,500</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-info" role="progressbar" 
+                                                         style="width: 83%" aria-valuenow="83" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-info">83%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Visits</td>
+                                        <td class="text-center">176</td>
+                                        <td class="text-center">200</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-success" role="progressbar" 
+                                                         style="width: 88%" aria-valuenow="88" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-success">88%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium">Sales</td>
+                                        <td class="text-center">75</td>
+                                        <td class="text-center">120</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="progress flex-grow-1 me-2" style="height: 8px;">
+                                                    <div class="progress-bar bg-info" role="progressbar" 
+                                                         style="width: 62.5%" aria-valuenow="62.5" 
+                                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <span class="badge bg-info">63%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- Lead Details Modal -->
-    <div class="modal fade" id="leadDetailsModal" tabindex="-1" aria-labelledby="leadDetailsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header" style="background: linear-gradient(135deg, #39c77c 0%, #28a745 100%); color: white; border-radius: 6px 6px 0 0;">
-                    <h5 class="modal-title" id="leadDetailsModalLabel" style="font-weight: 600; letter-spacing: 0.5px; display: flex; align-items: center;">
-                        <i class="bi bi-person-lines-fill me-2"></i> Lead Details
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-header" style="background: #f1f4f9; border-bottom: 2px solid #e9ecef;">
-                                    <h6 class="mb-0" style="font-weight: 600; color: #3a4a5e; letter-spacing: 0.5px;">
-                                        <i class="bi bi-clipboard-data me-2"></i> Lead Summary
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mb-2">
-                                        <small class="text-muted">Total Leads</small>
-                                        <div class="fs-4 fw-bold text-success" id="modalTotalLeads">0</div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <small class="text-muted">Source Distribution</small>
-                                        <div class="progress mb-1" style="height: 10px;">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 45%" title="Facebook">45%</div>
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 30%" title="Google">30%</div>
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" title="Other">25%</div>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <small>Facebook</small>
-                                            <small>Google</small>
-                                            <small>Other</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-header" style="background: #f1f4f9; border-bottom: 2px solid #e9ecef;">
-                                    <h6 class="mb-0" style="font-weight: 600; color: #3a4a5e; letter-spacing: 0.5px;">
-                                        <i class="bi bi-graph-up me-2"></i> Conversion Funnel
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="conversion-funnel">
-                                        <div class="funnel-step">
-                                            <div class="funnel-label">Leads</div>
-                                            <div class="funnel-bar bg-success" style="width: 100%;">59</div>
-                                        </div>
-                                        <div class="funnel-step">
-                                            <div class="funnel-label">Contacted</div>
-                                            <div class="funnel-bar bg-info" style="width: 75%;">43</div>
-                                        </div>
-                                        <div class="funnel-step">
-                                            <div class="funnel-label">Visited</div>
-                                            <div class="funnel-bar bg-primary" style="width: 50%;">27</div>
-                                        </div>
-                                        <div class="funnel-step">
-                                            <div class="funnel-label">Negotiating</div>
-                                            <div class="funnel-bar bg-warning" style="width: 30%;">15</div>
-                                        </div>
-                                        <div class="funnel-step">
-                                            <div class="funnel-label">Closed</div>
-                                            <div class="funnel-bar bg-danger" style="width: 15%;">8</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center" style="background: #f1f4f9; border-bottom: 2px solid #e9ecef;">
-                            <h6 class="mb-0" style="font-weight: 600; color: #3a4a5e; letter-spacing: 0.5px;">
-                                <i class="bi bi-clock-history me-2"></i> Recent Leads
-                            </h6>
-                            <button class="btn btn-sm" style="background: linear-gradient(135deg, #3a8dff 0%, #0d6efd 100%); color: white; font-weight: 500; border-radius: 6px; box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2); border: none;">
-                                <i class="bi bi-eye me-1"></i> View All
-                            </button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-striped mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Lead Name</th>
-                                            <th>Source</th>
-                                            <th>Campaign</th>
-                                            <th>Status</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="recentLeadsTable">
-                                        <!-- Sample data, will be populated by JavaScript -->
-                                        <tr>
-                                            <td>LD-2573</td>
-                                            <td>Ramesh Kumar</td>
-                                            <td>Facebook</td>
-                                            <td>Tamil New</td>
-                                            <td><span class="badge bg-success">New</span></td>
-                                            <td>Feb 27, 2025</td>
-                                        </tr>
-                                        <tr>
-                                            <td>LD-2572</td>
-                                            <td>Priya Sharma</td>
-                                            <td>Google</td>
-                                            <td>TC Hiring campaign</td>
-                                            <td><span class="badge bg-warning">Contacted</span></td>
-                                            <td>Feb 26, 2025</td>
-                                        </tr>
-                                        <tr>
-                                            <td>LD-2571</td>
-                                            <td>Anand Singh</td>
-                                            <td>Facebook</td>
-                                            <td>PR Current</td>
-                                            <td><span class="badge bg-info">Visit Scheduled</span></td>
-                                            <td>Feb 26, 2025</td>
-                                        </tr>
-                                        <tr>
-                                            <td>LD-2570</td>
-                                            <td>Lakshmi N</td>
-                                            <td>Google</td>
-                                            <td>Tamil Ad Campaign</td>
-                                            <td><span class="badge bg-primary">Visited</span></td>
-                                            <td>Feb 25, 2025</td>
-                                        </tr>
-                                        <tr>
-                                            <td>LD-2569</td>
-                                            <td>Rajesh Iyer</td>
-                                            <td>Facebook</td>
-                                            <td>No Chennai Campaign</td>
-                                            <td><span class="badge bg-danger">Closed</span></td>
-                                            <td>Feb 25, 2025</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer" style="border-top: 1px solid #edf0f7; padding: 1rem 1.25rem;">
-                    <button type="button" class="btn" data-bs-dismiss="modal" style="background: #f1f4f9; color: #3a4a5e; font-weight: 500; border-radius: 6px; border: none; padding: 0.5rem 1.25rem;">
-                        <i class="bi bi-x-circle me-1"></i> Close
-                    </button>
-                    <button type="button" class="btn" style="background: linear-gradient(135deg, #3a8dff 0%, #0d6efd 100%); color: white; font-weight: 500; border-radius: 6px; box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2); border: none; padding: 0.5rem 1.25rem;">
-                        <i class="bi bi-download me-1"></i> Export Data
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
-    // Function to open the leads modal
-    function openLeadsModal() {
-        console.log("Opening leads modal");
-        var modal = document.getElementById('leadDetailsModal');
-        if (modal) {
-            // Update the modal data
-            var totalLeads = document.getElementById('totalLeadsBadge').innerText;
-            var modalTotalLeads = document.getElementById('modalTotalLeads');
-            if (modalTotalLeads) {
-                modalTotalLeads.innerText = totalLeads;
-            }
-            
-            // Show the modal using Bootstrap
-            var myModal = new bootstrap.Modal(modal);
-            myModal.show();
-        } else {
-            console.error("Modal element not found");
-        }
-    }
     
     // Socket.io instance
     let socket;
+    
+    // Toggle theme function
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Update HTML attribute
+        html.setAttribute('data-bs-theme', newTheme);
+        
+        // Update button icons
+        const lightIcon = document.getElementById('lightIcon');
+        const darkIcon = document.getElementById('darkIcon');
+        
+        if (newTheme === 'dark') {
+            lightIcon.classList.add('d-none');
+            darkIcon.classList.remove('d-none');
+        } else {
+            darkIcon.classList.add('d-none');
+            lightIcon.classList.remove('d-none');
+        }
+        
+        // Save preference to localStorage
+        localStorage.setItem('theme', newTheme);
+    }
 
     // Fetch data and create chart when the page loads
     document.addEventListener('DOMContentLoaded', function() {
+        // Set up theme toggle
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        
+        // Load theme preference from localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-bs-theme', savedTheme);
+            if (savedTheme === 'dark') {
+                document.getElementById('lightIcon').classList.add('d-none');
+                document.getElementById('darkIcon').classList.remove('d-none');
+            }
+        }
+        
         // Initialize socket.io connection
         try {
             initializeSocket();
@@ -622,19 +481,6 @@
         // Update days left in month
         updateDaysLeftInMonth();
         
-        // Set up lead details modal events
-        const leadDetailsModal = document.getElementById('leadDetailsModal');
-        if (leadDetailsModal) {
-            leadDetailsModal.addEventListener('show.bs.modal', function() {
-                console.log('Modal is about to show');
-                // Update modal data with current leads count
-                const totalLeads = document.getElementById('totalLeadsBadge').textContent;
-                const modalTotalLeads = document.getElementById('modalTotalLeads');
-                if (modalTotalLeads) {
-                    modalTotalLeads.textContent = totalLeads;
-                }
-            });
-        }
     });
 
     // Initialize WebSocket connection
@@ -658,9 +504,6 @@
             socket.on('update_campaigns', function(msg) {
                 console.log('Received update:', msg.count);
                 showUpdateSpinner(true);
-                
-                // Update the last update indicator
-                updateIndicator(msg.count);
                 
                 // Update the dashboard with new data
                 if (msg.data) {
@@ -694,25 +537,6 @@
             statusEl.classList.remove('online');
             statusEl.classList.add('offline');
         }
-    }
-
-    // Update the last update indicator
-    function updateIndicator(count) {
-        const indicatorEl = document.getElementById('updateIndicator');
-        if (!indicatorEl) return;
-        
-        const now = new Date();
-        const timeString = now.toLocaleTimeString();
-        indicatorEl.textContent = `Last update: ${timeString} (#${count})`;
-        indicatorEl.classList.remove('bg-secondary');
-        indicatorEl.classList.add('bg-info');
-        
-        // Flash effect
-        indicatorEl.classList.add('bg-warning');
-        setTimeout(function() {
-            indicatorEl.classList.remove('bg-warning');
-            indicatorEl.classList.add('bg-info');
-        }, 300);
     }
 
     // Show or hide the update spinner
@@ -959,71 +783,9 @@
         updateBadge(totalClicks, formatNumber(clicks), true);
         updateBadge(clickRate, ctr + '%', true);
         
-        // Also update modal data if it's open
-        const modalTotalLeads = document.getElementById('modalTotalLeads');
-        if (modalTotalLeads) {
-            modalTotalLeads.textContent = formatNumber(totalLeads);
-        }
-        
-        // Update recent leads table in the modal (if available)
-        const recentLeadsTable = document.getElementById('recentLeadsTable');
-        if (recentLeadsTable && data.campaigns.length > 0) {
-            // Clear existing rows
-            recentLeadsTable.innerHTML = '';
-            
-            // Get campaigns with leads
-            const campaignsWithLeads = data.campaigns
-                .filter(campaign => campaign.leads > 0)
-                .sort((a, b) => b.leads - a.leads);
-            
-            // Display up to 5 campaigns in the recent leads table
-            const count = Math.min(campaignsWithLeads.length, 5);
-            
-            if (count > 0) {
-                for (let i = 0; i < count; i++) {
-                    const campaign = campaignsWithLeads[i];
-                    const leadSource = Math.random() > 0.5 ? 'Facebook' : 'Google';
-                    const status = getRandomLeadStatus();
-                    
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>LD-${Math.floor(2500 + Math.random() * 100)}</td>
-                        <td>${getRandomName()}</td>
-                        <td>${leadSource}</td>
-                        <td>${campaign.campaign_name}</td>
-                        <td><span class="badge ${status.color}">${status.label}</span></td>
-                        <td>${getCurrentDate()}</td>
-                    `;
-                    recentLeadsTable.appendChild(row);
-                }
-            } else {
-                recentLeadsTable.innerHTML = '<tr><td colspan="6" class="text-center">No lead data available</td></tr>';
-            }
-        }
         
         // Store current data for next comparison
         previousCampaignData = JSON.parse(JSON.stringify(data));
-    }
-    
-    // Helper function to get a random lead status
-    function getRandomLeadStatus() {
-        const statuses = [
-            { label: 'New', color: 'bg-success' },
-            { label: 'Contacted', color: 'bg-warning' },
-            { label: 'Visit Scheduled', color: 'bg-info' },
-            { label: 'Visited', color: 'bg-primary' },
-            { label: 'Closed', color: 'bg-danger' }
-        ];
-        return statuses[Math.floor(Math.random() * statuses.length)];
-    }
-    
-    // Helper function to get a random name
-    function getRandomName() {
-        const names = [
-            'Ramesh Kumar', 'Priya Sharma', 'Anand Singh', 'Lakshmi N', 'Rajesh Iyer',
-            'Vikram Patel', 'Sunita Reddy', 'Arun Gupta', 'Deepa Nair', 'Karthik Menon'
-        ];
-        return names[Math.floor(Math.random() * names.length)];
     }
     
     // Helper function to get current date in readable format
@@ -1041,7 +803,13 @@
         
         if (hasChanged) {
             element.classList.add('fw-bold');
-            setTimeout(() => element.classList.remove('fw-bold'), 1000);
+            element.style.transform = 'scale(1.1)';
+            element.style.transition = 'transform 0.3s ease-in-out';
+            
+            setTimeout(() => {
+                element.classList.remove('fw-bold');
+                element.style.transform = 'scale(1)';
+            }, 1000);
         }
     }
     </script>

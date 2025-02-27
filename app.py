@@ -1,24 +1,14 @@
 from flask import Flask, render_template, jsonify, request
 import requests
-import threading
-import time
 import random
 import json
-from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
-socketio = SocketIO(app, 
-                   cors_allowed_origins="*",
-                   ping_timeout=60,     # Increase ping timeout for better stability
-                   ping_interval=25)    # More frequent pings to maintain connection
 
 # API URLs
 CAMPAIGNS_API_URL = "http://65.2.187.240:9000/campaigns"
 DEFAULT_DATE_PRESET = "today"
-
-# Flag to control background thread
-thread_stop_event = threading.Event()
 
 # Get campaign data from API
 def get_campaign_data():
@@ -52,20 +42,6 @@ def get_campaign_data():
             "currency": "INR"
         }
         return empty_data
-
-# Background thread that sends data to clients
-def background_thread():
-    count = 0
-    while not thread_stop_event.is_set():
-        socketio.sleep(60)  # Send update every 60 seconds (1 minute)
-        count += 1
-        try:
-            # Get updated campaign data
-            campaign_data = get_campaign_data()
-            # Emit the data to all connected clients
-            socketio.emit('update_campaigns', {'data': campaign_data, 'count': count})
-        except Exception as e:
-            print(f"Error in background thread: {e}")
 
 # Route for main page
 @app.route('/')
@@ -101,24 +77,17 @@ def get_campaigns():
         
         # Pass the date_preset to the API call
         campaign_data = get_campaign_data()
+        
+        # Add campaign_id if missing (for campaign exclusion feature)
+        if campaign_data and 'campaigns' in campaign_data:
+            for i, campaign in enumerate(campaign_data['campaigns']):
+                if 'campaign_id' not in campaign:
+                    campaign['campaign_id'] = f"campaign-{i}"
+        
         return jsonify(campaign_data)
     except Exception as e:
         print(f"Error in /api/campaigns route: {e}")
         return jsonify({"error": str(e)}), 500
-
-# Socket.IO event handlers
-@socketio.on('connect')
-def connect():
-    global thread
-    print('Client connected')
-    
-    # Start background thread if not already running
-    if not thread_stop_event.is_set():
-        thread = socketio.start_background_task(background_thread)
-
-@socketio.on('disconnect')
-def disconnect():
-    print('Client disconnected')
 
 # API route for leads data
 @app.route('/api/leads', methods=['GET', 'POST'])
@@ -267,11 +236,10 @@ def test_connection():
             'api_url': CAMPAIGNS_API_URL
         }), 500
 
+# Add compression to Flask app
+from flask_compress import Compress
+compress = Compress(app)
+
 # Run the app
 if __name__ == '__main__':
-    # Increase socket timeout for better TV display stability
-    socketio.run(app, 
-                debug=True, 
-                host='0.0.0.0', 
-                port=7700, 
-                allow_unsafe_werkzeug=True)
+    app.run(debug=True, host='0.0.0.0', port=7700)

@@ -1,9 +1,6 @@
-// Socket.io instance
-let socket;
-
 // TV Display specific settings
 const TV_MODE = true; // Toggle for TV-specific behaviors
-const TV_REFRESH_INTERVAL = 60; // Seconds between auto-refresh (default)
+const TV_REFRESH_INTERVAL = 30; // Seconds between auto-refresh (reduced for better performance)
 const TV_AUTO_SCROLL = true; // Whether to auto-scroll tables
 
 // Fetch data and create chart when the page loads
@@ -13,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
         applyTVModeOptimizations();
     }
     
-    // Initialize socket.io connection
-    initializeSocket();
-    
     // Load campaign data initially
     fetchCampaigns();
+    
+    // Set up auto-refresh data every 30 seconds (TV_REFRESH_INTERVAL)
+    setInterval(fetchCampaigns, TV_REFRESH_INTERVAL * 1000);
     
     // Set up desktop manual refresh button
     const refreshBtn = document.getElementById('refreshCampaigns');
@@ -36,6 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update days left in month
     updateDaysLeftInMonth();
+    
+    // Initialize theme toggle
+    initializeThemeToggle();
+    
+    // Simulate connection status for visual feedback
+    updateConnectionStatusPeriodically();
     
     // Set up lead details modal button
     const viewLeadsBtn = document.getElementById('viewLeadsBtn');
@@ -56,50 +59,59 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // For TV displays, set a periodic full page refresh to prevent memory issues
     if (TV_MODE) {
-        // Auto reload page every 3 hours to prevent memory issues on TV displays
+        // Auto reload page every 2 hours to prevent memory issues on TV displays
         setTimeout(() => {
             window.location.reload();
-        }, 3 * 60 * 60 * 1000); // 3 hours in milliseconds
+        }, 2 * 60 * 60 * 1000); // 2 hours in milliseconds
     }
 });
 
-// Initialize WebSocket connection
-function initializeSocket() {
-    // Connect to the server
-    socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+// Initialize theme toggle function
+function initializeThemeToggle() {
+    // Set up theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
     
-    // Connection events
-    socket.on('connect', function() {
-        console.log('Connected to server');
-        updateConnectionStatus(true);
-    });
-    
-    socket.on('disconnect', function() {
-        console.log('Disconnected from server');
-        updateConnectionStatus(false);
-    });
-    
-    // Data update event
-    socket.on('update_campaigns', function(msg) {
-        console.log('Received update:', msg.count);
-        showUpdateSpinner(true);
-        
-        // Update the last update indicator
-        updateIndicator(msg.count);
-        
-        // Update the dashboard with new data
-        if (msg.data) {
-            displayCampaigns(msg.data);
+    // Load theme preference from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-bs-theme', savedTheme);
+        if (savedTheme === 'dark') {
+            const lightIcon = document.getElementById('lightIcon');
+            const darkIcon = document.getElementById('darkIcon');
+            if (lightIcon && darkIcon) {
+                lightIcon.classList.add('d-none');
+                darkIcon.classList.remove('d-none');
+            }
         }
-        
-        // Hide the spinner after a short delay
-        setTimeout(function() {
-            showUpdateSpinner(false);
-        }, 500);
-        
-        // Update the last refreshed timestamp
-        updateLastRefreshedTime();
-    });
+    }
+}
+
+// Toggle theme function
+function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    // Update HTML attribute
+    html.setAttribute('data-bs-theme', newTheme);
+    
+    // Update button icons
+    const lightIcon = document.getElementById('lightIcon');
+    const darkIcon = document.getElementById('darkIcon');
+    
+    if (newTheme === 'dark') {
+        lightIcon.classList.add('d-none');
+        darkIcon.classList.remove('d-none');
+    } else {
+        darkIcon.classList.add('d-none');
+        lightIcon.classList.remove('d-none');
+    }
+    
+    // Save preference to localStorage
+    localStorage.setItem('theme', newTheme);
 }
 
 // Update connection status indicator
@@ -150,8 +162,8 @@ function showUpdateSpinner(show) {
 
 // Store the timestamp of last refresh for countdown calculation
 let lastRefreshTime = new Date();
-// Server refresh interval in seconds
-const REFRESH_INTERVAL = 60;
+// Server refresh interval in seconds (sync with TV_REFRESH_INTERVAL)
+const REFRESH_INTERVAL = TV_REFRESH_INTERVAL;
 
 // Update the last refreshed timestamp
 function updateLastRefreshedTime() {

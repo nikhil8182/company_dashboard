@@ -7,6 +7,44 @@ html, body {
     background-color: #f5f7fa;
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Tab styles */
+.nav-tabs {
+    border-bottom: 0;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    color: #495057;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    border-color: rgba(var(--bs-primary-rgb), 0.4);
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+    color: var(--bs-primary);
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom: 3px solid var(--bs-primary);
+    background-color: #fff;
+    color: var(--bs-primary);
+    font-weight: 600;
+}
+
+.tab-content {
+    background-color: #fff;
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .dashboard-body {
@@ -35,6 +73,9 @@ html, body {
     font-weight: 700;
     font-size: 1.8rem;
     line-height: 1.2;
+    will-change: transform;
+    contain: content;
+    transform: translateZ(0);
 }
 
 .stat-label {
@@ -76,6 +117,7 @@ html, body {
     justify-content: center;
     font-weight: bold;
     font-size: 0.8rem;
+    border-radius: 50%;
 }
 
 .avatar-sm {

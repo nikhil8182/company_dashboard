@@ -6,3 +6,4 @@ click==8.1.7
 requests==2.31.0
 flask-socketio==5.3.6
 eventlet==0.33.3
+Flask-Compress==1.13

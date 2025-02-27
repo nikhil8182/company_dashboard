@@ -32,8 +32,8 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
 CAMPAIGNS_API_URL = "http://65.2.187.240:9000/campaigns"
 DEFAULT_DATE_PRESET = "today"
 
-# Get campaign data from API
-def get_campaign_data():
+# Get campaign data from API with specific date preset
+def get_campaign_data(date_preset=DEFAULT_DATE_PRESET):
     # Try to get data from API using POST request with date_preset
     try:
         headers = {
@@ -41,7 +41,7 @@ def get_campaign_data():
             'Content-Type': 'application/json'
         }
         payload = {
-            'date_preset': DEFAULT_DATE_PRESET
+            'date_preset': date_preset
         }
         
         # Add timeout and retries for resilience
@@ -58,7 +58,7 @@ def get_campaign_data():
                 )
                 
                 if response.status_code == 200:
-                    logger.info(f"Successfully fetched campaign data from API: {response.status_code}")
+                    logger.info(f"Successfully fetched campaign data from API with {date_preset} preset: {response.status_code}")
                     return response.json()
                 else:
                     logger.warning(f"API returned non-200 status: {response.status_code}")
@@ -74,7 +74,7 @@ def get_campaign_data():
                 time.sleep(1)  # Wait 1 second before retrying
     
     except Exception as e:
-        logger.error(f"Error fetching campaigns: {e}")
+        logger.error(f"Error fetching campaigns with {date_preset} preset: {e}")
         # Create an empty data structure with proper format
         empty_data = {
             "campaigns": [],
@@ -147,10 +147,10 @@ def get_campaigns():
             data = request.get_json()
             if 'date_preset' in data:
                 date_preset = data['date_preset']
-                print(f"Using date_preset from request: {date_preset}")
+                logger.info(f"Using date_preset from request: {date_preset}")
         
-        # Pass the date_preset to the API call
-        campaign_data = get_campaign_data()
+        # Get the campaign data with the specified date preset
+        campaign_data = get_campaign_data(date_preset)
         
         # Add campaign_id if missing (for campaign exclusion feature)
         if campaign_data and 'campaigns' in campaign_data:
@@ -158,7 +158,11 @@ def get_campaigns():
                 if 'campaign_id' not in campaign:
                     campaign['campaign_id'] = f"campaign-{i}"
         
-        return jsonify(campaign_data)
+        response = jsonify(campaign_data)
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        return response
     except Exception as e:
         print(f"Error in /api/campaigns route: {e}")
         return jsonify({"error": str(e)}), 500
@@ -167,35 +171,16 @@ def get_campaigns():
 @app.route('/api/leads', methods=['GET', 'POST'])
 def get_leads():
     try:
+        # Get date_preset from request if available
+        date_preset = DEFAULT_DATE_PRESET
+        if request.method == 'POST' and request.is_json:
+            data = request.get_json()
+            if 'date_preset' in data:
+                date_preset = data['date_preset']
+                logger.info(f"Using date_preset from request for leads: {date_preset}")
+        
         # Fetch real campaign data from the API
-        try:
-            headers = {
-                'accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-            payload = {
-                'date_preset': DEFAULT_DATE_PRESET
-            }
-            
-            response = requests.post(CAMPAIGNS_API_URL, headers=headers, json=payload)
-            
-            if response.status_code == 200:
-                print(f"Successfully fetched campaign data from API: {response.status_code}")
-                campaign_data = response.json()
-            else:
-                print(f"API returned non-200 status: {response.status_code}")
-                print(f"Response: {response.text}")
-                raise Exception(f"API error: {response.status_code}")
-        except Exception as e:
-            print(f"Error fetching campaigns: {e}")
-            # Create an empty data structure with proper format
-            campaign_data = {
-                "campaigns": [],
-                "total_spend": 0,
-                "total_leads": 0,
-                "avg_cpl": 0,
-                "currency": "INR"
-            }
+        campaign_data = get_campaign_data(date_preset)
         
         # Convert campaign data to leads data
         leads = []

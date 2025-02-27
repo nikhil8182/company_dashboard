@@ -17,3 +17,604 @@
 2025-02-27 21:00:00,008 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:00:00] "GET / HTTP/1.1" 200 -
 2025-02-27 21:00:01,409 - __main__ - INFO - Successfully fetched campaign data from API: 200
 2025-02-27 21:00:01,412 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:00:01] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:00:47,164 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:00:47,171 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:00:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:01:02,523 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:01:02,525 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:01:02] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:01:47,240 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:01:47,242 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:01:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:02:01,650 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:02:01,653 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:02:01] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:02:47,553 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:02:47,555 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:02:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:03:01,647 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:03:01,650 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:03:01] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:03:47,102 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:03:47,121 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:03:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:04:02,366 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:04:02,369 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:04:02] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:04:46,976 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:04:46,982 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:04:46] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:05:24,652 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:05:24,657 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:05:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:05:47,246 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:05:47,249 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:05:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:06:24,806 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:06:24,810 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:06:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:06:47,215 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:06:47,217 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:06:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:07:24,851 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:07:24,855 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:07:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:07:47,049 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:07:47,051 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:07:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:08:25,079 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:08:25,081 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:08:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:08:47,164 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:08:47,168 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:08:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:09:24,830 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:09:24,835 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:09:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:09:47,394 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:09:47,397 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:09:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:10:24,582 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:10:24,585 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:10:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:10:46,999 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:10:47,001 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:10:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:11:24,560 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:11:24,563 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:11:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:11:47,241 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:11:47,249 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:11:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:12:01,664 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:12:01,668 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:12:01] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:12:47,058 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:12:47,060 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:12:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:13:25,196 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:13:25,198 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:13:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:13:47,330 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:13:47,333 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:13:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:14:24,841 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:14:24,843 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:14:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:14:47,259 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:14:47,262 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:14:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:15:24,945 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:15:24,947 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:15:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:15:47,612 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:15:47,615 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:15:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:16:24,506 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:16:24,508 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:16:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:16:47,275 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:16:47,277 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:16:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:17:24,562 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:17:24,564 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:17:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:17:47,113 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:17:47,116 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:17:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:18:24,952 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:18:24,954 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:18:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:18:47,197 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:18:47,200 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:18:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:19:24,789 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:19:24,797 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:19:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:19:47,020 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:19:47,044 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:19:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:20:25,498 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:20:25,504 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:20:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:20:47,302 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:20:47,305 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:20:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:21:24,534 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:21:24,540 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:21:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:21:47,284 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:21:47,286 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:21:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:22:24,538 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:22:24,545 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:22:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:22:47,017 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:22:47,025 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:22:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:23:25,128 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:23:25,165 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:23:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:23:47,329 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:23:47,331 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:23:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:24:25,114 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:24:25,131 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:24:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:24:47,768 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:24:47,774 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:24:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:25:25,337 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:25:25,345 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:25:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:25:47,373 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:25:47,382 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:25:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:26:25,007 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:26:25,015 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:26:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:26:47,402 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:26:47,408 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:26:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:27:25,006 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:27:25,017 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:27:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:27:47,419 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:27:47,421 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:27:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:28:24,858 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:28:24,874 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:28:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:28:47,236 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:28:47,251 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:28:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:29:24,546 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:29:24,551 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:29:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:29:47,261 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:29:47,263 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:29:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:30:24,674 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:30:24,683 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:30:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:30:47,753 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:30:47,757 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:30:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:31:24,429 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:31:24,434 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:31:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:31:47,149 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:31:47,152 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:31:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:32:24,994 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:32:25,000 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:32:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:32:47,088 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:32:47,097 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:32:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:33:24,833 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:33:24,839 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:33:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:33:47,594 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:33:47,599 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:33:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:34:24,726 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:34:24,735 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:34:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:34:48,643 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:34:48,650 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:34:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:35:24,823 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:35:24,834 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:35:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:35:47,395 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:35:47,399 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:35:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:36:25,186 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:36:25,190 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:36:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:36:47,277 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:36:47,287 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:36:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:37:24,560 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:37:24,571 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:37:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:37:48,120 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:37:48,128 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:37:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:38:25,147 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:38:25,152 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:38:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:38:47,356 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:38:47,358 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:38:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:39:24,717 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:39:24,726 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:39:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:39:47,758 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:39:47,760 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:39:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:40:25,530 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:40:25,534 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:40:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:40:47,278 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:40:47,284 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:40:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:41:25,151 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:41:25,156 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:41:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:41:47,304 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:41:47,308 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:41:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:42:25,029 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:42:25,034 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:42:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:42:47,549 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:42:47,552 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:42:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:43:25,098 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:43:25,101 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:43:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:43:47,519 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:43:47,521 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:43:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:44:25,585 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:44:25,591 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:44:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:44:47,504 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:44:47,510 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:44:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:45:24,813 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:45:24,816 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:45:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:45:47,654 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:45:47,658 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:45:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:46:28,588 - __main__ - WARNING - Retry 1/3 after connection error: HTTPConnectionPool(host='65.2.187.240', port=9000): Read timed out. (read timeout=5)
+2025-02-27 21:46:32,147 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:46:32,151 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:46:32] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:46:47,262 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:46:47,264 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:46:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:47:25,428 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:47:25,434 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:47:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:47:47,807 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.68.105:7700
+2025-02-27 21:47:47,810 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 21:48:25,108 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:48:25,116 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:48:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:48:47,775 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:48:47,778 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:48:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:49:24,807 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:49:24,809 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:49:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:49:48,543 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:49:48,545 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:49:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:50:24,914 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:50:24,915 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:50:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:50:41,058 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:50:41] "GET / HTTP/1.1" 200 -
+2025-02-27 21:50:43,945 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:50:43,954 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:50:43] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:50:47,393 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:50:47,395 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:50:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:50:57,027 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:50:57] "GET / HTTP/1.1" 200 -
+2025-02-27 21:50:57,074 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:50:57] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-02-27 21:50:57,079 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:50:57] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-02-27 21:50:57,266 - __main__ - WARNING - 404 error: /favicon.ico
+2025-02-27 21:50:57,269 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:50:57] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-27 21:50:59,897 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:50:59,899 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:50:59] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:51:05,484 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:51:05] "GET /leads HTTP/1.1" 200 -
+2025-02-27 21:51:07,777 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:51:07,778 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:51:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:51:18,570 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:51:18] "GET /leads HTTP/1.1" 200 -
+2025-02-27 21:51:20,676 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:51:20,684 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:51:20] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:51:24,965 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:51:24,967 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:51:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:51:47,244 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:51:47,246 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:51:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:52:10,571 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:52:10,579 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:52:10] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:52:24,311 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:52:24,313 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:52:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:52:25,155 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:52:25,156 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:52:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:52:47,696 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:52:47,702 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:52:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:53:19,152 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:53:19,154 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:53:19] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:53:24,913 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:53:24,921 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:53:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:53:27,291 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:53:27,293 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:53:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:53:47,481 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:53:47,485 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:53:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:54:24,911 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:54:24,916 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:54:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:54:29,989 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:54:29,999 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:54:29] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:54:45,141 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:54:45] "GET / HTTP/1.1" 200 -
+2025-02-27 21:54:47,384 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:54:47,386 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:54:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:54:48,614 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:54:48,616 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:54:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:54:55,162 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:54:55] "GET /leads HTTP/1.1" 200 -
+2025-02-27 21:54:57,196 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:54:57,197 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:54:57] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:55:00,676 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:55:00,679 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:55:00] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:55:25,218 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:55:25,223 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:55:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:55:31,796 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:55:31,799 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:55:31] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:55:47,504 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:55:47,506 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:55:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:56:12,699 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:56:12,713 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:56:12] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:56:13,715 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:56:13,717 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:56:13] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:56:25,537 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:56:25,540 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:56:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:56:33,709 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:56:33,712 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:56:33] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:56:47,296 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:56:47,299 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:56:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:57:25,089 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:57:25,092 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:57:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:57:36,026 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:57:36,031 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:57:36] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:57:47,480 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:57:47,484 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:57:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:58:02,464 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:58:02,469 - werkzeug - INFO - 192.168.68.107 - - [27/Feb/2025 21:58:02] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:58:25,615 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:58:25,617 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:58:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:58:37,870 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:58:37,874 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:58:37] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:58:47,586 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:58:47,589 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:58:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:59:24,952 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:59:24,955 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:59:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:59:40,037 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:59:40,042 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:59:40] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 21:59:47,782 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 21:59:47,784 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 21:59:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:00:24,904 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:00:24,905 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:00:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:00:41,699 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:00:41,702 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:00:41] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:00:47,387 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:00:47,388 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:00:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:01:24,909 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:01:24,917 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:01:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:01:43,987 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:01:43,990 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:01:43] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:01:47,210 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:01:47,212 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:01:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:01:54,581 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:01:54] "GET / HTTP/1.1" 200 -
+2025-02-27 22:01:56,499 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:01:56,503 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:01:56] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:02:24,840 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:02:24,845 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:02:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:02:46,025 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:02:46,028 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:02:46] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:02:47,856 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:02:47,862 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:02:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:03:24,937 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:03:24,948 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:03:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:03:47,475 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:03:47,477 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:03:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:03:48,595 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:03:48,597 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:03:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:04:27,574 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:04:27,580 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:04:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:04:48,018 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:04:48,020 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:04:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:04:50,794 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:04:50,796 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:04:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:05:24,972 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:05:24,989 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:05:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:05:47,607 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:05:47,611 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:05:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:05:53,351 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:05:53,357 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:05:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:06:25,127 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:06:25,128 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:06:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:06:47,378 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:06:47,381 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:06:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:06:55,808 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:06:55,814 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:06:55] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:07:24,730 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:07:24,733 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:07:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:07:47,224 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:07:47,227 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:07:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:07:51,733 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.68.105:7700
+2025-02-27 22:07:51,733 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 22:07:53,439 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:07:53] "GET / HTTP/1.1" 200 -
+2025-02-27 22:07:55,896 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:07:55,905 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:07:55] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:07:57,980 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:07:57,991 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:07:57] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:07:58,099 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:07:58] "GET /leads HTTP/1.1" 200 -
+2025-02-27 22:07:59,903 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:07:59,907 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:07:59] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:08:06,957 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:08:06,960 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:08:06] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:08:14,402 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:08:14,404 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:08:14] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:08:17,856 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:08:17,857 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:08:17] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:08:23,371 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:08:23,377 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:08:23] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:08:24,817 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:08:24,831 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:08:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:08:47,293 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:08:47,295 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:08:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:08:59,672 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:08:59,673 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:08:59] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:09:01,846 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:09:01,848 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:09:01] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:09:16,668 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:09:16,673 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:09:16] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:09:24,656 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:09:24,658 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:09:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:09:26,028 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:09:26,031 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:09:26] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:09:50,824 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:09:50,829 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:09:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:10:01,610 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:10:01,612 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:01] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:10:03,373 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:10:03,390 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:03] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:10:04,571 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:04] "GET /leads HTTP/1.1" 200 -
+2025-02-27 22:10:06,251 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:10:06,254 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:06] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:10:08,729 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:10:08,730 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:08] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:10:13,446 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:10:13,448 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:13] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:10:16,485 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:10:16,486 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:16] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:10:24,973 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:10:24,976 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:10:47,545 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:10:47,552 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:10:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:11:01,780 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:11:01,783 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:11:01] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:11:03,855 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:11:03,857 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:11:03] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:11:06,082 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:11:06,084 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:11:06] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:11:07,626 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:11:07,627 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:11:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:11:15,820 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:11:15,821 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:11:15] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:11:24,925 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:11:24,936 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:11:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:11:47,730 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:11:47,732 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:11:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:04,060 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:12:04,062 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:04] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:05,634 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:12:05,636 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:05] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:09,925 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:12:09,933 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:09] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:17,776 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:12:17,778 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:17] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:25,063 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:12:25,076 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:26,669 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:26] "GET /leads HTTP/1.1" 200 -
+2025-02-27 22:12:28,164 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:12:28,165 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:28] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:30,507 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:12:30,509 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:30] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:33,327 - __main__ - INFO - Successfully fetched campaign data from API: 200
+2025-02-27 22:12:33,328 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:33] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:39,791 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.68.105:7700
+2025-02-27 22:12:39,791 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 22:12:42,017 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:42] "GET / HTTP/1.1" 200 -
+2025-02-27 22:12:42,141 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:12:43,596 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:12:43,599 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:43] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:45,377 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:45] "GET /leads HTTP/1.1" 200 -
+2025-02-27 22:12:45,444 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:12:45,870 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:12:47,514 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:12:47,517 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:48,423 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:12:48,424 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:49,218 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:12:50,832 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:12:50,832 - __main__ - INFO - Modifying data for yesterday preset
+2025-02-27 22:12:50,833 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:52,919 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:12:53,851 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:12:54,448 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:12:54,448 - __main__ - INFO - Modifying data for yesterday preset
+2025-02-27 22:12:54,449 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:54] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:55,695 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:12:55,696 - __main__ - INFO - Modifying data for yesterday preset
+2025-02-27 22:12:55,697 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:12:55] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:12:59,718 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:13:01,477 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:13:01,478 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:01] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:03,985 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:13:05,396 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:13:05,396 - __main__ - INFO - Modifying data for yesterday preset
+2025-02-27 22:13:05,398 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:05] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:06,333 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:13:07,889 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:13:07,891 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:23,379 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:13:25,249 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:13:25,250 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:28,317 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:13:29,794 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:13:29,796 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:29] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:34,335 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:13:35,717 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:13:35,719 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:35] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:37,081 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:13:38,500 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:13:38,502 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:38] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:45,885 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:13:47,463 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:13:47,471 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:47,473 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:13:47,530 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:13:48,961 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:13:48,962 - __main__ - INFO - Modifying data for yesterday preset
+2025-02-27 22:13:48,963 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:50,006 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:13:50,009 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:13:57,459 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:13:59,010 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:13:59,010 - __main__ - INFO - Modifying data for yesterday preset
+2025-02-27 22:13:59,011 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:13:59] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:01,519 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:14:03,079 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:14:03,081 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:03] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:05,438 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:14:06,767 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:14:06,768 - __main__ - INFO - Modifying data for yesterday preset
+2025-02-27 22:14:06,769 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:06] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:08,331 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:14:09,840 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:14:09,841 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:09] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:23,388 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:14:24,960 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:14:24,961 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:30,333 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:14:31,760 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:14:31,761 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:31] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:36,422 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:14:38,327 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:14:38,335 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:38] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:39,327 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:14:40,672 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:14:40,673 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:40] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:45,876 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:14:47,786 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:14:47,787 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:14:50,319 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:14:51,759 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:14:51,761 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:14:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:15:03,322 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:15:04,725 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:15:04,726 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:15:04] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:15:10,364 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:15:11,868 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:15:11,869 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:15:11] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:15:23,391 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:15:25,169 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:15:25,170 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:15:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:15:32,338 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:15:33,764 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:15:33,766 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:15:33] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:15:39,332 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:15:40,737 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:15:40,737 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:15:40] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:15:41,323 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:15:42,639 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:15:42,642 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:15:42] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:15:45,987 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:15:47,463 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:15:47,468 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:15:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:15:52,344 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:15:53,618 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:15:53,620 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:15:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:16:05,355 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:16:06,802 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:16:06,804 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:16:06] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:16:12,341 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:16:13,840 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:16:13,842 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:16:13] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:16:23,388 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:16:24,644 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:16:24,645 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:16:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:16:34,341 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:16:35,760 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:16:35,761 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:16:35] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:16:41,336 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:16:42,772 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:16:42,774 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:16:42] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:16:43,328 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:16:44,806 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:16:44,807 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:16:44] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:16:45,878 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:16:47,123 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:16:47,125 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:16:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:16:54,339 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:16:55,762 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:16:55,770 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:16:55] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:17:01,603 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:01] "GET /leads HTTP/1.1" 200 -
+2025-02-27 22:17:01,712 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:17:03,185 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:17:03,188 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:03] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:17:05,723 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:17:07,439 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:17:07,439 - __main__ - INFO - Modifying data for yesterday preset
+2025-02-27 22:17:07,441 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:17:09,930 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:17:11,995 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:17:11,997 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:11] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:17:14,327 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:17:15,681 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:17:15,682 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:15] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:17:47,224 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.68.105:7700
+2025-02-27 22:17:47,260 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-27 22:17:49,167 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:49] "GET / HTTP/1.1" 200 -
+2025-02-27 22:17:49,498 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:17:49,835 - __main__ - WARNING - 404 error: /favicon.ico
+2025-02-27 22:17:49,850 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-27 22:17:51,282 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:17:51,286 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:17:57,599 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:57] "GET /leads HTTP/1.1" 200 -
+2025-02-27 22:17:57,683 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:17:59,043 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:17:59,045 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:17:59] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:18:00,624 - __main__ - INFO - Using date_preset from request: yesterday
+2025-02-27 22:18:02,022 - __main__ - INFO - Successfully fetched campaign data from API with yesterday preset: 200
+2025-02-27 22:18:02,028 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:18:02] "POST /api/campaigns HTTP/1.1" 200 -
+2025-02-27 22:18:43,969 - __main__ - INFO - Using date_preset from request: today
+2025-02-27 22:18:45,859 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-02-27 22:18:45,868 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:18:45] "POST /api/campaigns HTTP/1.1" 200 -

@@ -78,6 +78,18 @@
             will-change: width;
         }
         
+        /* Highlight effect for ABV data refresh */
+        .text-highlighted {
+            animation: highlight-text 1.5s ease-in-out;
+        }
+        
+        @keyframes highlight-text {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); color: #007bff; }
+            50% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+        
         /* Dark mode for cards */
         [data-bs-theme="dark"] .card {
             background-color: #1e2a3a !important;
@@ -117,16 +129,16 @@
     <!-- Dashboard Container -->
     <div class="container-fluid p-3 p-md-4 dashboard-container" id="dashboard">
         <div class="row g-3">
-            <!-- KPI Summary Cards -->
+            <!-- Combined Metrics Dashboard -->
             <div class="col-12">
                 <div class="card shadow-sm rounded-4 border-0 mb-4">
                     <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
                         <h5 class="m-0 fw-bold text-primary">
-                            <i class="bi bi-graph-up-arrow me-2"></i>Important Metrics
+                            <i class="bi bi-graph-up-arrow me-2"></i>Performance Dashboard
                         </h5>
                         <div>
                             <div class="spinner-border spinner-border-sm text-primary d-none me-2" id="updateSpinner" role="status"></div>
-                            <button id="refreshCampaigns" class="btn btn-sm btn-primary rounded-pill px-3">
+                            <button id="refreshMetrics" class="btn btn-sm btn-primary rounded-pill px-3">
                                 <i class="bi bi-arrow-repeat me-1"></i> Refresh
                             </button>
                         </div>
@@ -159,30 +171,22 @@
                                 </div>
                             </div>
                             
-                            <!-- KPI Stats -->
+                            <!-- Combined KPI Stats -->
                             <div class="col-12">
                                 <div class="row g-0">
-                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom">
-                                        <div class="stat-card text-center">
-                                            <div class="stat-icon bg-primary-subtle mb-2 rounded-circle mx-auto">
-                                                <i class="bi bi-currency-rupee"></i>
-                                            </div>
-                                            <h2 class="stat-value text-primary mb-0" id="totalSpendBadge">₹0</h2>
-                                            <div class="stat-label text-muted">Ad Spend</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom">
+                                    <!-- Leads Generated -->
+                                    <div class="col-6 col-md-4 col-lg p-3 p-md-4 border-end">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-success-subtle mb-2 rounded-circle mx-auto">
                                                 <i class="bi bi-person-plus"></i>
                                             </div>
                                             <h2 class="stat-value text-success mb-0" id="totalLeadsBadge">0</h2>
-                                            <div class="stat-label text-muted d-flex justify-content-center align-items-center">
-                                                Leads Generated
-                                            </div>
+                                            <div class="stat-label text-muted">Leads Generated</div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom">
+                                    
+                                    <!-- Avg Cost Per Lead -->
+                                    <div class="col-6 col-md-4 col-lg p-3 p-md-4 border-end">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-info-subtle mb-2 rounded-circle mx-auto">
                                                 <i class="bi bi-calculator"></i>
@@ -191,31 +195,37 @@
                                             <div class="stat-label text-muted">Avg. Cost Per Lead</div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom border-md-bottom-0">
+                                    
+                                    <!-- Points Average -->
+                                    <div class="col-6 col-md-4 col-lg p-3 p-md-4 border-end border-top border-top-md-0">
                                         <div class="stat-card text-center">
-                                            <div class="stat-icon bg-secondary-subtle mb-2 rounded-circle mx-auto">
-                                                <i class="bi bi-eye"></i>
+                                            <div class="stat-icon bg-primary-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-trophy"></i>
                                             </div>
-                                            <h2 class="stat-value text-secondary mb-0" id="totalImpressions">0</h2>
-                                            <div class="stat-label text-muted">Impressions</div>
+                                            <h2 class="stat-value text-primary mb-0" id="abvPointsAvg">0</h2>
+                                            <div class="stat-label text-muted">Points Average</div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-end border-bottom border-md-bottom-0">
+                                    
+                                    <!-- Visits Average -->
+                                    <div class="col-6 col-md-4 col-lg p-3 p-md-4 border-end border-top border-top-lg-0">
                                         <div class="stat-card text-center">
                                             <div class="stat-icon bg-warning-subtle mb-2 rounded-circle mx-auto">
-                                                <i class="bi bi-mouse"></i>
+                                                <i class="bi bi-people"></i>
                                             </div>
-                                            <h2 class="stat-value text-warning mb-0" id="totalClicks">0</h2>
-                                            <div class="stat-label text-muted">Clicks</div>
+                                            <h2 class="stat-value text-warning mb-0" id="abvVisitsAvg">0</h2>
+                                            <div class="stat-label text-muted">Visits Average</div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-4 col-lg-2 p-3 p-md-4 border-bottom border-md-bottom-0">
-                                        <div class="stat-card text-center">
+                                    
+                                    <!-- Sales Average -->
+                                    <div class="col-6 col-md-4 col-lg p-3 p-md-4 border-top border-top-lg-0">
+                                        <div class="stat-card text-center mx-auto">
                                             <div class="stat-icon bg-danger-subtle mb-2 rounded-circle mx-auto">
-                                                <i class="bi bi-percent"></i>
+                                                <i class="bi bi-cart-check"></i>
                                             </div>
-                                            <h2 class="stat-value text-danger mb-0" id="clickRate">0%</h2>
-                                            <div class="stat-label text-muted">Click Rate</div>
+                                            <h2 class="stat-value text-danger mb-0" id="abvSalesAvg">0</h2>
+                                            <div class="stat-label text-muted">Sales Average</div>
                                         </div>
                                     </div>
                                 </div>
@@ -598,6 +608,63 @@
 
 
     <script>
+    // Fetch ABV data from API
+    function fetchABVData() {
+        const abvSpinner = document.getElementById('abvSpinner');
+        if (abvSpinner) abvSpinner.classList.remove('d-none');
+        
+        fetch('/api/abv')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update ABV section with the fetched data
+                displayABVData(data);
+            })
+            .catch(error => {
+                console.error('Error fetching ABV data:', error);
+                const tableBody = document.getElementById('abvTableBody');
+                if (tableBody) {
+                    tableBody.innerHTML = `<tr><td colspan="4" class="text-danger text-center">
+                        Error loading ABV data: ${error.message}
+                    </td></tr>`;
+                }
+            })
+            .finally(() => {
+                if (abvSpinner) abvSpinner.classList.add('d-none');
+            });
+    }
+    
+    // Display ABV data in the dashboard
+    function displayABVData(data) {
+        if (!data || !data.data || !data.totals_and_averages) {
+            console.error('Invalid ABV data format:', data);
+            return;
+        }
+        
+        // Update average metrics
+        const averages = data.totals_and_averages.averages;
+        document.getElementById('abvPointsAvg').textContent = averages.points_avg.toFixed(1);
+        document.getElementById('abvVisitsAvg').textContent = averages.visits_avg.toFixed(1);
+        document.getElementById('abvSalesAvg').textContent = averages.sales_avg.toFixed(1);
+        
+        // Add a visual animation effect to indicate data refresh
+        ['abvPointsAvg', 'abvVisitsAvg', 'abvSalesAvg'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                // Add highlight effect
+                element.classList.add('text-highlighted');
+                
+                // Remove effect after animation completes
+                setTimeout(() => {
+                    element.classList.remove('text-highlighted');
+                }, 1500);
+            }
+        });
+    }
     
     // Toggle theme function
     function toggleTheme() {
@@ -639,20 +706,28 @@
             }
         }
         
-        // Auto-refresh data every 60 seconds
+        // Auto-refresh campaign data every 60 seconds
         setInterval(fetchCampaigns, 60000);
         
         // Load campaign data initially
         fetchCampaigns();
         
-        // Set up desktop manual refresh button
-        const refreshBtn = document.getElementById('refreshCampaigns');
+        // Load ABV data initially
+        fetchABVData();
+        
+        // Set up metrics refresh button
+        const refreshBtn = document.getElementById('refreshMetrics');
         if (refreshBtn) {
             refreshBtn.addEventListener('click', function() {
                 showUpdateSpinner(true);
+                // Refresh both campaign and ABV data when the button is clicked
                 fetchCampaigns();
+                fetchABVData();
             });
         }
+        
+        // Auto-refresh ABV data every 5 minutes
+        setInterval(fetchABVData, 300000); // 5 minutes
         
         // Set up auto-refresh timer display updates
         setInterval(updateRefreshTimeDisplay, 1000);
@@ -899,11 +974,7 @@
     function displayCampaigns(data) {
         // Get all stats elements
         const totalLeadsBadge = document.getElementById('totalLeadsBadge');
-        const totalSpendBadge = document.getElementById('totalSpendBadge');
         const avgCplBadge = document.getElementById('avgCplBadge');
-        const totalImpressions = document.getElementById('totalImpressions');
-        const totalClicks = document.getElementById('totalClicks');
-        const clickRate = document.getElementById('clickRate');
         
         // Handle the specific data structure
         if (!data.campaigns || !Array.isArray(data.campaigns)) {
@@ -913,40 +984,13 @@
         
         // Set total metrics
         const totalLeads = data.total_leads || 0;
-        const totalSpend = data.total_spend || 0;
         const avgCpl = data.avg_cpl || 0;
         
-        // Calculate additional metrics
-        let impressions = 0;
-        let clicks = 0;
-        
-        // Sum up impressions and clicks from all campaigns
-        data.campaigns.forEach(campaign => {
-            impressions += campaign.impressions || 0;
-            clicks += campaign.clicks || 0;
-        });
-        
-        // Calculate click-through rate
-        const ctr = impressions > 0 ? (clicks / impressions * 100).toFixed(2) : '0.00';
-        
-        // Format the impression number (e.g., 93.5K instead of 93500)
-        const formattedImpressions = impressions >= 1000 
-            ? (impressions / 1000).toFixed(1) + 'K' 
-            : impressions.toString();
-        
-        // Update all badges with animation if changed
+        // Update badges with animation if changed
         updateBadge(totalLeadsBadge, formatNumber(totalLeads), 
                 previousCampaignData && totalLeads !== previousCampaignData.total_leads);
-        updateBadge(totalSpendBadge, formatCurrency(totalSpend), 
-                previousCampaignData && totalSpend !== previousCampaignData.total_spend);
         updateBadge(avgCplBadge, formatCurrency(avgCpl), 
                 previousCampaignData && avgCpl !== previousCampaignData.avg_cpl);
-        
-        // Update additional metrics
-        updateBadge(totalImpressions, formattedImpressions, true);
-        updateBadge(totalClicks, formatNumber(clicks), true);
-        updateBadge(clickRate, ctr + '%', true);
-        
         
         // Store current data for next comparison
         previousCampaignData = JSON.parse(JSON.stringify(data));

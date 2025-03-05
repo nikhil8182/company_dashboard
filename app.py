@@ -30,6 +30,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
 
 # API URLs
 CAMPAIGNS_API_URL = "https://api.onwords.in/lead_campaigns_cpl"
+ABV_API_URL = "https://api.onwords.in/abv"
 DEFAULT_DATE_PRESET = "today"
 
 # Get campaign data from API with specific date preset
@@ -270,6 +271,125 @@ def get_leads():
     except Exception as e:
         print(f"Error in /api/leads route: {e}")
         return jsonify({"error": str(e)}), 500
+
+# API route for ABV data
+@app.route('/api/abv', methods=['GET'])
+def get_abv_data():
+    try:
+        # For now, let's use mock data to demonstrate the functionality
+        # until the API endpoint is fixed
+        mock_data = {
+            "data": {
+                "03-2025/day-05": {
+                    "points": 30,
+                    "sales": 1,
+                    "visits": 9
+                },
+                "03-2025/day-04": {
+                    "points": 80,
+                    "sales": 3,
+                    "visits": 7
+                },
+                "03-2025/day-03": {
+                    "points": 50,
+                    "sales": 2,
+                    "visits": 7
+                },
+                "03-2025/day-01": {
+                    "points": 85,
+                    "sales": 3,
+                    "visits": 9
+                },
+                "02-2025/day-25": {
+                    "points": 85,
+                    "sales": 3,
+                    "visits": 6
+                },
+                "02-2025/day-24": {
+                    "points": 195,
+                    "sales": 7,
+                    "visits": 9
+                },
+                "02-2025/day-22": {
+                    "points": 116,
+                    "sales": 4,
+                    "visits": 6
+                },
+                "02-2025/day-21": {
+                    "points": 110,
+                    "sales": 4,
+                    "visits": 9
+                },
+                "02-2025/day-20": {
+                    "points": 50,
+                    "sales": 2,
+                    "visits": 8
+                },
+                "02-2025/day-19": {
+                    "points": 138,
+                    "sales": 5,
+                    "visits": 8
+                }
+            },
+            "totals_and_averages": {
+                "totals": {
+                    "points": 939,
+                    "visits": 78,
+                    "sales": 34
+                },
+                "averages": {
+                    "points_avg": 93.9,
+                    "visits_avg": 7.8,
+                    "sales_avg": 3.4
+                }
+            }
+        }
+        
+        logger.info("Using mock ABV data until the API is available")
+        return jsonify(mock_data)
+        
+        # Uncomment this section when the real API is available
+        """
+        # Fetch ABV data from the API
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+        
+        # Add timeout and retries for resilience
+        max_retries = 3
+        retry_count = 0
+        
+        while retry_count < max_retries:
+            try:
+                response = requests.get(
+                    ABV_API_URL, 
+                    headers=headers, 
+                    timeout=5  # 5 second timeout
+                )
+                
+                if response.status_code == 200:
+                    logger.info(f"Successfully fetched ABV data from API: {response.status_code}")
+                    return response.json()
+                else:
+                    logger.warning(f"ABV API returned non-200 status: {response.status_code}")
+                    logger.warning(f"Response: {response.text}")
+                    raise Exception(f"ABV API error: {response.status_code}")
+            
+            except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+                retry_count += 1
+                if retry_count >= max_retries:
+                    logger.error(f"Max retries reached when connecting to ABV API: {str(e)}")
+                    raise
+                logger.warning(f"Retry {retry_count}/{max_retries} after connection error: {str(e)}")
+                time.sleep(1)  # Wait 1 second before retrying
+        
+        return jsonify({"error": "Failed to fetch ABV data after multiple retries"}), 500
+        """
+    except Exception as e:
+        logger.error(f"Error fetching ABV data: {e}")
+        return jsonify({"error": str(e)}), 500
+
 
 # API endpoint to test if API is available
 @app.route('/api/test-connection')

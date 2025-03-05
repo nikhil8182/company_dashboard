@@ -506,7 +506,10 @@ function displayCampaigns(data) {
                         <td>LD-${Math.floor(2500 + Math.random() * 100)}</td>
                         <td>${getRandomName()}</td>
                         <td>${leadSource}</td>
-                        <td>${campaign.campaign_name}</td>
+                        <td>
+                            <div><strong>${campaign.campaign_name || 'Unknown Campaign'}</strong></div>
+                            ${campaign.ad_name ? `<small class="text-muted">${campaign.ad_name}</small>` : ''}
+                        </td>
                         <td><span class="badge ${status.color}">${status.label}</span></td>
                         <td>${getCurrentDate()}</td>
                     `;

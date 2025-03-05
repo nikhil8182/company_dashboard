@@ -618,3 +618,142 @@
 2025-02-27 22:18:43,969 - __main__ - INFO - Using date_preset from request: today
 2025-02-27 22:18:45,859 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
 2025-02-27 22:18:45,868 - werkzeug - INFO - 192.168.68.105 - - [27/Feb/2025 22:18:45] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:45:33,608 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 17:45:33,608 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 17:45:35,654 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:45:35] "GET / HTTP/1.1" 200 -
+2025-03-05 17:45:35,769 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:45:35] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-05 17:45:35,773 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:45:35] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-05 17:45:35,996 - app - INFO - Using date_preset from request: today
+2025-03-05 17:45:36,172 - app - WARNING - 404 error: /favicon.ico
+2025-03-05 17:45:36,173 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:45:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-05 17:45:37,678 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:45:37,680 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:45:37] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:46:36,389 - app - INFO - Using date_preset from request: today
+2025-03-05 17:46:38,164 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:46:38,166 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:46:38] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:47:36,385 - app - INFO - Using date_preset from request: today
+2025-03-05 17:47:38,176 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:47:38,179 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:47:38] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:48:36,381 - app - INFO - Using date_preset from request: today
+2025-03-05 17:48:38,086 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:48:38,087 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:48:38] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:49:01,540 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 17:49:01,540 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 17:49:03,227 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:49:03] "GET / HTTP/1.1" 200 -
+2025-03-05 17:49:03,295 - app - INFO - Using date_preset from request: today
+2025-03-05 17:49:06,805 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:49:06,807 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:49:06] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:49:09,464 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:49:09] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:49:09,523 - app - INFO - Using date_preset from request: today
+2025-03-05 17:49:12,543 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:49:12,545 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:49:12] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:49:22,989 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:49:22] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:49:23,031 - app - INFO - Using date_preset from request: today
+2025-03-05 17:49:25,143 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:49:25,145 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:49:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:49:36,382 - app - INFO - Using date_preset from request: today
+2025-03-05 17:49:38,963 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:49:38,966 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:49:38] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:50:25,381 - app - INFO - Using date_preset from request: today
+2025-03-05 17:50:27,639 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:50:27,640 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:50:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:50:48,678 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 17:50:48,678 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 17:50:52,164 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:50:52] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:50:52,263 - app - INFO - Using date_preset from request: today
+2025-03-05 17:50:54,642 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:50:54,644 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:50:54] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:51:21,577 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:51:21] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:51:21,718 - app - INFO - Using date_preset from request: today
+2025-03-05 17:51:21,876 - app - WARNING - 404 error: /favicon.ico
+2025-03-05 17:51:21,878 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:51:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-05 17:51:24,748 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:51:24,750 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:51:24] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:51:48,383 - app - INFO - Using date_preset from request: today
+2025-03-05 17:51:51,781 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:51:51,784 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:51:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:52:25,382 - app - INFO - Using date_preset from request: today
+2025-03-05 17:52:28,538 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:52:28,540 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:52:28] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:52:48,388 - app - INFO - Using date_preset from request: today
+2025-03-05 17:52:51,224 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:52:51,229 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:52:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:53:29,380 - app - INFO - Using date_preset from request: today
+2025-03-05 17:53:31,666 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:53:31,667 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:53:31] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:53:48,393 - app - INFO - Using date_preset from request: today
+2025-03-05 17:53:50,641 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:53:50,643 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:53:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:54:17,175 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 17:54:17,175 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 17:54:23,816 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:54:23] "GET / HTTP/1.1" 200 -
+2025-03-05 17:54:23,886 - app - INFO - Using date_preset from request: today
+2025-03-05 17:54:26,200 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:54:26,202 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:54:26] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:54:28,161 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:54:28] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:54:28,224 - app - INFO - Using date_preset from request: today
+2025-03-05 17:54:30,617 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:54:30,619 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:54:30] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:54:32,375 - app - INFO - Using date_preset from request: today
+2025-03-05 17:54:34,974 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:54:34,976 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:54:34] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:54:52,228 - app - INFO - Using date_preset from request: today
+2025-03-05 17:54:55,082 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:54:55,084 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:54:55] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:55:35,378 - app - INFO - Using date_preset from request: today
+2025-03-05 17:55:37,576 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:55:37,579 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:55:37] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:55:54,801 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:55:54] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:55:54,899 - app - INFO - Using date_preset from request: today
+2025-03-05 17:55:58,318 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:55:58,321 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:55:58] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:56:03,025 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 17:56:03,025 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 17:56:04,601 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:04] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:56:04,663 - app - INFO - Using date_preset from request: today
+2025-03-05 17:56:07,473 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:56:07,476 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:56:24,487 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:24] "GET / HTTP/1.1" 200 -
+2025-03-05 17:56:24,548 - app - INFO - Using date_preset from request: today
+2025-03-05 17:56:26,835 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:56:26,836 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:26] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:56:27,348 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:27] "GET / HTTP/1.1" 200 -
+2025-03-05 17:56:27,394 - app - INFO - Using date_preset from request: today
+2025-03-05 17:56:29,773 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:56:29,776 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:29] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:56:30,945 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:30] "GET / HTTP/1.1" 200 -
+2025-03-05 17:56:30,992 - app - INFO - Using date_preset from request: today
+2025-03-05 17:56:33,432 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:56:33,434 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:33] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:56:34,809 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:34] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:56:34,865 - app - INFO - Using date_preset from request: today
+2025-03-05 17:56:37,201 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:56:37,203 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:37] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:56:38,383 - app - INFO - Using date_preset from request: today
+2025-03-05 17:56:40,606 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:56:40,609 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:40] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:56:44,029 - app - INFO - Using date_preset from request: today
+2025-03-05 17:56:46,399 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:56:46,401 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:56:46] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:57:41,380 - app - INFO - Using date_preset from request: today
+2025-03-05 17:57:42,549 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 17:57:42,549 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 17:57:45,033 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:57:45] "GET /leads HTTP/1.1" 200 -
+2025-03-05 17:57:45,129 - app - INFO - Using date_preset from request: today
+2025-03-05 17:57:47,843 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:57:47,845 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:57:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:57:57,371 - app - INFO - Using date_preset from request: today
+2025-03-05 17:57:59,807 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:57:59,809 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:57:59] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:58:12,497 - app - INFO - Using date_preset from request: today
+2025-03-05 17:58:14,431 - app - INFO - Using date_preset from request: today
+2025-03-05 17:58:15,908 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:58:15,911 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:58:15] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 17:58:17,521 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 17:58:17,524 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 17:58:17] "POST /api/campaigns HTTP/1.1" 200 -

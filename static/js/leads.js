@@ -149,7 +149,15 @@ function updateCampaignData(campaignData) {
         }
         
         row.innerHTML = `
-            <td class="text-truncate" style="max-width: 180px;" title="${campaign.campaign_name}">${campaign.campaign_name}</td>
+            <td>
+                <div class="text-truncate" style="max-width: 180px;" title="${campaign.campaign_name || 'Unknown Campaign'}">
+                    <strong>${campaign.campaign_name || 'Unknown Campaign'}</strong>
+                </div>
+                ${campaign.ad_name ? 
+                `<div class="text-truncate small text-muted" style="max-width: 180px;" title="${campaign.ad_name}">
+                    ${campaign.ad_name}
+                </div>` : ''}
+            </td>
             <td class="text-end fw-medium">${campaign.leads}</td>
             <td class="text-end ${cplClass}">${formatCurrency(campaign.cpl)}</td>
         `;

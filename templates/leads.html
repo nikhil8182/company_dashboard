@@ -466,8 +466,14 @@
                         row.setAttribute('data-campaign-id', campaign.campaign_id);
                         
                         row.innerHTML = `
-                            <td title="${campaign.campaign_name}">
-                                <div class="text-truncate" style="max-width: 300px;">${campaign.campaign_name}</div>
+                            <td>
+                                <div class="text-truncate" style="max-width: 300px;" title="${campaign.campaign_name}">
+                                    <strong>${campaign.campaign_name}</strong>
+                                </div>
+                                ${campaign.ad_name ? 
+                                `<div class="text-truncate small text-muted" style="max-width: 300px;" title="${campaign.ad_name}">
+                                    ${campaign.ad_name}
+                                </div>` : ''}
                             </td>
                             <td class="text-end">${formatCurrency(campaign.spend)}</td>
                             <td class="text-end hide-mobile">${formatCurrency(campaign.impressions)}</td>

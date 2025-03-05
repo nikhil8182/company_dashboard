@@ -29,7 +29,7 @@ app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
 
 # API URLs
-CAMPAIGNS_API_URL = "http://65.2.187.240:9000/campaigns"
+CAMPAIGNS_API_URL = "https://api.onwords.in/lead_campaigns_cpl"
 DEFAULT_DATE_PRESET = "today"
 
 # Get campaign data from API with specific date preset
@@ -193,7 +193,9 @@ def get_leads():
         
         # Generate leads from campaigns
         for i, campaign in enumerate(campaign_data.get("campaigns", [])):
+            ad_name = campaign.get("ad_name", "")
             campaign_name = campaign.get("campaign_name", "Unknown Campaign")
+            display_name = f"{campaign_name} - {ad_name}" if ad_name else campaign_name
             leads_count = campaign.get("leads", 0)
             
             # For each lead in the campaign
@@ -230,7 +232,7 @@ def get_leads():
                     "phone": f"+91 {random.randint(7000000000, 9999999999)}",
                     "email": f"{name.lower().replace(' ', '.')}@example.com",
                     "source": source,
-                    "campaign": campaign_name,
+                    "campaign": display_name,
                     "status": status,
                     "date": date,
                     "notes": f"Interest in {campaign_name}"

@@ -1149,3 +1149,416 @@
 2025-03-05 18:45:04,706 - app - INFO - Using date_preset from request: today
 2025-03-05 18:45:07,132 - app - INFO - Successfully fetched campaign data from API with today preset: 200
 2025-03-05 18:45:07,134 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:45:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:45:59,364 - app - INFO - Using date_preset from request: today
+2025-03-05 18:46:02,529 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:46:02,531 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:46:02] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:46:04,707 - app - INFO - Using date_preset from request: today
+2025-03-05 18:46:07,754 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:46:07,756 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:46:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:47:03,373 - app - INFO - Using date_preset from request: today
+2025-03-05 18:47:05,358 - app - INFO - Using date_preset from request: today
+2025-03-05 18:47:06,044 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:47:06,046 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:47:06] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:47:07,763 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:47:07,765 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:47:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:48:05,368 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:48:05,370 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:48:05] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:48:06,360 - app - INFO - Using date_preset from request: today
+2025-03-05 18:48:09,456 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:48:09,459 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:48:09] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:48:48,389 - app - INFO - Using date_preset from request: today
+2025-03-05 18:48:50,985 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:48:50,988 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:48:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:49:10,370 - app - INFO - Using date_preset from request: today
+2025-03-05 18:49:13,577 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:49:13,579 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:49:13] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:49:48,406 - app - INFO - Using date_preset from request: today
+2025-03-05 18:49:50,799 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:49:50,802 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:49:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:50:14,473 - app - INFO - Using date_preset from request: today
+2025-03-05 18:50:17,176 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:50:17,180 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:50:17] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:50:48,400 - app - INFO - Using date_preset from request: today
+2025-03-05 18:50:50,717 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:50:50,720 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:50:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:51:17,360 - app - INFO - Using date_preset from request: today
+2025-03-05 18:51:19,496 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:51:19,498 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:51:19] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:51:48,380 - app - INFO - Using date_preset from request: today
+2025-03-05 18:51:51,693 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:51:51,694 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:51:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:52:09,922 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.0.53:7700
+2025-03-05 18:52:09,922 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 18:52:20,369 - app - INFO - Using date_preset from request: today
+2025-03-05 18:52:23,671 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:52:23,672 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:52:23] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:52:48,395 - app - INFO - Using date_preset from request: today
+2025-03-05 18:52:50,725 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:52:50,728 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:52:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:53:05,357 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:53:05,358 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:53:05] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:53:16,134 - app - INFO - Using date_preset from request: today
+2025-03-05 18:53:19,519 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:53:19,521 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:53:19] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:53:24,360 - app - INFO - Using date_preset from request: today
+2025-03-05 18:53:26,709 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:53:26,712 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:53:26] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:53:42,112 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 18:53:42,112 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 18:53:43,877 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:53:43] "GET / HTTP/1.1" 200 -
+2025-03-05 18:53:43,952 - app - INFO - Using date_preset from request: today
+2025-03-05 18:53:43,965 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:53:43,965 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:53:43] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:53:46,106 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:53:46,107 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:53:46] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:54:05,365 - app - INFO - Using date_preset from request: today
+2025-03-05 18:54:07,706 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:54:07,708 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:54:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:54:27,359 - app - INFO - Using date_preset from request: today
+2025-03-05 18:54:29,630 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:54:29,633 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:54:29] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:54:43,945 - app - INFO - Using date_preset from request: today
+2025-03-05 18:54:46,316 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:54:46,317 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:54:46] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:55:30,369 - app - INFO - Using date_preset from request: today
+2025-03-05 18:55:32,809 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:55:32,813 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:55:32] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:55:44,576 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 18:55:44,576 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 18:55:50,082 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:55:50] "GET / HTTP/1.1" 200 -
+2025-03-05 18:55:50,143 - app - INFO - Using date_preset from request: today
+2025-03-05 18:55:50,146 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:55:50,148 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:55:50] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:55:52,159 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:55:52,160 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:55:52] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:56:33,354 - app - INFO - Using date_preset from request: today
+2025-03-05 18:56:36,501 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:56:36,503 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:56:36] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:56:48,366 - app - INFO - Using date_preset from request: today
+2025-03-05 18:56:50,144 - app - INFO - Using date_preset from request: today
+2025-03-05 18:56:51,423 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:56:51,424 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:56:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:56:53,777 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:56:53,778 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:56:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:57:37,367 - app - INFO - Using date_preset from request: today
+2025-03-05 18:57:39,682 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:57:39,683 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:57:39] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:57:48,387 - app - INFO - Using date_preset from request: today
+2025-03-05 18:57:50,144 - app - INFO - Using date_preset from request: today
+2025-03-05 18:57:50,829 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:57:50,830 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:57:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:57:52,141 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:57:52,142 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:57:52] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:58:05,358 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:58:05,359 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:58:05] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:58:40,361 - app - INFO - Using date_preset from request: today
+2025-03-05 18:58:43,537 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:58:43,539 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:58:43] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:58:48,408 - app - INFO - Using date_preset from request: today
+2025-03-05 18:58:50,145 - app - INFO - Using date_preset from request: today
+2025-03-05 18:58:51,569 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:58:51,570 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:58:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:58:53,885 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:58:53,887 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:58:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:59:20,931 - app - INFO - Using date_preset from request: today
+2025-03-05 18:59:23,528 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:59:23,530 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:59:23] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:59:24,982 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:59:24] "GET / HTTP/1.1" 200 -
+2025-03-05 18:59:25,036 - app - INFO - Using date_preset from request: today
+2025-03-05 18:59:25,037 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:59:25,037 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:59:25] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:59:27,232 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:59:27,233 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:59:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:59:44,356 - app - INFO - Using date_preset from request: today
+2025-03-05 18:59:46,643 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:59:46,644 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:59:46] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:59:50,144 - app - INFO - Using date_preset from request: today
+2025-03-05 18:59:52,641 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:59:52,642 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:59:52] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:00:25,361 - app - INFO - Using date_preset from request: today
+2025-03-05 19:00:27,983 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:00:27,986 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:00:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:00:31,670 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.0.53:7700
+2025-03-05 19:00:31,670 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:00:31,670 - werkzeug - INFO -  * Restarting with stat
+2025-03-05 19:00:31,814 - werkzeug - WARNING -  * Debugger is active!
+2025-03-05 19:00:31,823 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-05 19:00:47,361 - app - INFO - Using date_preset from request: today
+2025-03-05 19:00:50,058 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:00:50,060 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:00:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:00:50,145 - app - INFO - Using date_preset from request: today
+2025-03-05 19:00:50,146 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:00:50,147 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:00:50] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:00:52,572 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:00:52,574 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:00:52] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:00:55,671 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 19:00:55,671 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:00:59,907 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:00:59] "GET / HTTP/1.1" 200 -
+2025-03-05 19:01:00,017 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:01:00,018 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:01:00] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:01:00,018 - app - INFO - Using date_preset from request: today
+2025-03-05 19:01:02,584 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:01:02,586 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:01:02] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:01:25,357 - app - INFO - Using date_preset from request: today
+2025-03-05 19:01:27,729 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:01:27,732 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:01:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:01:50,353 - app - INFO - Using date_preset from request: today
+2025-03-05 19:01:52,688 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:01:52,690 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:01:52] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:02:00,014 - app - INFO - Using date_preset from request: today
+2025-03-05 19:02:02,546 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:02:02,550 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:02:02] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:02:25,360 - app - INFO - Using date_preset from request: today
+2025-03-05 19:02:28,209 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:02:28,210 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:02:28] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:02:53,358 - app - INFO - Using date_preset from request: today
+2025-03-05 19:02:56,574 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:02:56,576 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:02:56] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:03:00,015 - app - INFO - Using date_preset from request: today
+2025-03-05 19:03:02,095 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 19:03:02,096 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:03:04,769 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:03:04] "GET / HTTP/1.1" 200 -
+2025-03-05 19:03:04,916 - app - INFO - Using date_preset from request: today
+2025-03-05 19:03:04,925 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:03:04,936 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:03:04] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:03:07,260 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:03:07,260 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:03:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:03:25,364 - app - INFO - Using date_preset from request: today
+2025-03-05 19:03:27,586 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:03:27,589 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:03:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:03:57,361 - app - INFO - Using date_preset from request: today
+2025-03-05 19:03:59,616 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:03:59,618 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:03:59] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:04:04,888 - app - INFO - Using date_preset from request: today
+2025-03-05 19:04:07,370 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:04:07,373 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:04:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:04:25,356 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:04:25,358 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:04:25] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:04:48,378 - app - INFO - Using date_preset from request: today
+2025-03-05 19:04:50,858 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:04:50,859 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:04:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:05:00,354 - app - INFO - Using date_preset from request: today
+2025-03-05 19:05:03,597 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:05:03,600 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:05:03] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:05:04,887 - app - INFO - Using date_preset from request: today
+2025-03-05 19:05:07,860 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:05:07,861 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:05:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:05:41,113 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.0.53:7700
+2025-03-05 19:05:41,114 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:05:41,114 - werkzeug - INFO -  * Restarting with stat
+2025-03-05 19:05:41,277 - werkzeug - WARNING -  * Debugger is active!
+2025-03-05 19:05:41,285 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-05 19:05:44,227 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 19:05:44,227 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:05:45,882 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:05:45] "GET / HTTP/1.1" 200 -
+2025-03-05 19:05:45,978 - app - INFO - Using date_preset from request: today
+2025-03-05 19:05:45,995 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:05:46,000 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:05:46] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:05:46,024 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:05:48,395 - app - INFO - Using date_preset from request: today
+2025-03-05 19:05:48,396 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:05:49,996 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:05:49,997 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:05:49,998 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:05:49] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:05:52,484 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:05:52,485 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:05:52,486 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:05:52] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:06:04,352 - app - INFO - Using date_preset from request: today
+2025-03-05 19:06:04,355 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:06:05,358 - app - INFO - Using date_preset from request: today
+2025-03-05 19:06:05,359 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:06:07,611 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:06:07,612 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:06:07,613 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:06:07] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:06:09,848 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:06:09,849 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:06:09,850 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:06:09] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:06:45,985 - app - INFO - Using date_preset from request: today
+2025-03-05 19:06:45,988 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:06:48,408 - app - INFO - Using date_preset from request: today
+2025-03-05 19:06:48,410 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:06:49,077 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:06:49,077 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:06:49,079 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:06:49] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:06:51,277 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:06:51,278 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:06:51,280 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:06:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:07:05,355 - app - INFO - Using date_preset from request: today
+2025-03-05 19:07:05,359 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:07:08,352 - app - INFO - Using date_preset from request: today
+2025-03-05 19:07:08,354 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:07:08,722 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:07:08,722 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:07:08,724 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:07:08] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:07:11,436 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:07:11,437 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:07:11,439 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:07:11] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:07:46,025 - app - INFO - Using date_preset from request: today
+2025-03-05 19:07:46,032 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:07:48,109 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:07:48,109 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:07:48,111 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:07:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:07:48,380 - app - INFO - Using date_preset from request: today
+2025-03-05 19:07:48,383 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:07:50,811 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:07:50,811 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:07:50,812 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:07:50] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:08:05,371 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:08:05,372 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:08:05] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:08:12,354 - app - INFO - Using date_preset from request: today
+2025-03-05 19:08:12,358 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:08:14,569 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:08:14,570 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:08:14,572 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:08:14] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:08:22,835 - app - INFO - Using date_preset from request: today
+2025-03-05 19:08:22,845 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:08:25,083 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:08:25,084 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:08:25,085 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:08:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:08:25,350 - app - INFO - Using date_preset from request: today
+2025-03-05 19:08:25,351 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:08:27,479 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:08:27,479 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:08:27,481 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:08:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:09:00,478 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.0.53:7700
+2025-03-05 19:09:00,478 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:09:00,478 - werkzeug - INFO -  * Restarting with stat
+2025-03-05 19:09:00,653 - werkzeug - WARNING -  * Debugger is active!
+2025-03-05 19:09:00,658 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-05 19:09:04,121 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 19:09:04,121 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:09:06,022 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:09:06] "GET / HTTP/1.1" 200 -
+2025-03-05 19:09:06,088 - app - INFO - Using date_preset from request: today
+2025-03-05 19:09:06,092 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:09:06,093 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:09:06] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:09:06,106 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:09:08,533 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:09:08,533 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:09:08,534 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:09:08] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:09:15,353 - app - INFO - Using date_preset from request: today
+2025-03-05 19:09:15,355 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:09:17,651 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:09:17,652 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:09:17,653 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:09:17] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:10:06,106 - app - INFO - Using date_preset from request: today
+2025-03-05 19:10:06,112 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:10:09,047 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:10:09,050 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:10:09,053 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:10:09] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:10:18,351 - app - INFO - Using date_preset from request: today
+2025-03-05 19:10:18,353 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:10:21,557 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:10:21,559 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:10:21,563 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:10:21] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:11:06,095 - app - INFO - Using date_preset from request: today
+2025-03-05 19:11:06,101 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:11:08,275 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:11:08,276 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:11:08,278 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:11:08] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:11:22,349 - app - INFO - Using date_preset from request: today
+2025-03-05 19:11:22,351 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:11:25,596 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:11:25,597 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:11:25,598 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:11:25] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:12:06,086 - app - INFO - Using date_preset from request: today
+2025-03-05 19:12:06,090 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:12:09,289 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:12:09,290 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:12:09,292 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:12:09] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:12:26,347 - app - INFO - Using date_preset from request: today
+2025-03-05 19:12:26,349 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:12:29,567 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:12:29,568 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:12:29,570 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:12:29] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:12:48,649 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 19:12:48,649 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:12:50,750 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:12:50] "GET / HTTP/1.1" 200 -
+2025-03-05 19:12:50,841 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:12:50,842 - app - INFO - Using date_preset from request: today
+2025-03-05 19:12:50,843 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:12:50] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:12:50,856 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:12:53,019 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:12:53,020 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:12:53,022 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:12:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:13:30,356 - app - INFO - Using date_preset from request: today
+2025-03-05 19:13:30,360 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:13:33,075 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:13:33,076 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:13:33,077 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:13:33] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:13:50,844 - app - INFO - Using date_preset from request: today
+2025-03-05 19:13:50,845 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:13:53,295 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:13:53,297 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:13:53,299 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:13:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:14:33,348 - app - INFO - Using date_preset from request: today
+2025-03-05 19:14:33,349 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:14:36,420 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:14:36,422 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:14:36,424 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:14:36] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:14:50,845 - app - INFO - Using date_preset from request: today
+2025-03-05 19:14:50,847 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:14:53,243 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:14:53,244 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:14:53,245 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:14:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:15:37,345 - app - INFO - Using date_preset from request: today
+2025-03-05 19:15:37,347 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:15:44,212 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:15:44,213 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:15:44,215 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:15:44] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:15:50,840 - app - INFO - Using date_preset from request: today
+2025-03-05 19:15:50,842 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:15:54,197 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:15:54,198 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:15:54,199 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:15:54] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:16:44,345 - app - INFO - Using date_preset from request: today
+2025-03-05 19:16:44,347 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:16:47,366 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:16:47,367 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:16:47,367 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:16:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:16:50,838 - app - INFO - Using date_preset from request: today
+2025-03-05 19:16:50,841 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:16:54,133 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:16:54,135 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:16:54,137 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:16:54] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:17:48,366 - app - INFO - Using date_preset from request: today
+2025-03-05 19:17:48,368 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:17:50,838 - app - INFO - Using date_preset from request: today
+2025-03-05 19:17:50,839 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:17:50,840 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:17:50] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:17:50,840 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:17:51,098 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:17:51,099 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:17:51,100 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:17:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:17:53,363 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:17:53,364 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:17:53,366 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:17:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 19:18:28,270 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 19:18:28,270 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 19:18:29,969 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:18:29] "GET / HTTP/1.1" 200 -
+2025-03-05 19:18:30,039 - app - INFO - Using date_preset from request: today
+2025-03-05 19:18:30,040 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 19:18:30,041 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:18:30] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 19:18:30,054 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-05 19:18:33,378 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-05 19:18:33,379 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 19:18:33,380 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 19:18:33] "POST /api/campaigns HTTP/1.1" 200 -

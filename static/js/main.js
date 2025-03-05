@@ -15,12 +15,148 @@ const APP_SETTINGS = {
     ENABLE_PERSISTENCE: true  // Enable localStorage persistence
 };
 
+// TV Mode for larger displays
+const TV_MODE = window.innerWidth >= 1920;
+
 // Fetch data and create chart when the page loads
+// Debug logging functions
+let debugEnabled = false;
+const DEBUG_TIMEOUT = 30000; // 30 second timeout for API calls
+
+function debugLog(message, data = null) {
+    const timestamp = new Date().toLocaleTimeString();
+    console.log(`[DEBUG ${timestamp}]`, message, data || '');
+    
+    if (debugEnabled) {
+        const logsContainer = document.getElementById('debugLogs');
+        if (logsContainer) {
+            const logItem = document.createElement('div');
+            logItem.className = 'log-item mb-1 border-bottom pb-1';
+            
+            // Format the message with timestamp
+            let logText = `<span class="text-info">[${timestamp}]</span> <span class="text-warning">${message}</span>`;
+            
+            // Add data if available
+            if (data) {
+                // If data is an error object
+                if (data instanceof Error) {
+                    logText += `<br><span class="text-danger">${data.message}</span>`;
+                    if (data.stack) {
+                        logText += `<br><small class="text-muted">${data.stack.split('\n')[0]}</small>`;
+                    }
+                } 
+                // If data is an object/array, stringify it
+                else if (typeof data === 'object') {
+                    try {
+                        logText += `<br><small class="text-light">${JSON.stringify(data, null, 2)}</small>`;
+                    } catch (e) {
+                        logText += `<br><small class="text-light">[Complex Object]</small>`;
+                    }
+                } 
+                // Simple value
+                else {
+                    logText += ` <span class="text-light">${data}</span>`;
+                }
+            }
+            
+            logItem.innerHTML = logText;
+            logsContainer.prepend(logItem);
+            
+            // Limit number of log items
+            const maxLogs = 50;
+            const items = logsContainer.getElementsByClassName('log-item');
+            if (items.length > maxLogs) {
+                for (let i = maxLogs; i < items.length; i++) {
+                    logsContainer.removeChild(items[i]);
+                }
+            }
+        }
+    }
+}
+
+function clearDebugLogs() {
+    const logsContainer = document.getElementById('debugLogs');
+    if (logsContainer) {
+        logsContainer.innerHTML = '';
+    }
+}
+
+function toggleDebugPanel() {
+    const panel = document.getElementById('debugPanel');
+    if (panel) {
+        debugEnabled = !debugEnabled;
+        panel.style.display = debugEnabled ? 'block' : 'none';
+        
+        // Log initial status when enabled
+        if (debugEnabled) {
+            debugLog('Debug mode enabled');
+            debugLog('Browser info', navigator.userAgent);
+            debugLog('Screen size', `${window.innerWidth}x${window.innerHeight}`);
+        }
+    }
+}
+
+// Enhanced fetch with timeout and debug
+function fetchWithTimeout(url, options = {}, timeout = DEBUG_TIMEOUT) {
+    debugLog(`Fetching: ${url}`);
+    
+    // Create abort controller for timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+    
+    // Add abort signal to options
+    const enhancedOptions = {
+        ...options,
+        signal: controller.signal
+    };
+    
+    return fetch(url, enhancedOptions)
+        .then(response => {
+            clearTimeout(timeoutId);
+            debugLog(`Response from ${url}`, { 
+                status: response.status, 
+                ok: response.ok,
+                statusText: response.statusText
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            debugLog(`Parsed data from ${url}`, data);
+            return data;
+        })
+        .catch(error => {
+            clearTimeout(timeoutId);
+            
+            if (error.name === 'AbortError') {
+                debugLog(`Request timeout for ${url}`, { timeout: `${timeout}ms` });
+                throw new Error(`Request timeout after ${timeout/1000} seconds`);
+            }
+            
+            debugLog(`Error fetching ${url}`, error);
+            throw error;
+        });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Set up debug toggle
+    const toggleBtn = document.getElementById('toggleDebug');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleDebugPanel);
+    }
+    
+    // Log initial page load
+    debugLog('Page loaded');
+    
     // Apply optimizations
     if (APP_SETTINGS.ENABLE_ANIMATIONS) {
         applyUIOptimizations();
     }
+    
+    debugLog('Starting API data fetching');
     
     // Load campaign data initially
     fetchCampaigns();
@@ -29,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(fetchCampaigns, APP_SETTINGS.REFRESH_INTERVAL * 1000);
     
     // Set up desktop manual refresh button
-    const refreshBtn = document.getElementById('refreshCampaigns');
+    const refreshBtn = document.getElementById('refreshMetrics');
     if (refreshBtn) {
         refreshBtn.addEventListener('click', function() {
             showUpdateSpinner(true);
@@ -659,6 +795,8 @@ function getColorForPercentage(percentage) {
     if (value >= 5) return '#ffc107';  // Low - yellow
     return '#6c757d';                  // Very low - gray
 }
+
+// Performance and Team data functions removed
 
 // Apply optimizations for better visibility and performance
 function applyUIOptimizations() {

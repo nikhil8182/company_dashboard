@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,  # Changed to DEBUG for more detailed logs
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler("app.log"),
@@ -396,6 +396,9 @@ def get_abv_data():
         return jsonify({"error": str(e)}), 500
 
 
+# PR and TC data routes removed
+
+
 # API endpoint to test if API is available
 @app.route('/api/test-connection')
 def test_connection():
@@ -421,6 +424,21 @@ def test_connection():
             'message': str(e),
             'api_url': CAMPAIGNS_API_URL
         }), 500
+
+# Debug endpoint to test APIs directly
+@app.route('/api/debug/test-all')
+def test_all_apis():
+    results = {}
+    
+    # Add mock data flag
+    results['using_mock_data'] = os.environ.get('FLASK_ENV') == 'development'
+    
+    # Return simplified results
+    return jsonify({
+        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        'results': results,
+        'environment': os.environ.get('FLASK_ENV', 'production')
+    })
 
 # Add compression to Flask app
 from flask_compress import Compress

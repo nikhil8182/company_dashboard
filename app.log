@@ -931,3 +931,76 @@
 2025-03-05 18:17:52,903 - app - INFO - Successfully fetched campaign data from API with today preset: 200
 2025-03-05 18:17:52,905 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:17:52] "POST /api/campaigns HTTP/1.1" 200 -
 2025-03-05 18:18:28,385 - app - INFO - Using date_preset from request: today
+2025-03-05 18:18:31,736 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:18:31,737 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:18:31] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:18:44,465 - app - INFO - Using date_preset from request: today
+2025-03-05 18:18:47,686 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:18:47,688 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:18:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:19:32,376 - app - INFO - Using date_preset from request: today
+2025-03-05 18:19:34,790 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:19:34,791 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:19:34] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:19:44,463 - app - INFO - Using date_preset from request: today
+2025-03-05 18:19:46,576 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:19:46,577 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:19:46] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:20:35,376 - app - INFO - Using date_preset from request: today
+2025-03-05 18:20:38,388 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:20:38,390 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:20:38] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:20:44,463 - app - INFO - Using date_preset from request: today
+2025-03-05 18:20:47,395 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:20:47,397 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:20:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:21:39,380 - app - INFO - Using date_preset from request: today
+2025-03-05 18:21:42,689 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:21:42,690 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:21:42] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:21:44,463 - app - INFO - Using date_preset from request: today
+2025-03-05 18:21:47,719 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:21:47,721 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:21:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:22:43,384 - app - INFO - Using date_preset from request: today
+2025-03-05 18:22:44,461 - app - INFO - Using date_preset from request: today
+2025-03-05 18:22:44,461 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:22:44,462 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:22:44] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:22:45,811 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:22:45,813 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:22:45] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:22:47,512 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:22:47,513 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:22:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:22:57,789 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.0.53:7700
+2025-03-05 18:22:57,789 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 18:23:44,477 - app - INFO - Using date_preset from request: today
+2025-03-05 18:23:46,371 - app - INFO - Using date_preset from request: today
+2025-03-05 18:23:46,917 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:23:46,919 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:23:46] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:23:48,569 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:23:48,570 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:23:48] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:24:44,467 - app - INFO - Using date_preset from request: today
+2025-03-05 18:24:47,624 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:24:47,626 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:24:47] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:24:49,368 - app - INFO - Using date_preset from request: today
+2025-03-05 18:24:53,677 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:24:53,678 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:24:53] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:25:14,760 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-05 18:25:14,760 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-05 18:25:20,272 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:25:20] "GET / HTTP/1.1" 200 -
+2025-03-05 18:25:20,355 - app - INFO - Using date_preset from request: today
+2025-03-05 18:25:20,357 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:25:20,358 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:25:20] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:25:24,247 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:25:24] "GET /abv HTTP/1.1" 200 -
+2025-03-05 18:25:24,317 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:25:24,317 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:25:24] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:25:28,840 - app - WARNING - Retry 1/3 after connection error: HTTPSConnectionPool(host='api.onwords.in', port=443): Read timed out. (read timeout=5)
+2025-03-05 18:25:32,592 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:25:32,594 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:25:32] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:25:54,370 - app - INFO - Using date_preset from request: today
+2025-03-05 18:25:56,545 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:25:56,547 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:25:56] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-05 18:26:10,263 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:26:10,264 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:26:10] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:26:26,351 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:26:26,352 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:26:26] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:26:28,818 - app - INFO - Using mock ABV data until the API is available
+2025-03-05 18:26:28,819 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:26:28] "GET /api/abv HTTP/1.1" 200 -
+2025-03-05 18:26:57,376 - app - INFO - Using date_preset from request: today
+2025-03-05 18:27:00,266 - app - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-05 18:27:00,266 - werkzeug - INFO - 127.0.0.1 - - [05/Mar/2025 18:27:00] "POST /api/campaigns HTTP/1.1" 200 -

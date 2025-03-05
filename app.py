@@ -128,6 +128,11 @@ def index():
 def leads():
     return render_template('leads.html', title='Lead Management')
 
+# Route for ABV data page
+@app.route('/abv')
+def abv():
+    return render_template('abv.html', title='ABV Performance Data')
+
 # API route for initial chart data
 @app.route('/api/data')
 def get_data():

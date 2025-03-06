@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR Data Performance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+    <style>
+        :root {
+            --header-bg-light: linear-gradient(90deg, #1a2a3a 0%, #3a4a5e 100%);
+            --header-bg-dark: linear-gradient(90deg, #0f1620 0%, #1c2631 100%);
+            --card-hover-shadow-light: 0 4px 8px rgba(0,0,0,.1);
+            --card-hover-shadow-dark: 0 4px 8px rgba(255,255,255,.05);
+        }
+        body{font-family:system-ui,-apple-system,sans-serif;transition:background-color 0.3s ease}
+        .header{background:var(--header-bg-light);color:white;padding:1rem;margin-bottom:1.5rem;transition:background 0.3s ease}
+        .card{transition:transform .2s, box-shadow 0.3s ease;border:none}
+        .card:hover{transform:translateY(-3px);box-shadow:var(--card-hover-shadow-light)}
+        .stat-card{border-radius:8px;overflow:hidden}
+        .table-card{border-radius:8px;overflow:hidden}
+        .performance-badge{border-radius:20px;padding:6px 12px;font-size:13px;font-weight:600;display:inline-block}
+        .theme-switch{cursor:pointer}
+        
+        /* Dark mode overrides */
+        [data-bs-theme="dark"] .header {
+            background: var(--header-bg-dark);
+        }
+        [data-bs-theme="dark"] .card:hover {
+            box-shadow: var(--card-hover-shadow-dark);
+        }
+        [data-bs-theme="dark"] .bg-light {
+            background-color: #2b3035!important;
+        }
+        
+        @media (max-width:768px){
+            .hide-mobile{display:none}
+            .table-responsive{overflow-x:auto}
+            .stat-card{margin-bottom:1rem}
+            .header{padding:0.75rem}
+            .header h3{font-size:1.25rem}
+            .card-header .d-flex{flex-direction:column;align-items:flex-start}
+            .card-header .text-muted{margin-top:0.5rem}
+            .filter-controls{margin-top:0.5rem;width:100%}
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <h3 class="m-0 mb-2 mb-md-0"><i class="bi bi-person-badge me-2"></i> PR Performance Data</h3>
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                    <div class="btn-group" role="group" aria-label="Date filter">
+                        <button id="todayBtn" type="button" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-calendar-day me-1"></i> Today
+                        </button>
+                        <button id="yesterdayBtn" type="button" class="btn btn-outline-light btn-sm active">
+                            <i class="bi bi-calendar-day-fill me-1"></i> Yesterday
+                        </button>
+                    </div>
+                    <a href="/" class="btn btn-outline-light btn-sm">
+                        <i class="bi bi-house-door"></i> Home
+                    </a>
+                    <a href="/tc_data" class="btn btn-outline-light btn-sm">
+                        <i class="bi bi-telephone"></i> TC Data
+                    </a>
+                    <button id="refreshData" class="btn btn-outline-light btn-sm">
+                        <i class="bi bi-arrow-repeat"></i> Refresh
+                    </button>
+                    <button id="themeToggle" class="btn btn-outline-light btn-sm theme-switch">
+                        <i class="bi bi-sun-fill" id="lightIcon"></i>
+                        <i class="bi bi-moon-fill d-none" id="darkIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <!-- Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card shadow-sm stat-card h-100">
+                    <div class="card-body text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <i class="bi bi-people fs-5 text-primary me-2"></i>
+                            <h6 class="text-muted mb-0">Total Visits</h6>
+                        </div>
+                        <h3 class="text-primary" id="totalVisits">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm stat-card h-100">
+                    <div class="card-body text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <i class="bi bi-cart-check fs-5 text-success me-2"></i>
+                            <h6 class="text-muted mb-0">Total Sales</h6>
+                        </div>
+                        <h3 class="text-success" id="totalSales">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm stat-card h-100">
+                    <div class="card-body text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <i class="bi bi-award fs-5 text-info me-2"></i>
+                            <h6 class="text-muted mb-0">Total Points</h6>
+                        </div>
+                        <h3 class="text-info" id="totalPoints">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm stat-card h-100">
+                    <div class="card-body text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-2">
+                            <i class="bi bi-graph-up-arrow fs-5 text-warning me-2"></i>
+                            <h6 class="text-muted mb-0">Total ABP</h6>
+                        </div>
+                        <h3 class="text-warning" id="totalABP">0</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Quick Stats - Only visible on mobile -->
+        <div class="d-md-none mb-3">
+            <div class="card">
+                <div class="card-body p-2">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button id="todayBtnMobile" type="button" class="btn btn-outline-primary">Today</button>
+                            <button id="yesterdayBtnMobile" type="button" class="btn btn-outline-primary active">Yesterday</button>
+                        </div>
+                        <button id="refreshMobile" class="btn btn-sm btn-primary">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </button>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <div class="border rounded p-2 text-center">
+                                <small class="text-muted d-block">Total Visits</small>
+                                <strong class="text-primary" id="totalVisitsMobile">0</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2 text-center">
+                                <small class="text-muted d-block">Total Sales</small>
+                                <strong class="text-success" id="totalSalesMobile">0</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2 text-center">
+                                <small class="text-muted d-block">Total Points</small>
+                                <strong class="text-info" id="totalPointsMobile">0</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2 text-center">
+                                <small class="text-muted d-block">Total ABP</small>
+                                <strong class="text-warning" id="totalABPMobile">0</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PR Data Table -->
+        <div class="card shadow-sm table-card">
+            <div class="card-header bg-light">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="d-flex align-items-center flex-wrap">
+                        <h5 class="mb-0 me-2">PR Performance Table</h5>
+                        <div class="badge bg-primary rounded-pill d-none" id="filterInfo">
+                            <i class="bi bi-funnel-fill me-1"></i> Filtered
+                        </div>
+                    </div>
+                    <div class="text-muted small">
+                        Last updated: <span id="lastUpdated">-</span>
+                        <span class="spinner-border spinner-border-sm text-primary d-none ms-2" id="spinner" role="status"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0" id="prDataTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 30%">Name</th>
+                                <th style="width: 15%">Date</th>
+                                <th class="text-end" style="width: 15%">Visits</th>
+                                <th class="text-end" style="width: 15%">Sales</th>
+                                <th class="text-end" style="width: 15%">Points</th>
+                                <th class="text-end" style="width: 10%">ABP</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prTableBody">
+                            <tr>
+                                <td colspan="6" class="text-center">Loading data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Dropdown Filter (Hidden by default) -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+        <div class="dropdown-menu" id="additionalFilters">
+            <div class="px-3 py-2">
+                <h6 class="mb-2">Additional Filters</h6>
+                <div class="mb-3">
+                    <label for="dateFilter" class="form-label small">Date Range</label>
+                    <select id="dateFilter" class="form-select form-select-sm">
+                        <option value="today">Today</option>
+                        <option value="yesterday" selected>Yesterday</option>
+                        <option value="this_week">This Week</option>
+                        <option value="last_week">Last Week</option>
+                        <option value="this_month">This Month</option>
+                        <option value="last_month">Last Month</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script>
+        // Cache DOM elements for better performance
+        let elements = {};
+        let dataTable;
+        
+        // Current date preset (default: yesterday)
+        let currentDatePreset = 'yesterday';
+        
+        // Toggle theme function
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            // Update HTML attribute
+            html.setAttribute('data-bs-theme', newTheme);
+            
+            // Update button icons
+            const lightIcon = document.getElementById('lightIcon');
+            const darkIcon = document.getElementById('darkIcon');
+            
+            if (newTheme === 'dark') {
+                lightIcon.classList.add('d-none');
+                darkIcon.classList.remove('d-none');
+            } else {
+                darkIcon.classList.add('d-none');
+                lightIcon.classList.remove('d-none');
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        // Fetch and display PR data
+        function fetchPRData(datePreset = currentDatePreset) {
+            // Update current date preset
+            currentDatePreset = datePreset;
+            
+            // Update button states - desktop
+            document.getElementById('todayBtn').classList.toggle('active', datePreset === 'today');
+            document.getElementById('yesterdayBtn').classList.toggle('active', datePreset === 'yesterday');
+            
+            // Update button states - mobile
+            document.getElementById('todayBtnMobile').classList.toggle('active', datePreset === 'today');
+            document.getElementById('yesterdayBtnMobile').classList.toggle('active', datePreset === 'yesterday');
+            
+            // Show loading spinner
+            elements.spinner.classList.remove('d-none');
+            
+            fetch(`/api/pr_data?filter_type=${datePreset}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Check if response is the "No data found" message
+                    if (data.status === "success" && data.data === "No data found") {
+                        showNoDataMessage();
+                    } else {
+                        updatePRDataTable(data);
+                        updateSummaryCards(data);
+                    }
+                    
+                    // Update last updated time and date preset info
+                    const datePresetText = datePreset === 'today' ? 'Today' : 'Yesterday';
+                    elements.lastUpdated.innerHTML = `<span class="badge bg-secondary me-1">${datePresetText}</span> ${new Date().toLocaleTimeString()}`;
+                    
+                    // Hide spinner
+                    elements.spinner.classList.add('d-none');
+                })
+                .catch(error => {
+                    console.error('Error fetching PR data:', error);
+                    elements.spinner.classList.add('d-none');
+                    
+                    // Show no data message instead of sample data
+                    showNoDataMessage();
+                    
+                    // Update last updated with error indicator
+                    elements.lastUpdated.innerHTML = `<span class="badge bg-danger me-1">Error</span> ${new Date().toLocaleTimeString()}`;
+                });
+        }
+        
+        // Function to update data table with PR data
+        function updatePRDataTable(data) {
+            // Clear existing table data
+            if (dataTable) {
+                dataTable.destroy();
+            }
+            
+            // Empty the table body
+            elements.tableBody.innerHTML = '';
+            
+            // Add rows to the table
+            if (data && data.length > 0) {
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    
+                    // Format for name and date
+                    const nameCell = document.createElement('td');
+                    nameCell.innerHTML = `<strong>${item.name}</strong>`;
+                    
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = item.date;
+                    
+                    // Create numeric cells with right alignment
+                    const visitsCell = document.createElement('td');
+                    visitsCell.classList.add('text-end');
+                    visitsCell.textContent = item.visits;
+                    
+                    const salesCell = document.createElement('td');
+                    salesCell.classList.add('text-end');
+                    salesCell.textContent = item.sales;
+                    
+                    const pointsCell = document.createElement('td');
+                    pointsCell.classList.add('text-end', 'fw-medium', 'text-info');
+                    pointsCell.textContent = item.points;
+                    
+                    const abpCell = document.createElement('td');
+                    abpCell.classList.add('text-end');
+                    abpCell.textContent = item.abp;
+                    
+                    // Add cells to row
+                    row.appendChild(nameCell);
+                    row.appendChild(dateCell);
+                    row.appendChild(visitsCell);
+                    row.appendChild(salesCell);
+                    row.appendChild(pointsCell);
+                    row.appendChild(abpCell);
+                    
+                    // Add row to table
+                    elements.tableBody.appendChild(row);
+                });
+            } else {
+                // No data
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.setAttribute('colspan', '6');
+                cell.classList.add('text-center');
+                cell.textContent = 'No data available for this period';
+                row.appendChild(cell);
+                elements.tableBody.appendChild(row);
+            }
+            
+            // Initialize DataTable
+            dataTable = new DataTable('#prDataTable', {
+                responsive: true,
+                order: [[4, 'desc']], // Sort by points column descending
+                language: {
+                    emptyTable: "No data available for this period"
+                }
+            });
+        }
+        
+        // Function to update summary cards
+        function updateSummaryCards(data) {
+            let totalVisits = 0;
+            let totalSales = 0;
+            let totalPoints = 0;
+            let totalABP = 0;
+            
+            if (data && data.length > 0) {
+                data.forEach(item => {
+                    totalVisits += item.visits || 0;
+                    totalSales += item.sales || 0;
+                    totalPoints += item.points || 0;
+                    totalABP += item.abp || 0;
+                });
+            }
+            
+            // Update desktop cards
+            elements.totalVisits.textContent = totalVisits;
+            elements.totalSales.textContent = totalSales;
+            elements.totalPoints.textContent = totalPoints;
+            elements.totalABP.textContent = totalABP;
+            
+            // Update mobile cards
+            if (elements.totalVisitsMobile) elements.totalVisitsMobile.textContent = totalVisits;
+            if (elements.totalSalesMobile) elements.totalSalesMobile.textContent = totalSales;
+            if (elements.totalPointsMobile) elements.totalPointsMobile.textContent = totalPoints;
+            if (elements.totalABPMobile) elements.totalABPMobile.textContent = totalABP;
+        }
+        
+        // Function to show no data message
+        function showNoDataMessage() {
+            // Clear existing table data
+            if (dataTable) {
+                dataTable.destroy();
+            }
+            
+            // Empty the table body
+            elements.tableBody.innerHTML = '';
+            
+            // Create row with no data message
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.setAttribute('colspan', '6');
+            cell.classList.add('text-center', 'py-5');
+            cell.innerHTML = `
+                <div class="text-muted">
+                    <i class="bi bi-exclamation-circle fs-2 mb-3"></i>
+                    <h5>No Data Found</h5>
+                    <p class="small">No performance data available for this period.</p>
+                </div>
+            `;
+            row.appendChild(cell);
+            elements.tableBody.appendChild(row);
+            
+            // Reinitialize DataTable
+            dataTable = new DataTable('#prDataTable', {
+                responsive: true,
+                language: {
+                    emptyTable: "No data available for this period"
+                }
+            });
+            
+            // Reset summary cards
+            elements.totalVisits.textContent = '0';
+            elements.totalSales.textContent = '0';
+            elements.totalPoints.textContent = '0';
+            elements.totalABP.textContent = '0';
+            
+            // Reset mobile cards
+            if (elements.totalVisitsMobile) elements.totalVisitsMobile.textContent = '0';
+            if (elements.totalSalesMobile) elements.totalSalesMobile.textContent = '0';
+            if (elements.totalPointsMobile) elements.totalPointsMobile.textContent = '0';
+            if (elements.totalABPMobile) elements.totalABPMobile.textContent = '0';
+        }
+        
+        // We've removed the useSampleData function as we now use showNoDataMessage instead
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cache DOM elements
+            elements = {
+                totalVisits: document.getElementById('totalVisits'),
+                totalSales: document.getElementById('totalSales'),
+                totalPoints: document.getElementById('totalPoints'),
+                totalABP: document.getElementById('totalABP'),
+                totalVisitsMobile: document.getElementById('totalVisitsMobile'),
+                totalSalesMobile: document.getElementById('totalSalesMobile'),
+                totalPointsMobile: document.getElementById('totalPointsMobile'),
+                totalABPMobile: document.getElementById('totalABPMobile'),
+                tableBody: document.getElementById('prTableBody'),
+                lastUpdated: document.getElementById('lastUpdated'),
+                spinner: document.getElementById('spinner')
+            };
+            
+            // Set up theme toggle
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            
+            // Load theme preference from localStorage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-bs-theme', savedTheme);
+                if (savedTheme === 'dark') {
+                    document.getElementById('lightIcon').classList.add('d-none');
+                    document.getElementById('darkIcon').classList.remove('d-none');
+                }
+            }
+            
+            // Set up date filter buttons - desktop
+            document.getElementById('todayBtn').addEventListener('click', () => fetchPRData('today'));
+            document.getElementById('yesterdayBtn').addEventListener('click', () => fetchPRData('yesterday'));
+            
+            // Set up date filter buttons - mobile
+            document.getElementById('todayBtnMobile').addEventListener('click', () => fetchPRData('today'));
+            document.getElementById('yesterdayBtnMobile').addEventListener('click', () => fetchPRData('yesterday'));
+            
+            // Set up refresh buttons
+            document.getElementById('refreshData').addEventListener('click', () => fetchPRData(currentDatePreset));
+            
+            const refreshMobile = document.getElementById('refreshMobile');
+            if (refreshMobile) {
+                refreshMobile.addEventListener('click', () => fetchPRData(currentDatePreset));
+            }
+            
+            // Initialize date filter in dropdown
+            const dateFilter = document.getElementById('dateFilter');
+            if (dateFilter) {
+                dateFilter.addEventListener('change', function() {
+                    fetchPRData(this.value);
+                });
+            }
+            
+            // Initial data fetch
+            fetchPRData('yesterday');
+            
+            // Auto-refresh every 3 minutes if viewing today's data
+            setInterval(() => {
+                if (currentDatePreset === 'today') {
+                    fetchPRData('today');
+                }
+            }, 180000);
+        });
+    </script>
+    
+    <!-- Deferred loading of Bootstrap JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

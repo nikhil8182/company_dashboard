@@ -278,6 +278,71 @@
                 </div>
             </div>
             
+            <!-- Yesterday's PR Data Summary -->
+            <div class="col-12 mt-4">
+                <div class="card shadow-sm rounded-4 border-0 mb-4">
+                    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
+                        <h5 class="m-0 fw-bold text-primary">
+                            <i class="bi bi-person-badge me-2"></i>Yesterday's PR Performance
+                        </h5>
+                        <a href="/pr_data" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            View Details <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <!-- PR Summary Stats -->
+                            <div class="col-12">
+                                <div class="row g-0">
+                                    <!-- Total Visits -->
+                                    <div class="col-6 col-md-3 p-3 p-md-4 border-end">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-primary-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-people"></i>
+                                            </div>
+                                            <h2 class="stat-value text-primary mb-0" id="prTotalVisits">0</h2>
+                                            <div class="stat-label text-muted">Total Visits</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Total Sales -->
+                                    <div class="col-6 col-md-3 p-3 p-md-4 border-end">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-success-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-cart-check"></i>
+                                            </div>
+                                            <h2 class="stat-value text-success mb-0" id="prTotalSales">0</h2>
+                                            <div class="stat-label text-muted">Total Sales</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Total Points -->
+                                    <div class="col-6 col-md-3 p-3 p-md-4 border-end border-top border-top-md-0">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-info-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-award"></i>
+                                            </div>
+                                            <h2 class="stat-value text-info mb-0" id="prTotalPoints">0</h2>
+                                            <div class="stat-label text-muted">Total Points</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Total ABP -->
+                                    <div class="col-6 col-md-3 p-3 p-md-4 border-top border-top-md-0">
+                                        <div class="stat-card text-center">
+                                            <div class="stat-icon bg-warning-subtle mb-2 rounded-circle mx-auto">
+                                                <i class="bi bi-graph-up-arrow"></i>
+                                            </div>
+                                            <h2 class="stat-value text-warning mb-0" id="prTotalABP">0</h2>
+                                            <div class="stat-label text-muted">Total ABP</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -342,6 +407,40 @@
         });
     }
     
+    // Fetch PR data from API
+    function fetchPRData() {
+        fetch('/api/pr_data_summary?filter_type=yesterday')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === "success") {
+                    // Update PR summary elements with animation
+                    updateWithAnimation('prTotalVisits', data.totalVisits);
+                    updateWithAnimation('prTotalSales', data.totalSales);
+                    updateWithAnimation('prTotalPoints', data.totalPoints);
+                    updateWithAnimation('prTotalABP', data.totalABP);
+                } else {
+                    // Reset PR summary data if status is not success
+                    document.getElementById('prTotalVisits').textContent = '0';
+                    document.getElementById('prTotalSales').textContent = '0';
+                    document.getElementById('prTotalPoints').textContent = '0';
+                    document.getElementById('prTotalABP').textContent = '0';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching PR data summary:', error);
+                // Reset PR summary data on error
+                document.getElementById('prTotalVisits').textContent = '0';
+                document.getElementById('prTotalSales').textContent = '0';
+                document.getElementById('prTotalPoints').textContent = '0';
+                document.getElementById('prTotalABP').textContent = '0';
+            });
+    }
+    
     // Toggle theme function
     function toggleTheme() {
         const html = document.documentElement;
@@ -391,19 +490,26 @@
         // Load ABV data initially
         fetchABVData();
         
+        // Load PR data initially
+        fetchPRData();
+        
         // Set up metrics refresh button
         const refreshBtn = document.getElementById('refreshMetrics');
         if (refreshBtn) {
             refreshBtn.addEventListener('click', function() {
                 showUpdateSpinner(true);
-                // Refresh both campaign and ABV data when the button is clicked
+                // Refresh campaign, ABV, and PR data when the button is clicked
                 fetchCampaigns();
                 fetchABVData();
+                fetchPRData();
             });
         }
         
         // Auto-refresh ABV data every 5 minutes
         setInterval(fetchABVData, 300000); // 5 minutes
+        
+        // Auto-refresh PR data every 5 minutes
+        setInterval(fetchPRData, 300000); // 5 minutes
         
         // Set up auto-refresh timer display updates
         setInterval(updateRefreshTimeDisplay, 1000);
@@ -695,6 +801,23 @@
                 element.style.transform = 'scale(1)';
             }, 1000);
         }
+    }
+    
+    // Helper function to update element with animation (used for PR data)
+    function updateWithAnimation(elementId, value) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        
+        // Update value
+        element.textContent = value;
+        
+        // Add highlight animation
+        element.classList.add('text-highlighted');
+        
+        // Remove animation class after animation completes
+        setTimeout(() => {
+            element.classList.remove('text-highlighted');
+        }, 1500);
     }
     </script>
     <!-- Load external JS file -->

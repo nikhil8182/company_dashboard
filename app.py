@@ -121,6 +121,56 @@ def get_pr_data():
         logger.error(f"Error fetching PR data: {e}")
         return jsonify({"error": str(e)}), 500
         
+# API route for PR data summary (for homepage)
+@app.route('/api/pr_data_summary', methods=['GET'])
+def get_pr_data_summary():
+    try:
+        # Get filter_type from request if available
+        filter_type = request.args.get('filter_type', 'yesterday')
+        logger.info(f"Fetching PR data summary with filter_type: {filter_type}")
+        
+        # Get PR data from function
+        pr_data = function.get_pr_sale_data(filter_type)
+        
+        # If API returns None or empty list, return no data message
+        if pr_data is None or (isinstance(pr_data, list) and len(pr_data) == 0):
+            logger.warning(f"No PR data found for summary with filter_type: {filter_type}")
+            return jsonify({
+                "status": "success",
+                "totalVisits": 0,
+                "totalSales": 0,
+                "totalPoints": 0,
+                "totalABP": 0
+            })
+        
+        # Calculate summary totals
+        total_visits = sum(item.get('visits', 0) for item in pr_data)
+        total_sales = sum(item.get('sales', 0) for item in pr_data)
+        total_points = sum(item.get('points', 0) for item in pr_data)
+        total_abp = sum(item.get('abp', 0) for item in pr_data)
+        
+        # Return summary data
+        summary = {
+            "status": "success",
+            "totalVisits": total_visits,
+            "totalSales": total_sales,
+            "totalPoints": total_points,
+            "totalABP": total_abp
+        }
+        
+        response = jsonify(summary)
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        return response
+    except Exception as e:
+        logger.error(f"Error fetching PR data summary: {e}")
+        return jsonify({
+            "status": "error",
+            "totalVisits": 0,
+            "totalSales": 0,
+            "totalPoints": 0,
+            "totalABP": 0
+        })
+        
 # API route for TC data
 @app.route('/api/tc_data', methods=['GET'])
 def get_tc_data():
@@ -148,6 +198,61 @@ def get_tc_data():
     except Exception as e:
         logger.error(f"Error fetching TC data: {e}")
         return jsonify({"error": str(e)}), 500
+        
+# API route for TC data summary (for homepage)
+@app.route('/api/tc_data_summary', methods=['GET'])
+def get_tc_data_summary():
+    try:
+        # Get filter_type from request if available
+        filter_type = request.args.get('filter_type', 'yesterday')
+        logger.info(f"Fetching TC data summary with filter_type: {filter_type}")
+        
+        # Get TC data from function
+        tc_data = function.get_tc_data(filter_type)
+        
+        # If API returns None or empty list, return no data message
+        if tc_data is None or (isinstance(tc_data, list) and len(tc_data) == 0):
+            logger.warning(f"No TC data found for summary with filter_type: {filter_type}")
+            return jsonify({
+                "status": "success",
+                "totalCalls": 0,
+                "totalConnects": 0,
+                "totalLeads": 0,
+                "avgConversion": 0
+            })
+        
+        # Calculate summary totals
+        total_calls = sum(item.get('calls', 0) for item in tc_data)
+        total_connects = sum(item.get('connects', 0) for item in tc_data)
+        total_leads = sum(item.get('leads', 0) for item in tc_data)
+        
+        # Calculate average conversion rate
+        if total_connects > 0:
+            avg_conversion = (total_leads / total_connects) * 100
+        else:
+            avg_conversion = 0
+        
+        # Return summary data
+        summary = {
+            "status": "success",
+            "totalCalls": total_calls,
+            "totalConnects": total_connects,
+            "totalLeads": total_leads,
+            "avgConversion": round(avg_conversion, 2)
+        }
+        
+        response = jsonify(summary)
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        return response
+    except Exception as e:
+        logger.error(f"Error fetching TC data summary: {e}")
+        return jsonify({
+            "status": "error",
+            "totalCalls": 0,
+            "totalConnects": 0,
+            "totalLeads": 0,
+            "avgConversion": 0
+        })
 
 
 # Route for main page

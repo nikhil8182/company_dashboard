@@ -2105,3 +2105,176 @@
 2025-03-06 14:00:34,921 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
 2025-03-06 14:00:36,087 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
 2025-03-06 14:00:36,089 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:00:36] "GET /api/pr_data?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:02:24,448 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:02:24] "GET / HTTP/1.1" 200 -
+2025-03-06 14:02:24,480 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:02:24] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-06 14:02:24,481 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:02:24] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-06 14:02:24,496 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:02:24,497 - __main__ - INFO - Using mock ABV data until the API is available
+2025-03-06 14:02:24,499 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:02:24] "GET /api/abv HTTP/1.1" 200 -
+2025-03-06 14:02:24,501 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:02:28,036 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:02:28,036 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:02:28,037 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:02:28] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:03:24,500 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:03:24,501 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:03:27,198 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:03:27,199 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:03:27,199 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:03:27] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:03:50,684 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.68.110:7700
+2025-03-06 14:03:50,684 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-06 14:03:50,685 - werkzeug - INFO -  * Restarting with stat
+2025-03-06 14:03:50,851 - werkzeug - WARNING -  * Debugger is active!
+2025-03-06 14:03:50,859 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-06 14:03:54,346 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:03:54] "GET / HTTP/1.1" 200 -
+2025-03-06 14:03:54,390 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:03:54] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-06 14:03:54,390 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:03:54] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-06 14:03:54,399 - __main__ - INFO - Using mock ABV data until the API is available
+2025-03-06 14:03:54,401 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:03:54,402 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:03:54] "GET /api/abv HTTP/1.1" 200 -
+2025-03-06 14:03:54,403 - __main__ - INFO - Fetching PR data with filter_type: yesterday
+2025-03-06 14:03:54,418 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:03:54,419 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:03:56,793 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:03:56,794 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:03:56,796 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:03:56] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:03:57,024 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:03:57,025 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:03:57] "GET /api/pr_data?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:04:09,994 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:04:09] "GET /pr_data HTTP/1.1" 200 -
+2025-03-06 14:04:10,027 - __main__ - INFO - Fetching PR data with filter_type: yesterday
+2025-03-06 14:04:10,029 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:04:13,893 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:04:13,896 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:04:13] "GET /api/pr_data?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:04:16,594 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:04:16] "GET / HTTP/1.1" 200 -
+2025-03-06 14:04:16,609 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:04:16] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-06 14:04:16,620 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:04:16] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-06 14:04:16,627 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:04:16,628 - __main__ - INFO - Using mock ABV data until the API is available
+2025-03-06 14:04:16,629 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:04:16] "GET /api/abv HTTP/1.1" 200 -
+2025-03-06 14:04:16,629 - __main__ - INFO - Fetching PR data with filter_type: yesterday
+2025-03-06 14:04:16,630 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:04:16,631 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:04:17,683 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:04:17,685 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:04:17] "GET /api/pr_data?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:04:20,036 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:04:20,037 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:04:20,038 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:04:20] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:05:16,643 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:05:16,646 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:05:18,949 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:05:18,950 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:05:18,951 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:05:18] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:06:16,643 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:06:16,645 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:06:18,734 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:06:18,735 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:06:18,736 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:06:18] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:07:16,643 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:07:16,645 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:07:19,253 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:07:19,253 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:07:19,255 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:07:19] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:08:16,645 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:08:16,649 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:08:19,056 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:08:19,056 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:08:19,057 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:08:19] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:09:17,616 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:09:17,617 - __main__ - INFO - Using mock ABV data until the API is available
+2025-03-06 14:09:17,617 - __main__ - INFO - Fetching PR data with filter_type: yesterday
+2025-03-06 14:09:17,618 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:09:17] "GET /api/abv HTTP/1.1" 200 -
+2025-03-06 14:09:17,619 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:09:17,619 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:09:19,100 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:09:19,100 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:09:19] "GET /api/pr_data?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:09:20,554 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:09:20,555 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:09:20,555 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:09:20] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:09:32,521 - werkzeug - INFO -  * Detected change in '/Users/nikhilonwords/PycharmProjects/company_dashboard/app.py', reloading
+2025-03-06 14:09:32,548 - werkzeug - INFO -  * Restarting with stat
+2025-03-06 14:09:32,772 - werkzeug - WARNING -  * Debugger is active!
+2025-03-06 14:09:32,783 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-06 14:09:59,988 - werkzeug - INFO -  * Detected change in '/Users/nikhilonwords/PycharmProjects/company_dashboard/function.py', reloading
+2025-03-06 14:10:00,029 - werkzeug - INFO -  * Restarting with stat
+2025-03-06 14:10:00,250 - werkzeug - WARNING -  * Debugger is active!
+2025-03-06 14:10:00,257 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-06 14:10:09,327 - werkzeug - INFO -  * Detected change in '/Users/nikhilonwords/PycharmProjects/company_dashboard/function.py', reloading
+2025-03-06 14:10:09,352 - werkzeug - INFO -  * Restarting with stat
+2025-03-06 14:10:09,553 - werkzeug - WARNING -  * Debugger is active!
+2025-03-06 14:10:09,559 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-06 14:10:26,686 - werkzeug - INFO -  * Detected change in '/Users/nikhilonwords/PycharmProjects/company_dashboard/app.py', reloading
+2025-03-06 14:10:26,719 - werkzeug - INFO -  * Restarting with stat
+2025-03-06 14:10:26,908 - werkzeug - WARNING -  * Debugger is active!
+2025-03-06 14:10:26,913 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-06 14:10:34,624 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:10:34,631 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:10:37,295 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:10:37,295 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:10:37,296 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:37] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:10:38,304 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7700
+ * Running on http://192.168.68.110:7700
+2025-03-06 14:10:38,304 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-06 14:10:38,305 - werkzeug - INFO -  * Restarting with stat
+2025-03-06 14:10:38,464 - werkzeug - WARNING -  * Debugger is active!
+2025-03-06 14:10:38,469 - werkzeug - INFO -  * Debugger PIN: 414-419-485
+2025-03-06 14:10:42,398 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:42] "GET / HTTP/1.1" 200 -
+2025-03-06 14:10:42,421 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:42] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-06 14:10:42,421 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:42] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-06 14:10:42,445 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:10:42,445 - __main__ - INFO - Using mock ABV data until the API is available
+2025-03-06 14:10:42,446 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:42] "GET /api/abv HTTP/1.1" 200 -
+2025-03-06 14:10:42,447 - __main__ - INFO - Fetching PR data summary with filter_type: yesterday
+2025-03-06 14:10:42,453 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:10:42,454 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:10:43,504 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:10:43,505 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:43] "GET /api/pr_data_summary?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:10:44,822 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:10:44,825 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:10:44,826 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:44] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:10:48,900 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:48] "GET / HTTP/1.1" 200 -
+2025-03-06 14:10:48,912 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:48] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-06 14:10:48,914 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:48] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-06 14:10:48,920 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:10:48,920 - __main__ - INFO - Using mock ABV data until the API is available
+2025-03-06 14:10:48,920 - __main__ - INFO - Fetching PR data summary with filter_type: yesterday
+2025-03-06 14:10:48,921 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:48] "GET /api/abv HTTP/1.1" 200 -
+2025-03-06 14:10:48,923 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:10:48,923 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:10:50,131 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:10:50,132 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:50] "GET /api/pr_data_summary?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:10:51,735 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:10:51,735 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:10:51,736 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:51] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:10:54,320 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:54] "GET /pr_data HTTP/1.1" 200 -
+2025-03-06 14:10:54,345 - __main__ - INFO - Fetching PR data with filter_type: yesterday
+2025-03-06 14:10:54,345 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:10:57,877 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:10:57,878 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:10:57] "GET /api/pr_data?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:11:05,869 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:05] "GET / HTTP/1.1" 200 -
+2025-03-06 14:11:05,906 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:11:05,908 - __main__ - INFO - Fetching PR data summary with filter_type: yesterday
+2025-03-06 14:11:05,912 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:11:05,912 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:11:07,023 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:11:07,025 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:07] "GET /api/pr_data_summary?filter_type=yesterday HTTP/1.1" 200 -
+2025-03-06 14:11:09,215 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:11:09,217 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:11:09,219 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:09] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:11:10,644 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:10] "GET / HTTP/1.1" 200 -
+2025-03-06 14:11:10,659 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:10] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-06 14:11:10,660 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:10] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-06 14:11:10,669 - __main__ - INFO - Using date_preset from request: today
+2025-03-06 14:11:10,670 - __main__ - INFO - Using mock ABV data until the API is available
+2025-03-06 14:11:10,671 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:10] "GET /api/abv HTTP/1.1" 200 -
+2025-03-06 14:11:10,671 - __main__ - INFO - Fetching PR data summary with filter_type: yesterday
+2025-03-06 14:11:10,673 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:11:10,673 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.onwords.in:443
+2025-03-06 14:11:13,136 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "POST /lead_campaigns_cpl HTTP/1.1" 200 None
+2025-03-06 14:11:13,136 - __main__ - INFO - Successfully fetched campaign data from API with today preset: 200
+2025-03-06 14:11:13,138 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:13] "POST /api/campaigns HTTP/1.1" 200 -
+2025-03-06 14:11:13,362 - urllib3.connectionpool - DEBUG - https://api.onwords.in:443 "GET /get_pr_data/?filter_type=yesterday HTTP/1.1" 200 None
+2025-03-06 14:11:13,364 - werkzeug - INFO - 127.0.0.1 - - [06/Mar/2025 14:11:13] "GET /api/pr_data_summary?filter_type=yesterday HTTP/1.1" 200 -

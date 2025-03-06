@@ -221,7 +221,7 @@ def get_tc_data_summary():
                 "avgConversion": 0
             })
         
-        # Calculate summary totals
+        # Calculate summary totals - using the leads field (from the new API format)
         total_calls = sum(item.get('calls', 0) for item in tc_data)
         total_connects = sum(item.get('connects', 0) for item in tc_data)
         total_leads = sum(item.get('leads', 0) for item in tc_data)

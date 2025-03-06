@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to load PR data
     function loadPRData(filterType = 'yesterday') {
+        // Show a loading indicator
+        document.getElementById('spinner').classList.remove('d-none');
+        
         fetch(`/api/pr_data?filter_type=${filterType}`)
             .then(response => {
                 if (!response.ok) {
@@ -21,11 +24,21 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 updatePRDataTable(data);
                 updateSummaryCards(data);
+                
+                // Update last updated time
+                document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+                
+                // Update button active states
+                updateActiveFilterButton(filterType);
             })
             .catch(error => {
                 console.error('Error fetching PR data:', error);
                 // Use sample data if API fails
                 useSampleData();
+            })
+            .finally(() => {
+                // Hide the loading indicator
+                document.getElementById('spinner').classList.add('d-none');
             });
     }
 
@@ -68,14 +81,49 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('totalSales').textContent = totalSales;
         document.getElementById('totalPoints').textContent = totalPoints;
         document.getElementById('totalABP').textContent = totalABP;
+        
+        // Update mobile summary if it exists
+        if (document.getElementById('totalVisitsMobile')) {
+            document.getElementById('totalVisitsMobile').textContent = totalVisits;
+            document.getElementById('totalSalesMobile').textContent = totalSales;
+            document.getElementById('totalPointsMobile').textContent = totalPoints;
+            document.getElementById('totalABPMobile').textContent = totalABP;
+        }
+    }
+    
+    // Function to update active filter button
+    function updateActiveFilterButton(filterType) {
+        // Remove active class from all buttons
+        document.getElementById('todayBtn').classList.remove('active');
+        document.getElementById('yesterdayBtn').classList.remove('active');
+        
+        // Add active class to the selected button
+        if (filterType === 'today') {
+            document.getElementById('todayBtn').classList.add('active');
+        } else if (filterType === 'yesterday') {
+            document.getElementById('yesterdayBtn').classList.add('active');
+        }
+        
+        // Update mobile buttons if they exist
+        if (document.getElementById('todayBtnMobile')) {
+            document.getElementById('todayBtnMobile').classList.remove('active');
+            document.getElementById('yesterdayBtnMobile').classList.remove('active');
+            
+            if (filterType === 'today') {
+                document.getElementById('todayBtnMobile').classList.add('active');
+            } else if (filterType === 'yesterday') {
+                document.getElementById('yesterdayBtnMobile').classList.add('active');
+            }
+        }
     }
 
     // Function to use sample data if API fails
     function useSampleData() {
+        // Using the new data format as sample
         const sampleData = [
             {
                 "abp": 55,
-                "date": "2025-03-05",
+                "date": "yesterday",
                 "name": "Arun kumar N",
                 "points": 50,
                 "sales": 2,
@@ -83,23 +131,23 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
                 "abp": 30,
-                "date": "2025-03-05",
+                "date": "yesterday",
                 "name": "Indra Prasath J",
                 "points": 24,
                 "sales": 1,
                 "visits": 1
             },
             {
-                "abp": 0,
-                "date": "2025-03-05",
+                "abp": 30,
+                "date": "yesterday",
                 "name": "Jasim A",
-                "points": 0,
-                "sales": 0,
-                "visits": 0
+                "points": 19,
+                "sales": 1,
+                "visits": 1
             },
             {
                 "abp": 0,
-                "date": "2025-03-05",
+                "date": "yesterday",
                 "name": "Karthickraja A",
                 "points": 0,
                 "sales": 0,
@@ -107,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
                 "abp": 0,
-                "date": "2025-03-05",
+                "date": "yesterday",
                 "name": "Reynold Regan T",
                 "points": 0,
                 "sales": 0,
@@ -115,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             {
                 "abp": 0,
-                "date": "2025-03-05",
+                "date": "yesterday",
                 "name": "Selva Kumar K",
                 "points": 0,
                 "sales": 0,
@@ -125,11 +173,62 @@ document.addEventListener('DOMContentLoaded', function() {
         
         updatePRDataTable(sampleData);
         updateSummaryCards(sampleData);
+        
+        // Update last updated time
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString() + ' (sample data)';
     }
 
-    // Handle filter changes
+    // Handle filter dropdown changes
     document.getElementById('dateFilter').addEventListener('change', function() {
         const filterType = this.value;
+        loadPRData(filterType);
+    });
+    
+    // Handle filter button clicks
+    document.getElementById('todayBtn').addEventListener('click', function() {
+        loadPRData('today');
+    });
+    
+    document.getElementById('yesterdayBtn').addEventListener('click', function() {
+        loadPRData('yesterday');
+    });
+    
+    // Handle mobile filter button clicks if they exist
+    if (document.getElementById('todayBtnMobile')) {
+        document.getElementById('todayBtnMobile').addEventListener('click', function() {
+            loadPRData('today');
+        });
+    }
+    
+    if (document.getElementById('yesterdayBtnMobile')) {
+        document.getElementById('yesterdayBtnMobile').addEventListener('click', function() {
+            loadPRData('yesterday');
+        });
+    }
+    
+    // Handle mobile refresh button if it exists
+    if (document.getElementById('refreshMobile')) {
+        document.getElementById('refreshMobile').addEventListener('click', function() {
+            // Get current active filter
+            let filterType = 'yesterday';
+            if (document.getElementById('todayBtnMobile').classList.contains('active')) {
+                filterType = 'today';
+            }
+            
+            // Reload data with current filter
+            loadPRData(filterType);
+        });
+    }
+    
+    // Handle refresh button click
+    document.getElementById('refreshData').addEventListener('click', function() {
+        // Get current active filter
+        let filterType = 'yesterday';
+        if (document.getElementById('todayBtn').classList.contains('active')) {
+            filterType = 'today';
+        }
+        
+        // Reload data with current filter
         loadPRData(filterType);
     });
 
@@ -247,63 +346,49 @@ function generatePerformanceData(period) {
     // This function handles various API data formats and ensures we can 
     // always generate valid visualization data
     try {
-        // Sample data structure from the provided JSON - can handle both formats
+        // Sample data structure matches the new API format
         let sampleData = {
-            "2025-03-05": {
-                "Arun kumar N": {
-                    "abp": 55,
-                    "date": "2025-03-05",
-                    "name": "Arun kumar N",
-                    "points": 50,
-                    "sales": 2,
-                    "visits": 2
-                },
-                "Indra Prasath J": {
-                    "abp": 30,
-                    "date": "2025-03-05",
-                    "name": "Indra Prasath J",
-                    "points": 24,
-                    "sales": 1,
-                    "visits": 1
-                },
-                "Jasim A": {
-                    "abp": 0,
-                    "date": "2025-03-05",
-                    "name": "Jasim A",
-                    "points": 0,
-                    "sales": 0,
-                    "visits": 0
-                },
-                "Karthickraja A": {
-                    "abp": 0,
-                    "date": "2025-03-05",
-                    "name": "Karthickraja A",
-                    "points": 0,
-                    "sales": 0,
-                    "visits": 1
-                },
-                "Reynold Regan T": {
-                    "abp": 0,
-                    "date": "2025-03-05",
-                    "name": "Reynold Regan T",
-                    "points": 0,
-                    "sales": 0,
-                    "visits": 1
-                },
-                "Selva Kumar K": {
-                    "abp": 0,
-                    "date": "2025-03-05",
-                    "name": "Selva Kumar K",
-                    "points": 0,
-                    "sales": 0,
-                    "visits": 0
-                }
+            "Arun kumar N": {
+                "points": 50,
+                "sales": 2,
+                "abp": 55,
+                "visits": 2
+            },
+            "Indra Prasath J": {
+                "points": 24,
+                "sales": 1,
+                "abp": 30,
+                "visits": 1
+            },
+            "Jasim A": {
+                "points": 19,
+                "sales": 1,
+                "abp": 30,
+                "visits": 1
+            },
+            "Karthickraja A": {
+                "points": 0,
+                "sales": 0,
+                "abp": 0,
+                "visits": 1
+            },
+            "Reynold Regan T": {
+                "points": 0,
+                "sales": 0,
+                "abp": 0,
+                "visits": 1
+            },
+            "Selva Kumar K": {
+                "points": 0,
+                "sales": 0,
+                "abp": 0,
+                "visits": 0
             }
         };
 
         // Check if API returned data in alternative format with status and data properties
         // This handles both possible API formats:
-        // 1. Direct object with dates as keys
+        // 1. Direct object with person names as keys (new format)
         // 2. Object with status/data structure
         if (typeof fetch !== 'undefined') {
             fetch('/api/pr-data')
@@ -332,18 +417,11 @@ function generatePerformanceData(period) {
             dates.push(date.toISOString().split('T')[0]);
         }
         
-        // Find the first date that has data in the sample
-        let firstDateWithData = Object.keys(sampleData)[0];
-        if (!firstDateWithData) {
-            // If sample data is empty or invalid, create fallback data
-            console.warn('Invalid sample data format, using fallback data');
-            return generateFallbackData(period);
-        }
-        
-        // Team members from sample data
+        // Team members directly from new data format
         let teamMembers = [];
         try {
-            teamMembers = Object.keys(sampleData[firstDateWithData]);
+            // In the new format, team members are direct keys of the data object
+            teamMembers = Object.keys(sampleData);
             if (!teamMembers.length) {
                 throw new Error('No team members found');
             }
@@ -363,14 +441,13 @@ function generatePerformanceData(period) {
                     // Base data from sample - handle potential missing data
                     let baseData;
                     
-                    if (sampleData[firstDateWithData] && sampleData[firstDateWithData][member]) {
-                        baseData = sampleData[firstDateWithData][member];
+                    if (sampleData[member]) {
+                        // In the new format, member data is directly under the member key
+                        baseData = sampleData[member];
                     } else {
                         // Create default data if member data is missing
                         baseData = {
                             abp: 0,
-                            date: firstDateWithData,
-                            name: member,
                             points: 0,
                             sales: 0,
                             visits: 0
@@ -474,7 +551,7 @@ function generateFallbackData(period) {
         dates.push(date.toISOString().split('T')[0]);
     }
     
-    // Create result object with fallback data
+    // Create result object with fallback data matching the new API format
     const result = {};
     let totalVisits = 0;
     let totalSales = 0;

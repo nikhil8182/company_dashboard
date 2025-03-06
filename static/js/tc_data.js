@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to load TC data
     function loadTCData(filterType = 'yesterday') {
+        // Show a loading indicator
+        document.getElementById('spinner').classList.remove('d-none');
+        
         fetch(`/api/tc_data?filter_type=${filterType}`)
             .then(response => {
                 if (!response.ok) {
@@ -21,11 +24,21 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 updateTCDataTable(data);
                 updateSummaryCards(data);
+                
+                // Update last updated time
+                document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+                
+                // Update button active states
+                updateActiveFilterButton(filterType);
             })
             .catch(error => {
                 console.error('Error fetching TC data:', error);
                 // Use sample data if API fails
                 useSampleData();
+            })
+            .finally(() => {
+                // Hide the loading indicator
+                document.getElementById('spinner').classList.add('d-none');
             });
     }
 
@@ -41,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.date,
                 item.calls,
                 item.connects,
-                item.demos,
+                item.leads,  // Changed from demos to leads
                 item.points
             ]);
         });
@@ -54,20 +67,54 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateSummaryCards(data) {
         let totalCalls = 0;
         let totalConnects = 0;
-        let totalDemos = 0;
+        let totalLeads = 0;  // Changed from totalDemos to totalLeads
         let totalPoints = 0;
         
         data.forEach(item => {
             totalCalls += item.calls;
             totalConnects += item.connects;
-            totalDemos += item.demos;
+            totalLeads += item.leads;  // Changed from demos to leads
             totalPoints += item.points;
         });
         
         document.getElementById('totalCalls').textContent = totalCalls;
         document.getElementById('totalConnects').textContent = totalConnects;
-        document.getElementById('totalDemos').textContent = totalDemos;
+        document.getElementById('totalDemos').textContent = totalLeads;  // The UI element is still called totalDemos
         document.getElementById('totalPoints').textContent = totalPoints;
+        
+        // Update mobile summary if it exists
+        if (document.getElementById('totalCallsMobile')) {
+            document.getElementById('totalCallsMobile').textContent = totalCalls;
+            document.getElementById('totalConnectsMobile').textContent = totalConnects;
+            document.getElementById('totalDemosMobile').textContent = totalLeads;
+            document.getElementById('totalPointsMobile').textContent = totalPoints;
+        }
+    }
+
+    // Function to update active filter button
+    function updateActiveFilterButton(filterType) {
+        // Remove active class from all buttons
+        document.getElementById('todayBtn').classList.remove('active');
+        document.getElementById('yesterdayBtn').classList.remove('active');
+        
+        // Add active class to the selected button
+        if (filterType === 'today') {
+            document.getElementById('todayBtn').classList.add('active');
+        } else if (filterType === 'yesterday') {
+            document.getElementById('yesterdayBtn').classList.add('active');
+        }
+        
+        // Update mobile buttons if they exist
+        if (document.getElementById('todayBtnMobile')) {
+            document.getElementById('todayBtnMobile').classList.remove('active');
+            document.getElementById('yesterdayBtnMobile').classList.remove('active');
+            
+            if (filterType === 'today') {
+                document.getElementById('todayBtnMobile').classList.add('active');
+            } else if (filterType === 'yesterday') {
+                document.getElementById('yesterdayBtnMobile').classList.add('active');
+            }
+        }
     }
 
     // Function to use sample data if API fails
@@ -76,60 +123,111 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 "calls": 45,
                 "connects": 15,
-                "date": "2025-03-05",
-                "demos": 3,
+                "date": "yesterday",
+                "leads": 3,
                 "name": "Arun kumar N",
-                "points": 60
+                "points": 50
             },
             {
                 "calls": 38,
                 "connects": 12,
-                "date": "2025-03-05",
-                "demos": 2,
+                "date": "yesterday",
+                "leads": 2,
                 "name": "Indra Prasath J",
-                "points": 42
+                "points": 24
             },
             {
-                "calls": 52,
-                "connects": 18,
-                "date": "2025-03-05",
-                "demos": 4,
+                "calls": 35,
+                "connects": 10,
+                "date": "yesterday",
+                "leads": 1,
                 "name": "Jasim A",
-                "points": 80
+                "points": 19
             },
             {
                 "calls": 30,
                 "connects": 8,
-                "date": "2025-03-05",
-                "demos": 1,
+                "date": "yesterday",
+                "leads": 0,
                 "name": "Karthickraja A",
-                "points": 22
+                "points": 0
             },
             {
                 "calls": 25,
                 "connects": 5,
-                "date": "2025-03-05",
-                "demos": 0,
+                "date": "yesterday",
+                "leads": 0,
                 "name": "Reynold Regan T",
-                "points": 5
+                "points": 0
             },
             {
-                "calls": 33,
-                "connects": 10,
-                "date": "2025-03-05",
-                "demos": 2,
+                "calls": 15,
+                "connects": 3,
+                "date": "yesterday",
+                "leads": 0,
                 "name": "Selva Kumar K",
-                "points": 38
+                "points": 0
             }
         ];
         
         updateTCDataTable(sampleData);
         updateSummaryCards(sampleData);
+        
+        // Update last updated time
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString() + ' (sample data)';
     }
 
-    // Handle filter changes
+    // Handle filter dropdown changes
     document.getElementById('dateFilter').addEventListener('change', function() {
         const filterType = this.value;
+        loadTCData(filterType);
+    });
+    
+    // Handle filter button clicks
+    document.getElementById('todayBtn').addEventListener('click', function() {
+        loadTCData('today');
+    });
+    
+    document.getElementById('yesterdayBtn').addEventListener('click', function() {
+        loadTCData('yesterday');
+    });
+    
+    // Handle mobile filter button clicks if they exist
+    if (document.getElementById('todayBtnMobile')) {
+        document.getElementById('todayBtnMobile').addEventListener('click', function() {
+            loadTCData('today');
+        });
+    }
+    
+    if (document.getElementById('yesterdayBtnMobile')) {
+        document.getElementById('yesterdayBtnMobile').addEventListener('click', function() {
+            loadTCData('yesterday');
+        });
+    }
+    
+    // Handle mobile refresh button if it exists
+    if (document.getElementById('refreshMobile')) {
+        document.getElementById('refreshMobile').addEventListener('click', function() {
+            // Get current active filter
+            let filterType = 'yesterday';
+            if (document.getElementById('todayBtnMobile').classList.contains('active')) {
+                filterType = 'today';
+            }
+            
+            // Reload data with current filter
+            loadTCData(filterType);
+        });
+    }
+    
+    // Handle refresh button click
+    document.getElementById('refreshData').addEventListener('click', function() {
+        // Get current active filter
+        let filterType = 'yesterday';
+        if (document.getElementById('todayBtn').classList.contains('active')) {
+            filterType = 'today';
+        }
+        
+        // Reload data with current filter
         loadTCData(filterType);
     });
 

@@ -7,6 +7,8 @@ import logging
 import time
 from datetime import datetime, timedelta
 
+import function
+
 # Configure logging
 logging.basicConfig(
     level=logging.DEBUG,  # Changed to DEBUG for more detailed logs
@@ -86,30 +88,67 @@ def get_campaign_data(date_preset=DEFAULT_DATE_PRESET):
         }
         return empty_data
 
-# Custom error handlers
-@app.errorhandler(404)
-def page_not_found(e):
-    logger.warning(f"404 error: {request.path}")
-    return render_template('error.html', error_code=404, error_message="Page not found"), 404
 
-@app.errorhandler(500)
-def server_error(e):
-    logger.error(f"500 error: {str(e)}")
-    return render_template('error.html', error_code=500, error_message="Internal server error"), 500
+@app.route('/pr_data')
+def pr_data():
+    return render_template('pr_data.html')
 
-# Add security headers to all responses
-@app.after_request
-def add_security_headers(response):
-    response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
-    response.headers['X-XSS-Protection'] = '1; mode=block'
-    
-    # Add cache control for static resources
-    if request.path.startswith('/static/'):
-        response.headers['Cache-Control'] = 'public, max-age=86400'
-    
-    return response
+# API route for PR data
+@app.route('/api/pr_data', methods=['GET'])
+def get_pr_data():
+    try:
+        # Get filter_type from request if available
+        filter_type = request.args.get('filter_type', 'yesterday')
+        logger.info(f"Fetching PR data with filter_type: {filter_type}")
+        
+        # Get PR data from function
+        pr_data = function.get_pr_sale_data(filter_type)
+        
+        # If API returns None or empty list, return no data message
+        if pr_data is None or (isinstance(pr_data, list) and len(pr_data) == 0):
+            logger.warning(f"No PR data found for filter_type: {filter_type}")
+            return jsonify({
+                "status": "success",
+                "data": "No data found"
+            })
+            
+        # If PR data is valid, return it
+        
+        response = jsonify(pr_data)
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        return response
+    except Exception as e:
+        logger.error(f"Error fetching PR data: {e}")
+        return jsonify({"error": str(e)}), 500
+        
+# API route for TC data
+@app.route('/api/tc_data', methods=['GET'])
+def get_tc_data():
+    try:
+        # Get filter_type from request if available
+        filter_type = request.args.get('filter_type', 'yesterday')
+        logger.info(f"Fetching TC data with filter_type: {filter_type}")
+        
+        # Get TC data from function
+        tc_data = function.get_tc_data(filter_type)
+        
+        # If API returns None or empty list, return no data message
+        if tc_data is None or (isinstance(tc_data, list) and len(tc_data) == 0):
+            logger.warning(f"No TC data found for filter_type: {filter_type}")
+            return jsonify({
+                "status": "success",
+                "data": "No data found"
+            })
+            
+        # If TC data is valid, return it
+        
+        response = jsonify(tc_data)
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        return response
+    except Exception as e:
+        logger.error(f"Error fetching TC data: {e}")
+        return jsonify({"error": str(e)}), 500
+
 
 # Route for main page
 @app.route('/')
@@ -132,6 +171,11 @@ def leads():
 @app.route('/abv')
 def abv():
     return render_template('abv.html', title='ABV Performance Data')
+
+# Route for TC data page
+@app.route('/tc_data')
+def tc_data():
+    return render_template('tc_data.html', title='TC Performance Data')
 
 # API route for initial chart data
 @app.route('/api/data')
@@ -396,49 +440,6 @@ def get_abv_data():
         return jsonify({"error": str(e)}), 500
 
 
-# PR and TC data routes removed
-
-
-# API endpoint to test if API is available
-@app.route('/api/test-connection')
-def test_connection():
-    try:
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-        payload = {
-            'date_preset': DEFAULT_DATE_PRESET
-        }
-        
-        response = requests.post(CAMPAIGNS_API_URL, headers=headers, json=payload)
-        
-        return jsonify({
-            'status': 'success',
-            'api_status': response.status_code,
-            'api_url': CAMPAIGNS_API_URL
-        })
-    except Exception as e:
-        return jsonify({
-            'status': 'error',
-            'message': str(e),
-            'api_url': CAMPAIGNS_API_URL
-        }), 500
-
-# Debug endpoint to test APIs directly
-@app.route('/api/debug/test-all')
-def test_all_apis():
-    results = {}
-    
-    # Add mock data flag
-    results['using_mock_data'] = os.environ.get('FLASK_ENV') == 'development'
-    
-    # Return simplified results
-    return jsonify({
-        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        'results': results,
-        'environment': os.environ.get('FLASK_ENV', 'production')
-    })
 
 # Add compression to Flask app
 from flask_compress import Compress
@@ -449,5 +450,5 @@ ENV = os.environ.get('FLASK_ENV', 'production')
 
 # Run the app
 if __name__ == '__main__':
-    debug_mode = ENV != 'production'
-    app.run(debug=debug_mode, host='0.0.0.0', port=7700)
+
+    app.run(debug=True, host='0.0.0.0', port=7700)

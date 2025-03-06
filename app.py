@@ -35,6 +35,11 @@ CAMPAIGNS_API_URL = "https://api.onwords.in/lead_campaigns_cpl"
 ABV_API_URL = "https://api.onwords.in/abv"
 DEFAULT_DATE_PRESET = "today"
 
+# Configure connection parameters
+API_TIMEOUT = 10  # Increased timeout to 10 seconds
+API_MAX_RETRIES = 3
+API_RETRY_DELAY = 2  # seconds between retry attempts
+
 # Get campaign data from API with specific date preset
 def get_campaign_data(date_preset=DEFAULT_DATE_PRESET):
     # Try to get data from API using POST request with date_preset
@@ -47,17 +52,16 @@ def get_campaign_data(date_preset=DEFAULT_DATE_PRESET):
             'date_preset': date_preset
         }
         
-        # Add timeout and retries for resilience
-        max_retries = 3
+        # Use configured timeout and retries for resilience
         retry_count = 0
         
-        while retry_count < max_retries:
+        while retry_count < API_MAX_RETRIES:
             try:
                 response = requests.post(
                     CAMPAIGNS_API_URL, 
                     headers=headers, 
                     json=payload, 
-                    timeout=5  # 5 second timeout
+                    timeout=API_TIMEOUT
                 )
                 
                 if response.status_code == 200:
@@ -70,11 +74,11 @@ def get_campaign_data(date_preset=DEFAULT_DATE_PRESET):
             
             except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
                 retry_count += 1
-                if retry_count >= max_retries:
+                if retry_count >= API_MAX_RETRIES:
                     logger.error(f"Max retries reached when connecting to API: {str(e)}")
                     raise
-                logger.warning(f"Retry {retry_count}/{max_retries} after connection error: {str(e)}")
-                time.sleep(1)  # Wait 1 second before retrying
+                logger.warning(f"Retry {retry_count}/{API_MAX_RETRIES} after connection error: {str(e)}")
+                time.sleep(API_RETRY_DELAY)
     
     except Exception as e:
         logger.error(f"Error fetching campaigns with {date_preset} preset: {e}")
@@ -556,4 +560,4 @@ ENV = os.environ.get('FLASK_ENV', 'production')
 # Run the app
 if __name__ == '__main__':
 
-    app.run(debug=True, host='0.0.0.0', port=7700)
+    app.run(debug=True, host='0.0.0.0', port=7701)

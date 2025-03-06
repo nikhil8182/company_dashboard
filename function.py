@@ -1,9 +1,11 @@
 import requests
 
 def get_pr_sale_data(filter_type='yesterday'):
-    # Map 'monthly' to 'this_month' for API compatibility
-    api_filter_type = 'this_month' if filter_type == 'monthly' else filter_type
+    # Use filter_type directly - the API accepts 'monthly'
+    api_filter_type = filter_type
+    
     url = f"https://api.onwords.in/get_pr_data/?filter_type={api_filter_type}"
+    
     try:
         response = requests.get(url)
         response.raise_for_status()  # Raise an exception for HTTP errors.
@@ -57,9 +59,11 @@ def get_pr_sale_data(filter_type='yesterday'):
         return None
 
 def get_tc_data(filter_type='yesterday'):
-    # Map 'monthly' to 'this_month' for API compatibility
-    api_filter_type = 'this_month' if filter_type == 'monthly' else filter_type
+    # Use filter_type directly - the API accepts 'monthly'
+    api_filter_type = filter_type
+    
     url = f"https://api.onwords.in/get_tc_data/?filter_type={api_filter_type}"
+    
     try:
         response = requests.get(url)
         response.raise_for_status()  # Raise an exception for HTTP errors.
@@ -95,7 +99,8 @@ def get_tc_data(filter_type='yesterday'):
                 'calls': details.get('calls', 0),
                 'connects': details.get('connects', 0),
                 'leads': details.get('demos', 0),  # Using 'demos' as equivalent to 'leads'
-                'conversion': details.get('conversion', 0)
+                'conversion': details.get('conversion', 0),
+                'points': details.get('points', 0)  # Added points for consistency
             }
             
             tc.append(sanitized_details)

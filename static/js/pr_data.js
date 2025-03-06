@@ -96,23 +96,29 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remove active class from all buttons
         document.getElementById('todayBtn').classList.remove('active');
         document.getElementById('yesterdayBtn').classList.remove('active');
+        document.getElementById('monthlyBtn').classList.remove('active');
         
         // Add active class to the selected button
         if (filterType === 'today') {
             document.getElementById('todayBtn').classList.add('active');
         } else if (filterType === 'yesterday') {
             document.getElementById('yesterdayBtn').classList.add('active');
+        } else if (filterType === 'monthly') {
+            document.getElementById('monthlyBtn').classList.add('active');
         }
         
         // Update mobile buttons if they exist
         if (document.getElementById('todayBtnMobile')) {
             document.getElementById('todayBtnMobile').classList.remove('active');
             document.getElementById('yesterdayBtnMobile').classList.remove('active');
+            document.getElementById('monthlyBtnMobile').classList.remove('active');
             
             if (filterType === 'today') {
                 document.getElementById('todayBtnMobile').classList.add('active');
             } else if (filterType === 'yesterday') {
                 document.getElementById('yesterdayBtnMobile').classList.add('active');
+            } else if (filterType === 'monthly') {
+                document.getElementById('monthlyBtnMobile').classList.add('active');
             }
         }
     }
@@ -213,6 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
             let filterType = 'yesterday';
             if (document.getElementById('todayBtnMobile').classList.contains('active')) {
                 filterType = 'today';
+            } else if (document.getElementById('monthlyBtnMobile').classList.contains('active')) {
+                filterType = 'this_month';
             }
             
             // Reload data with current filter
@@ -226,6 +234,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let filterType = 'yesterday';
         if (document.getElementById('todayBtn').classList.contains('active')) {
             filterType = 'today';
+        } else if (document.getElementById('monthlyBtn').classList.contains('active')) {
+            filterType = 'monthly';
         }
         
         // Reload data with current filter

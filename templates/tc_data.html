@@ -60,6 +60,9 @@
                         <button id="yesterdayBtn" type="button" class="btn btn-outline-light btn-sm active">
                             <i class="bi bi-calendar-day-fill me-1"></i> Yesterday
                         </button>
+                        <button id="monthlyBtn" type="button" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-calendar-month me-1"></i> Monthly
+                        </button>
                     </div>
                     <a href="/" class="btn btn-outline-light btn-sm">
                         <i class="bi bi-house-door"></i> Home
@@ -137,6 +140,7 @@
                         <div class="btn-group btn-group-sm" role="group">
                             <button id="todayBtnMobile" type="button" class="btn btn-outline-primary">Today</button>
                             <button id="yesterdayBtnMobile" type="button" class="btn btn-outline-primary active">Yesterday</button>
+                            <button id="monthlyBtnMobile" type="button" class="btn btn-outline-primary">Monthly</button>
                         </div>
                         <button id="refreshMobile" class="btn btn-sm btn-primary">
                             <i class="bi bi-arrow-repeat"></i>
@@ -537,5 +541,91 @@
     
     <!-- Deferred loading of Bootstrap JS -->
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Monthly button handler -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handler for monthly buttons
+            document.getElementById('monthlyBtn').addEventListener('click', function() {
+                // Show loading spinner
+                document.getElementById('spinner').classList.remove('d-none');
+                
+                fetch(`/api/tc_data?filter_type=monthly`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Check if response is the "No data found" message
+                        if (data.status === "success" && data.data === "No data found") {
+                            showNoDataMessage();
+                        } else {
+                            updateTCDataTable(data);
+                            updateSummaryCards(data);
+                        }
+                        
+                        // Update last updated time
+                        document.getElementById('lastUpdated').innerHTML = `<span class="badge bg-secondary me-1">Monthly</span> ${new Date().toLocaleTimeString()}`;
+                        
+                        // Update button states
+                        document.getElementById('todayBtn').classList.remove('active');
+                        document.getElementById('yesterdayBtn').classList.remove('active');
+                        document.getElementById('monthlyBtn').classList.add('active');
+                    })
+                    .catch(error => {
+                        console.error('Error fetching monthly data:', error);
+                        // Show error message
+                        showNoDataMessage();
+                    })
+                    .finally(() => {
+                        // Hide spinner in all cases
+                        document.getElementById('spinner').classList.add('d-none');
+                    });
+            });
+            
+            if (document.getElementById('monthlyBtnMobile')) {
+                document.getElementById('monthlyBtnMobile').addEventListener('click', function() {
+                    // Show loading spinner
+                    document.getElementById('spinner').classList.remove('d-none');
+                    
+                    fetch(`/api/tc_data?filter_type=monthly`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            // Check if response is the "No data found" message
+                            if (data.status === "success" && data.data === "No data found") {
+                                showNoDataMessage();
+                            } else {
+                                updateTCDataTable(data);
+                                updateSummaryCards(data);
+                            }
+                            
+                            // Update last updated time
+                            document.getElementById('lastUpdated').innerHTML = `<span class="badge bg-secondary me-1">Monthly</span> ${new Date().toLocaleTimeString()}`;
+                            
+                            // Update mobile button states
+                            document.getElementById('todayBtnMobile').classList.remove('active');
+                            document.getElementById('yesterdayBtnMobile').classList.remove('active');
+                            document.getElementById('monthlyBtnMobile').classList.add('active');
+                        })
+                        .catch(error => {
+                            console.error('Error fetching monthly data:', error);
+                            // Show error message
+                            showNoDataMessage();
+                        })
+                        .finally(() => {
+                            // Hide spinner in all cases
+                            document.getElementById('spinner').classList.add('d-none');
+                        });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
